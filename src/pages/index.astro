@@ -6,6 +6,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import ProjectCard from '@/components/ProjectCard.astro';
 import { getTranslatedProjects } from '@/data/projects';
+import { getTranslatedSkills } from '@/data/skills';
+import SkillCard from '@/components/SkillCard.astro';
 import { Calendar, Dumbbell } from "lucide-react";
 
 const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
@@ -16,6 +18,9 @@ const pageDescription = t('pageDescription');
 
 // Get translated projects
 const projects = getTranslatedProjects(lang);
+
+// Get translated skills
+const skills = getTranslatedSkills(lang);
 
 ---
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
@@ -81,6 +86,28 @@ const projects = getTranslatedProjects(lang);
             projectUrl={project.projectUrl}
             codeUrl={project.codeUrl}
             tags={project.tags}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Section Mes Compétences */}
+  <section id="skills" class="py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <Heading
+        title={t('mySkillsTitle')}
+        description={t('mySkillsDescription')}
+        titleClassName="text-center text-2xl font-semibold"
+        descriptionClassName="text-center text-lg mb-12"
+      />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {skills.map(skill => (
+          <SkillCard
+            title={skill.title}
+            description={skill.description}
+            iconName={skill.iconName}
+            technologies={skill.technologies}
           />
         ))}
       </div>

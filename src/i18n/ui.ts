@@ -35,6 +35,28 @@ export const ui = {
         imageAltText: "Image du projet CMS",
       },
     },
+    skillsContent: {
+      frontendDevelopment: {
+        title: "Développement Frontend",
+        description: "Création d'interfaces utilisateur réactives et accessibles avec des frameworks et bibliothèques modernes."
+      },
+      backendDevelopment: {
+        title: "Développement Backend",
+        description: "Conception d'applications serveur robustes et d'API pour alimenter les applications web."
+      },
+      databaseManagement: {
+        title: "Gestion de Bases de Données",
+        description: "Conception et optimisation de schémas de bases de données pour un stockage et une récupération efficaces des données."
+      },
+      uiUxDesign: {
+        title: "Conception UI/UX",
+        description: "Création d'interfaces et d'expériences utilisateur intuitives et visuellement attrayantes."
+      },
+      softwareArchitecture: {
+        title: "Architecture Logicielle",
+        description: "Application des principes de la Clean Architecture pour des systèmes maintenables et évolutifs."
+      }
+    },
     site: {
       title: "Portfolio Bakate",
       description:
@@ -68,6 +90,8 @@ export const ui = {
       projectCardViewProject: "Voir le projet",
       projectCardViewCode: "Voir le code",
       imageNotAvailable: "Image bientôt disponible",
+      mySkillsTitle: "Mes Compétences",
+      mySkillsDescription: "Explorez l'expertise et les capacités qui définissent mon travail et ma passion.",
     },
     blogPage: {
       pageTitle: "Mon Blog Technique",
@@ -146,6 +170,28 @@ export const ui = {
         imageAltText: "CMS project image",
       },
     },
+    skillsContent: {
+      frontendDevelopment: {
+        title: "Frontend Development",
+        description: "Building responsive and accessible user interfaces with modern frameworks and libraries."
+      },
+      backendDevelopment: {
+        title: "Backend Development",
+        description: "Creating robust server-side applications and APIs to power web applications."
+      },
+      databaseManagement: {
+        title: "Database Management",
+        description: "Designing and optimizing database schemas for efficient data storage and retrieval."
+      },
+      uiUxDesign: {
+        title: "UI/UX Design",
+        description: "Creating intuitive and visually appealing user interfaces and experiences."
+      },
+      softwareArchitecture: {
+        title: "Software Architecture",
+        description: "Applying Clean Architecture principles for maintainable and scalable systems."
+      }
+    },
     site: {
       title: "Bakate Portfolio",
       description:
@@ -178,6 +224,8 @@ export const ui = {
       projectCardViewProject: "View Project",
       projectCardViewCode: "View Code",
       imageNotAvailable: "Image not available for now",
+      mySkillsTitle: "My Skills",
+      mySkillsDescription: "Explore the expertise and abilities that define my work and passion.",
     },
     blogPage: {
       pageTitle: "My Technical Blog",
