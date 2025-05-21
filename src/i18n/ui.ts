@@ -9,6 +9,32 @@ export type LanguageCode = keyof typeof languages;
 
 export const ui = {
   fr: {
+    projectsContent: {
+      codeHaven: {
+        title: "Code Haven",
+        description:
+          "Une plateforme d'apprentissage pour les futurs développeurs.",
+        imageAltText: "Image du projet Code Haven",
+      },
+      afrikaZon: {
+        title: " AfrikaZon",
+        description:
+          "Une plateforme e-commerce où l'on peut acheter des vêtements africains.",
+        imageAltText: "Image du projet AfrikaZon",
+      },
+      samouraStore: {
+        title: "Samoura Store",
+        description:
+          "Une plateforme e-commerce où l'on peut acheter des vêtements.",
+        imageAltText: "Image du projet Samoura Store",
+      },
+      cms: {
+        title: "Système de Gestion de Contenu",
+        description:
+          "Une plateforme où vous pouvez créer, éditer et supprimer du contenu.",
+        imageAltText: "Image du projet CMS",
+      },
+    },
     site: {
       title: "Portfolio Bakate",
       description:
@@ -24,12 +50,24 @@ export const ui = {
       rights: "Tous droits réservés.",
     },
     homePage: {
-      pageTitle: "Accueil",
-      pageDescription: "Bienvenue sur mon Portfolio !",
-      welcome: "Bienvenue sur mon Portfolio !",
-      subtitle:
-        "Développeur FullStack passionné par la création d'expériences web modernes et performantes.",
-      cta: "Découvrir mes projets",
+      pageTitle: "Accueil | Bakate - Développeur FullStack",
+      pageDescription:
+        "Bienvenue sur le portfolio de Bakate, développeur FullStack passionné par la création d'expériences web innovantes.",
+      heroGreeting: "Salut, c'est Bakate",
+      heroSubtitlePart1: "Développeur FullStack",
+      heroSubtitlePart2: "Passionné UI/UX",
+      heroIntroduction:
+        "Je suis un Développeur FullStack et mordu de UI/UX basé à Paris. J'adore créer des expériences numériques qui sont à la fois belles, fonctionnelles et centrées sur l'utilisateur. Fort d'une solide expérience en technologies front-end et back-end, je m'efforce de construire des solutions qui ne sont pas seulement techniquement robustes, mais aussi intuitives et engageantes pour les utilisateurs.",
+      heroViewWorkButton: "Mes réalisations",
+      heroContactButton: "Me contacter",
+      heroImageAlt:
+        "Illustration représentant Bakate ou un concept de développement",
+      featuredProjectsTitle: "Projets à la Une",
+      featuredProjectsDescription:
+        "Voici quelques projets sur lesquels j'ai récemment travaillé. N'hésitez pas à les explorer !",
+      projectCardViewProject: "Voir le projet",
+      projectCardViewCode: "Voir le code",
+      imageNotAvailable: "Image bientôt disponible",
     },
     blogPage: {
       pageTitle: "Mon Blog Technique",
@@ -85,6 +123,29 @@ export const ui = {
     },
   },
   en: {
+    projectsContent: {
+      codeHaven: {
+        title: "Code Haven",
+        description: "A learning platform for future developers",
+        imageAltText: "Code Haven project image",
+      },
+      afrikaZon: {
+        title: "AfrikaZon",
+        description: "An e-commerce platform where we can buy African clothes.",
+        imageAltText: "AfrikaZon project image",
+      },
+      samouraStore: {
+        title: "Samoura Store",
+        description: "An e-commerce platform where we can buy clothes.",
+        imageAltText: "Samoura Store project image",
+      },
+      cms: {
+        title: "Content Management System",
+        description:
+          "A platform where you can create, edit and delete content.",
+        imageAltText: "CMS project image",
+      },
+    },
     site: {
       title: "Bakate Portfolio",
       description:
@@ -100,12 +161,23 @@ export const ui = {
       rights: "All rights reserved.",
     },
     homePage: {
-      pageTitle: "Home",
-      pageDescription: "Welcome to my Portfolio!",
-      welcome: "Welcome to my Portfolio!",
-      subtitle:
-        "Passionate FullStack Developer creating modern and performant web experiences.",
-      cta: "Discover my projects",
+      pageTitle: "Home | Bakate - FullStack Developer",
+      pageDescription:
+        "Welcome to the portfolio of Bakate, a FullStack developer passionate about creating innovative web experiences.",
+      heroGreeting: "Hi, I'm Bakate",
+      heroSubtitlePart1: "Full Stack Developer",
+      heroSubtitlePart2: "UI/UX Enthusiast",
+      heroIntroduction:
+        "I'm a passionate Full Stack Developer and UI/UX enthusiast based in Paris. I love creating beautiful, functional, and user-centered digital experiences. With a strong foundation in both front-end and back-end technologies, I strive to build solutions that are not only technically sound but also intuitive and engaging for users.",
+      heroViewWorkButton: "View My Work",
+      heroContactButton: "Get In Touch",
+      heroImageAlt: "Illustration representing Bakate or a development concept",
+      featuredProjectsTitle: "Featured Projects",
+      featuredProjectsDescription:
+        "Here are some of the projects I've recently worked on. Feel free to explore!",
+      projectCardViewProject: "View Project",
+      projectCardViewCode: "View Code",
+      imageNotAvailable: "Image not available for now",
     },
     blogPage: {
       pageTitle: "My Technical Blog",

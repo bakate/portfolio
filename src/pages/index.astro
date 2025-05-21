@@ -1,6 +1,12 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+import { defaultLanguage, useTranslations, type LanguageCode, ui } from '@/i18n/ui';
+import Heading from '@/components/Heading.astro';
+import { buttonVariants } from '@/components/ui/button';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import ProjectCard from '@/components/ProjectCard.astro';
+import { getTranslatedProjects } from '@/data/projects';
+import { Calendar, Dumbbell } from "lucide-react";
 
 const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
 const t = useTranslations(lang, 'homePage');
@@ -8,17 +14,76 @@ const t = useTranslations(lang, 'homePage');
 const pageTitle = t('pageTitle');
 const pageDescription = t('pageDescription');
 
+// Get translated projects
+const projects = getTranslatedProjects(lang);
+
 ---
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-<section class="text-center">
-    <h1 class="text-4xl font-bold tracking-tight lg:text-5xl mb-6">
-		{t('welcome')}
-	  </h1>
-	  <p class="text-lg text-muted-foreground mb-8">
-		{t('subtitle')}
-	  </p>
-	  <p>
-		{t('cta')}
-	  </p>
-</section>
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        {/* Colonne de Texte */} 
+        <div class="text-center md:text-left">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+            {t('heroGreeting')}
+          </h1>
+          <p class="text-2xl md:text-3xl font-medium text-muted-foreground mb-2">
+            <span>{t('heroSubtitlePart1')}</span>
+            <span class="text-primary"> | </span>
+            <span>{t('heroSubtitlePart2')}</span>
+          </p>
+          <p class="text-lg text-muted-foreground mb-8">
+            {t('heroIntroduction')}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a href="#projects" class={buttonVariants({ variant: 'default', size: 'lg' })}>
+              {/* Tu peux ajouter une icône ici plus tard si tu le souhaites */} 
+			  
+              <Dumbbell className="mr-2 size-4" />
+              {t('heroViewWorkButton')}
+            </a>
+            <a href={getRelativeLocaleUrl(lang, '/contact')} class={buttonVariants({ variant: 'outline', size: 'lg' })}>
+              {/* Tu peux ajouter une icône ici plus tard si tu le souhaites */} 
+              
+			  <Calendar className="mr-2 size-4" />
+              {t('heroContactButton')}
+            </a>
+          </div>
+        </div>
+
+        {/* Colonne de l'Image (Placeholder pour l'instant) */} 
+        <div class="hidden md:block text-center">
+          {/* Bientôt : <Image src={heroImage} alt={t('heroImageAlt')} class="w-full max-w-md mx-auto rounded-lg shadow-xl" /> */} 
+          <div class="w-full max-w-md h-96 bg-muted rounded-lg shadow-xl mx-auto flex items-center justify-center">
+            <p class="text-muted-foreground">{t('imageNotAvailable')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {/* Section Projets Phares */}
+  <section id="projects" class="py-16 md:py-24 bg-muted/20 dark:bg-muted/10">
+    <div class="container mx-auto px-4">
+      <Heading
+        title={t('featuredProjectsTitle')}
+        description={t('featuredProjectsDescription')}
+        titleClassName="text-center text-3xl"
+        descriptionClassName="text-center text-lg"
+      />
+    
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map(project => (
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            imageUrl={project.imageUrl}
+            imageAltText={project.imageAltText}
+            projectUrl={project.projectUrl}
+            codeUrl={project.codeUrl}
+            tags={project.tags}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
