@@ -1,80 +1,73 @@
 ---
-// src/pages/contact.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Heading from '@/components/Heading.astro'; 
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
-// Plus tard, tu pourras importer des composants de formulaire shadcn/ui ici
- import { Button } from '@/components/ui/button';
- import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { ContactForm } from '@/components/ContactForm.tsx';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { Calendar } from 'lucide-react';
 
-const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+const lang = Astro.currentLocale as LanguageCode | undefined ?? "en";
 const t = useTranslations(lang, 'contactPage');
-
 const pageTitle = t('pageTitle');
 const pageDescription = t('pageDescription');
+
+// Prepare translations for the form component
+const formTranslations = {
+  firstNameLabel: t('firstNameLabel'),
+  lastNameLabel: t('lastNameLabel'),
+  emailLabel: t('emailLabel'),
+  messageLabel: t('messageLabel'),
+  firstNamePlaceholder: t('firstNamePlaceholder'),
+  lastNamePlaceholder: t('lastNamePlaceholder'),
+  emailPlaceholder: t('emailPlaceholder'),
+  messagePlaceholder: t('messagePlaceholder'),
+  sendButtonLabel: t('sendButtonLabel'),
+};
 ---
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-  <section>
-    <h1 class="text-4xl font-bold tracking-tight lg:text-5xl mb-8">
-      {pageTitle}
-    </h1>
-    <p class="text-lg text-muted-foreground mb-6">
-      {t('description')}
-    </p>
+  <section class="py-12 md:py-20">
+    <Heading 
+      title={pageTitle} 
+      description={t('description')} 
+      showDivider={true} 
+      titleClassName='md:text-5xl'
+      className="text-center"
+    />
 
-    {/* Placeholder pour le formulaire de contact et l'intégration Google Calendar */}
-    <div class="grid md:grid-cols-2 gap-12">
-      <div class="space-y-6">
-        <h2 class="text-2xl font-semibold">{t('formTitle')}</h2>
-        <form class="space-y-4">
-          <div>
-            {/* <Label htmlFor="name">Nom</Label> */}
-            {/* <Input type="text" id="name" placeholder="Votre nom" /> */}
-            <label for="name" class="block text-sm font-medium text-foreground mb-1">{t('nameLabel')}</label>
-            <input type="text" id="name" placeholder="Votre nom" class="w-full p-2 border border-input rounded-md bg-background" />
+    <div class="flex justify-center mt-12">
+      <div class="w-full max-w-xl space-y-6 bg-card p-6 md:p-8 rounded-lg shadow">
+        {/* Section Formulaire */}
+        <Heading 
+          title={t('formTitle')} 
+          className="text-center"
+        />
+        <ContactForm client:load lang={lang} formTranslations={formTranslations} />
 
-          </div>
-          <div>
-            {/* <Label htmlFor="email">Email</Label> */}
-            {/* <Input type="email" id="email" placeholder="Votre email" /> */}
-            <label for="email" class="block text-sm font-medium text-foreground mb-1">{t('emailLabel')}</label>
-            <input type="email" id="email" placeholder="Votre email" class="w-full p-2 border border-input rounded-md bg-background" />
-          </div>
-          <div>
-            {/* <Label htmlFor="message">Message</Label> */}
-            {/* <Textarea id="message" placeholder="Votre message" /> */}
-            <label for="message" class="block text-sm font-medium text-foreground mb-1">{t('messageLabel')}</label>
-            <textarea id="message" placeholder="Votre message" rows="4" class="w-full p-2 border border-input rounded-md bg-background"></textarea>
-          </div>
-          {/* <Button type="submit">Envoyer</Button> */}
-          <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-            {t('sendButtonLabel')}
-          </button>
-        </form>
-      </div>
-
-      <div class="space-y-6">
-        <h2 class="text-2xl font-semibold">{t('calendarTitle')}</h2>
-        <p class="text-muted-foreground">
-          {t('calendarDescription')}
-        </p>
-        <div class="border-dashed border-2 border-muted p-8 rounded-md text-center bg-card">
-          <p class="text-muted-foreground">
-            {t('calendarPlaceholder')}
-          </p>
-          {/* Placeholder pour le widget Google Calendar */}
-          {/* Exemple : <Button variant="outline">Voir mes disponibilités</Button> */}
+        {/* Séparateur OU */}
+        <div class="my-8 flex items-center">
+          <hr class="flex-grow border-border" />
+          <span class="mx-4 text-muted-foreground font-medium">{t('orSeparatorText')}</span>
+          <hr class="flex-grow border-border" />
         </div>
-        <p class="text-muted-foreground">
-          {t('calendarButtonLabel')}
-        </p>
-        <div class="flex space-x-4">
-          {/* Liens vers LinkedIn, GitHub, etc. */}
-          <a href="#" class="text-primary hover:underline">LinkedIn</a>
-          <a href="#" class="text-primary hover:underline">GitHub</a>
-        </div>
+
+        {/* Section Google Calendar */}
+        <Heading 
+          title={t('calendarTitle')} 
+          className="text-center"
+          description={t('calendarDescription')}
+        />
+        <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3HREAH009x5Vs7riMip0tItr_GIyNImD-R_DUvbPSt1lhBe3rGsWvzA77-8AGvn4SpPlWepv7x?gv=true" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class={cn("w-full mt-4", buttonVariants({ variant: 'default', size: 'lg' }))}
+         >
+         <Calendar className="mr-2 size-4" />
+          {t('calendarLinkLabel')}
+        </a>
       </div>
     </div>
+
   </section>
 </BaseLayout>

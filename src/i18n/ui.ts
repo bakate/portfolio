@@ -38,24 +38,29 @@ export const ui = {
     skillsContent: {
       frontendDevelopment: {
         title: "Développement Frontend",
-        description: "Création d'interfaces utilisateur réactives et accessibles avec des frameworks et bibliothèques modernes."
+        description:
+          "Création d'interfaces utilisateur réactives et accessibles avec des frameworks et bibliothèques modernes.",
       },
       backendDevelopment: {
         title: "Développement Backend",
-        description: "Conception d'applications serveur robustes et d'API pour alimenter les applications web."
+        description:
+          "Conception d'applications serveur robustes et d'API pour alimenter les applications web.",
       },
       databaseManagement: {
         title: "Gestion de Bases de Données",
-        description: "Conception et optimisation de schémas de bases de données pour un stockage et une récupération efficaces des données."
+        description:
+          "Conception et optimisation de schémas de bases de données pour un stockage et une récupération efficaces des données.",
       },
       uiUxDesign: {
         title: "Conception UI/UX",
-        description: "Création d'interfaces et d'expériences utilisateur intuitives et visuellement attrayantes."
+        description:
+          "Création d'interfaces et d'expériences utilisateur intuitives et visuellement attrayantes.",
       },
       softwareArchitecture: {
         title: "Architecture Logicielle",
-        description: "Application des principes de la Clean Architecture pour des systèmes maintenables et évolutifs."
-      }
+        description:
+          "Application des principes de la Clean Architecture pour des systèmes maintenables et évolutifs.",
+      },
     },
     site: {
       title: "Portfolio Bakate",
@@ -91,7 +96,8 @@ export const ui = {
       projectCardViewCode: "Voir le code",
       imageNotAvailable: "Image bientôt disponible",
       mySkillsTitle: "Mes Compétences",
-      mySkillsDescription: "Explorez l'expertise et les capacités qui définissent mon travail et ma passion.",
+      mySkillsDescription:
+        "Explorez l'expertise et les capacités qui définissent mon travail et ma passion.",
     },
     blogPage: {
       pageTitle: "Mon Blog Technique",
@@ -126,24 +132,43 @@ export const ui = {
         "Discutons de ton projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
 
       formTitle: "Envoyer un message",
-      nameLabel: "Nom",
+      firstNameLabel: "Prénom",
+      lastNameLabel: "Nom",
       emailLabel: "Email",
       messageLabel: "Message",
       sendButtonLabel: "Envoyer",
+      firstNamePlaceholder: "Ton prénom",
 
+      lastNamePlaceholder: "Ton nom de famille",
+      emailPlaceholder: "Ton adresse e-mail",
+      messagePlaceholder: "Ton message ici...",
       calendarTitle: "Planifier un RDV",
       calendarDescription:
         "Tu préfères discuter de vive voix ? Réservez directement un créneau dans mon agenda.",
       calendarButtonLabel: "Voir mes disponibilités",
+      calendarLinkLabel: "Voir mon agenda",
       calendarPlaceHolder:
         "L'intégration avec Google Calendar se fera bientôt...",
+      orSeparatorText: "OU",
     },
     notFoundPage: {
-      pageTitle: "Page non trouvée",
-      title: "Oops ! Page non trouvée",
+      pageTitle: "Page Non Trouvée",
+      title: "Oups ! Page Non Trouvée",
       message:
-        "Désolé, la page que tu recherches semble introuvable. Vérifie l'URL ou retourne à l'accueil.",
-      homeLink: "Retourner à l'accueil",
+        "Désolé, la page que vous recherchez ne semble pas exister. Vérifiez l'URL ou retournez à la page d'accueil.",
+      homeLink: "Retourner à l'Accueil",
+    },
+    zodErrors: {
+      // Common errors
+      invalid_type: "Type invalide.",
+      invalid_type_received_undefined: "Ce champ est requis.", // For required fields
+      // String errors
+      too_small_string_minimum: "Doit contenir au moins {minimum} caractères.",
+      too_big_string_maximum: "Ne doit pas dépasser {maximum} caractères.",
+      invalid_string_email: "Adresse e-mail invalide.",
+      invalid_string_url: "URL invalide.",
+      invalid_string_uuid: "UUID invalide.",
+      // You can add more specific messages as needed
     },
   },
   en: {
@@ -173,24 +198,29 @@ export const ui = {
     skillsContent: {
       frontendDevelopment: {
         title: "Frontend Development",
-        description: "Building responsive and accessible user interfaces with modern frameworks and libraries."
+        description:
+          "Building responsive and accessible user interfaces with modern frameworks and libraries.",
       },
       backendDevelopment: {
         title: "Backend Development",
-        description: "Creating robust server-side applications and APIs to power web applications."
+        description:
+          "Creating robust server-side applications and APIs to power web applications.",
       },
       databaseManagement: {
         title: "Database Management",
-        description: "Designing and optimizing database schemas for efficient data storage and retrieval."
+        description:
+          "Designing and optimizing database schemas for efficient data storage and retrieval.",
       },
       uiUxDesign: {
         title: "UI/UX Design",
-        description: "Creating intuitive and visually appealing user interfaces and experiences."
+        description:
+          "Creating intuitive and visually appealing user interfaces and experiences.",
       },
       softwareArchitecture: {
         title: "Software Architecture",
-        description: "Applying Clean Architecture principles for maintainable and scalable systems."
-      }
+        description:
+          "Applying Clean Architecture principles for maintainable and scalable systems.",
+      },
     },
     site: {
       title: "Bakate Portfolio",
@@ -225,7 +255,8 @@ export const ui = {
       projectCardViewCode: "View Code",
       imageNotAvailable: "Image not available for now",
       mySkillsTitle: "My Skills",
-      mySkillsDescription: "Explore the expertise and abilities that define my work and passion.",
+      mySkillsDescription:
+        "Explore the expertise and abilities that define my work and passion.",
     },
     blogPage: {
       pageTitle: "My Technical Blog",
@@ -262,16 +293,23 @@ export const ui = {
       description:
         "Let's discuss your project, a potential collaboration, or just chat about tech!",
       formTitle: "Send a message",
-      nameLabel: "Name",
+      firstNameLabel: "First Name",
+      lastNameLabel: "Last Name",
       emailLabel: "Email",
       messageLabel: "Message",
       sendButtonLabel: "Send",
+      firstNamePlaceholder: "Your first name",
+      lastNamePlaceholder: "Your last name",
+      emailPlaceholder: "Your email address",
+      messagePlaceholder: "Your message here...",
       calendarTitle: "Schedule a Meeting",
       calendarDescription:
         "Prefer to talk live? Book a slot directly in my calendar.",
       calendarButtonLabel: "See my availability",
+      calendarLinkLabel: "See my calendar",
       calendarPlaceHolder:
         "The integration with Google Calendar will be soon...",
+      orSeparatorText: "OR",
     },
     notFoundPage: {
       pageTitle: "Page Not Found",
@@ -279,6 +317,18 @@ export const ui = {
       message:
         "Sorry, the page you are looking for does not seem to exist. Check the URL or return to the homepage.",
       homeLink: "Return to Homepage",
+    },
+    zodErrors: {
+      // Common errors
+      invalid_type: "Invalid type.",
+      invalid_type_received_undefined: "This field is required.", // For required fields
+      // String errors
+      too_small_string_minimum: "Must be at least {minimum} characters long.",
+      too_big_string_maximum: "Must be no more than {maximum} characters long.",
+      invalid_string_email: "Invalid email address.",
+      invalid_string_url: "Invalid URL.",
+      invalid_string_uuid: "Invalid UUID.",
+      // You can add more specific messages as needed
     },
   },
 } as const;
