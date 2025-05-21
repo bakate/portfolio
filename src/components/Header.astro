@@ -37,8 +37,8 @@ const navLinks: NavLink[] = [
 
   const languagesForSelector   = Object.keys(languages).map((langCode) => ({
     code: langCode,
-    name: languages[langCode].name,
-    flag: languages[langCode].flag,
+    name: languages[langCode as LanguageCode].name,
+    flag: languages[langCode as LanguageCode].flag,
     targetUrl: getRelativeLocaleUrl(langCode, basePathForLinks),
   }));
 
