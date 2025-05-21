@@ -2,6 +2,7 @@
 // src/pages/blog.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+import Heading from '@/components/Heading.astro';
 
 const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
 const t = useTranslations(lang, 'blogPage');
@@ -12,12 +13,15 @@ const pageDescription = t('pageDescription');
 ---
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
   <section>
-    <h1 class="text-4xl font-bold tracking-tight lg:text-5xl mb-8">
-      {pageTitle}
-    </h1>
-    <p class="text-lg text-muted-foreground mb-6">
-      {pageDescription}
-    </p>
+    <Heading  
+      title={pageTitle} 
+      description={pageDescription} 
+      showDivider={true} 
+      titleClassName='md:text-5xl'
+      className="text-center"
+    />
+    
+  
     {/* Contenu du blog à venir : liste des articles, etc. */}
     <div class="border-dashed border-2 border-muted p-8 rounded-md text-center">
       <p class="text-muted-foreground">
