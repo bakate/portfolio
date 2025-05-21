@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+
+const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+const t = useTranslations(lang, 'aboutPage');
+
+const pageTitle = t('pageTitle');
+const pageDescription = t('pageDescription');
+---
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+  <section>
+    <h1 class="text-4xl font-bold tracking-tight lg:text-5xl mb-8">
+      {pageTitle}
+    </h1>
+    <p class="text-lg text-muted-foreground mb-6">
+      {t('introduction')}
+    </p>
+    <div class="space-y-4">
+      <p>
+        {t('skills')}
+      </p>
+      <p>
+        {t('reasonWhy')}
+      </p>
+      <p>
+        {t('additionalInfo')}
+      </p>
+    </div>
+    {/* Tu pourras ajouter une photo, des liens vers tes réseaux (GitHub, LinkedIn), etc. */}
+  </section>
+</BaseLayout>

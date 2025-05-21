@@ -1,0 +1,80 @@
+---
+// src/pages/contact.astro
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+// Plus tard, tu pourras importer des composants de formulaire shadcn/ui ici
+ import { Button } from '@/components/ui/button';
+ import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+
+const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+const t = useTranslations(lang, 'contactPage');
+
+const pageTitle = t('pageTitle');
+const pageDescription = t('pageDescription');
+---
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+  <section>
+    <h1 class="text-4xl font-bold tracking-tight lg:text-5xl mb-8">
+      {pageTitle}
+    </h1>
+    <p class="text-lg text-muted-foreground mb-6">
+      {t('description')}
+    </p>
+
+    {/* Placeholder pour le formulaire de contact et l'intégration Google Calendar */}
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-6">
+        <h2 class="text-2xl font-semibold">{t('formTitle')}</h2>
+        <form class="space-y-4">
+          <div>
+            {/* <Label htmlFor="name">Nom</Label> */}
+            {/* <Input type="text" id="name" placeholder="Votre nom" /> */}
+            <label for="name" class="block text-sm font-medium text-foreground mb-1">{t('nameLabel')}</label>
+            <input type="text" id="name" placeholder="Votre nom" class="w-full p-2 border border-input rounded-md bg-background" />
+
+          </div>
+          <div>
+            {/* <Label htmlFor="email">Email</Label> */}
+            {/* <Input type="email" id="email" placeholder="Votre email" /> */}
+            <label for="email" class="block text-sm font-medium text-foreground mb-1">{t('emailLabel')}</label>
+            <input type="email" id="email" placeholder="Votre email" class="w-full p-2 border border-input rounded-md bg-background" />
+          </div>
+          <div>
+            {/* <Label htmlFor="message">Message</Label> */}
+            {/* <Textarea id="message" placeholder="Votre message" /> */}
+            <label for="message" class="block text-sm font-medium text-foreground mb-1">{t('messageLabel')}</label>
+            <textarea id="message" placeholder="Votre message" rows="4" class="w-full p-2 border border-input rounded-md bg-background"></textarea>
+          </div>
+          {/* <Button type="submit">Envoyer</Button> */}
+          <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            {t('sendButtonLabel')}
+          </button>
+        </form>
+      </div>
+
+      <div class="space-y-6">
+        <h2 class="text-2xl font-semibold">{t('calendarTitle')}</h2>
+        <p class="text-muted-foreground">
+          {t('calendarDescription')}
+        </p>
+        <div class="border-dashed border-2 border-muted p-8 rounded-md text-center bg-card">
+          <p class="text-muted-foreground">
+            {t('calendarPlaceholder')}
+          </p>
+          {/* Placeholder pour le widget Google Calendar */}
+          {/* Exemple : <Button variant="outline">Voir mes disponibilités</Button> */}
+        </div>
+        <p class="text-muted-foreground">
+          {t('calendarButtonLabel')}
+        </p>
+        <div class="flex space-x-4">
+          {/* Liens vers LinkedIn, GitHub, etc. */}
+          <a href="#" class="text-primary hover:underline">LinkedIn</a>
+          <a href="#" class="text-primary hover:underline">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
