@@ -1,21 +1,29 @@
 ---
 import { cn } from '@/lib/utils';
+import { Separator } from './ui/separator';
 
 interface Props {
   title: string;
-  description: string;
- titleClassName?: string;
- descriptionClassName?: string;
+  description?: string;
+  className?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  showDivider?: boolean;
 }
 
-const { title, description, titleClassName, descriptionClassName } = Astro.props;
+const { title, description, className, titleClassName, descriptionClassName, showDivider = false } = Astro.props;
 ---
 
-<div class="mb-8">
-  <h1 class={cn('text-4xl font-bold tracking-tight lg:text-5xl mb-4', titleClassName)}>
+<div class={cn('mb-8 space-y-2', className)}>
+  <h1 class={cn('text-2xl font-bold tracking-tight sm:text-3xl', titleClassName)}>
     {title}
   </h1>
-  <p class={cn('text-lg text-muted-foreground', descriptionClassName)}>
-    {description}
-  </p>
+  {showDivider && (
+    <Separator  className='max-w-48 mx-auto'/>
+  )}
+  {description ? (
+    <p class={cn('max-w-3xl mx-auto text-muted-foreground', descriptionClassName)}>
+      {description}
+    </p>
+  ) : null}
 </div>

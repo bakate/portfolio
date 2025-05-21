@@ -72,8 +72,7 @@ const skills = getTranslatedSkills(lang);
       <Heading
         title={t('featuredProjectsTitle')}
         description={t('featuredProjectsDescription')}
-        titleClassName="text-center text-2xl font-semibold"
-        descriptionClassName="text-center text-lg"
+        className="text-center"
       />
     
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -98,8 +97,7 @@ const skills = getTranslatedSkills(lang);
       <Heading
         title={t('mySkillsTitle')}
         description={t('mySkillsDescription')}
-        titleClassName="text-center text-2xl font-semibold"
-        descriptionClassName="text-center text-lg mb-12"
+        className="text-center"
       />
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skills.map(skill => (
