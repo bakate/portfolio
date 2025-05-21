@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+
+const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+const t = useTranslations(lang, 'homePage');
+
+const pageTitle = t('pageTitle');
+const pageDescription = t('pageDescription');
+
+---
+
+
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+<section class="text-center">
+    <h1 class="text-4xl font-bold tracking-tight lg:text-5xl mb-6">
+		{t('welcome')}
+	  </h1>
+	  <p class="text-lg text-muted-foreground mb-8">
+		{t('subtitle')}
+	  </p>
+	  <p>
+		{t('cta')}
+	  </p>
+</section>
+</BaseLayout>

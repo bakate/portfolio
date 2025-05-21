@@ -1,0 +1,46 @@
+---
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Image } from 'astro:assets';
+import errorIllustration from '@/assets/error.png'
+import errorIllustrationDark from '@/assets/error-dark.png'
+import { Button } from '@/components/ui/button';
+
+const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+const t = useTranslations(lang, 'notFoundPage');
+
+const pageTitle = t('pageTitle');
+const pageDescription = t('message');
+---
+
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+  <section class="text-center py-12">
+    <div class="container mx-auto px-4 max-w-2xl">
+      <Image
+      src={errorIllustration} 
+      alt="Error illustration - Light Mode"
+      class="w-64 h-auto mx-auto mb-8 block dark:hidden" 
+      densities={[1, 1.5, 2]} 
+      quality="mid"
+    />
+    <Image
+      src={errorIllustrationDark} 
+      alt="Error illustration - Dark Mode"
+      class="w-64 h-auto mx-auto mb-8 hidden dark:block" 
+      densities={[1, 1.5, 2]} 
+      quality="mid"
+    />
+      <h1 class="text-4xl font-bold tracking-tight lg:text-5xl mb-4">
+        {t('title')}
+      </h1>
+      <p class="text-lg text-muted-foreground mb-8">
+        {t('message')}
+      </p>
+      <Button asChild variant={"destructive"}>
+        <a href={getRelativeLocaleUrl(lang, '/')}>{t('homeLink')}</a>
+      </Button>
+    </div>
+  </section>
+</BaseLayout>

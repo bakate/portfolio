@@ -44,7 +44,7 @@ export const ui = {
     aboutPage: {
       pageTitle: "À Propos de Moi",
       pageDescription:
-        "Découvrez mon parcours, mes compétences et mes passions en tant que développeur FullStack.",
+        "Découvre mon parcours, mes compétences et mes passions en tant que développeur FullStack.",
       introduction:
         "Je suis Bakate, un développeur FullStack avec plus de 5 ans d'expérience dans la conception et la création d'applications web robustes et scalables.",
       skills:
@@ -58,10 +58,10 @@ export const ui = {
     contactPage: {
       pageTitle: "Me Contacter",
       pageDescription:
-        "Discutons de votre projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
+        "Discutons de ton projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
       title: "Me Contacter",
       description:
-        "Discutons de votre projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
+        "Discutons de ton projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
 
       formTitle: "Envoyer un message",
       nameLabel: "Nom",
@@ -71,10 +71,17 @@ export const ui = {
 
       calendarTitle: "Planifier un RDV",
       calendarDescription:
-        "Vous préférez discuter de vive voix ? Réservez directement un créneau dans mon agenda.",
+        "Tu préfères discuter de vive voix ? Réservez directement un créneau dans mon agenda.",
       calendarButtonLabel: "Voir mes disponibilités",
       calendarPlaceHolder:
         "L'intégration avec Google Calendar se fera bientôt...",
+    },
+    notFoundPage: {
+      pageTitle: "Page non trouvée",
+      title: "Oops ! Page non trouvée",
+      message:
+        "Désolé, la page que tu recherches semble introuvable. Vérifie l'URL ou retourne à l'accueil.",
+      homeLink: "Retourner à l'accueil",
     },
   },
   en: {
@@ -145,6 +152,13 @@ export const ui = {
       calendarButtonLabel: "See my availability",
       calendarPlaceHolder:
         "The integration with Google Calendar will be soon...",
+    },
+    notFoundPage: {
+      pageTitle: "Page Not Found",
+      title: "Oops! Page Not Found",
+      message:
+        "Sorry, the page you are looking for does not seem to exist. Check the URL or return to the homepage.",
+      homeLink: "Return to Homepage",
     },
   },
 } as const;

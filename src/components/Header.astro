@@ -2,7 +2,7 @@
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
 import {LanguageSelector} from './LanguageSelector.tsx'; 
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import {ModeToggle} from './ModeToggle.tsx';
+import ThemeToggle from './ThemeToggle.astro';
 import { languages } from '@/i18n/ui';
 const currentLocale = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
 
@@ -62,7 +62,7 @@ const navLinks: NavLink[] = [
         </div>
         <div class="flex items-center gap-x-3">
           <LanguageSelector currentLocale={currentLocale} languages={languagesForSelector}  client:load />
-          <ModeToggle client:load />
+          <ThemeToggle />
         </div>
       
     </nav>
