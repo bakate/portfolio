@@ -1,0 +1,69 @@
+---
+import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+import {LanguageSelector} from './LanguageSelector.tsx'; 
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import {ModeToggle} from './ModeToggle.tsx';
+import { languages } from '@/i18n/ui';
+const currentLocale = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+
+
+const currentPathname = Astro.url.pathname;
+
+const t = useTranslations(currentLocale, 'nav');
+const tSite = useTranslations(currentLocale, 'site');
+
+type NavLink = {
+  href: string;
+  textKey: 'blog' | 'about' | 'contact' | 'home';
+  
+};
+
+const navLinks: NavLink[] = [
+  { href: '/blog', textKey: 'blog' },
+  { href: '/about', textKey: 'about' },
+  { href: '/contact', textKey: 'contact' },
+  ];
+
+  let basePathForLinks = currentPathname;
+  if(currentLocale !== defaultLanguage){
+    const prefix = `/${currentLocale}`;
+    if(currentPathname.startsWith(prefix)){
+      basePathForLinks = currentPathname.substring(prefix.length);
+      if(basePathForLinks === ''){
+        basePathForLinks = '/';
+      }
+    }
+  }
+
+  const languagesForSelector   = Object.keys(languages).map((langCode) => ({
+    code: langCode,
+    name: languages[langCode].name,
+    flag: languages[langCode].flag,
+    targetUrl: getRelativeLocaleUrl(langCode, basePathForLinks),
+  }));
+
+---
+
+<header class="py-6 border-b sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
+
+      <a href={getRelativeLocaleUrl(currentLocale)} class="text-xl font-bold">
+        {tSite('title')}
+      </a>
+      <div class="flex items-center gap-x-4">
+        {navLinks.map((link) => (
+          <a
+            href={getRelativeLocaleUrl(currentLocale, link.href)}
+            class="text-muted-foreground hover:text-foreground transition-all hover:underline"
+          >
+            {t(link.textKey)}
+          </a>
+        ))}
+        </div>
+        <div class="flex items-center gap-x-3">
+          <LanguageSelector currentLocale={currentLocale} languages={languagesForSelector}  client:load />
+          <ModeToggle client:load />
+        </div>
+      
+    </nav>
+  </header>
