@@ -364,8 +364,8 @@ export const ui = {
     },
     projectDetailPage: {
       backToProjects: "Retour aux Projets",
-      categoryLabel: "Catégorie",
-      dateLabel: "Date",
+      categoryLabel: "Catégorie :",
+      dateLabel: "Date :",
       aboutTitle: "À propos de ce projet",
       keyFeaturesTitle: "Fonctionnalités Clés",
       galleryTitle: "Galerie",
@@ -373,6 +373,14 @@ export const ui = {
       learningsTitle: "Leçons Apprises",
       visitProjectButton: "Visiter le Projet",
       viewCodeButton: "Voir le Code",
+    },
+    projectsPage: {
+      title: "Mes Projets",
+      metaTitle: "Mes Projets | Portfolio de Bakate",
+      metaDescription: "Découvrez tous les projets de Bakate.",
+      noProjects: "Aucun projet à afficher pour le moment.",
+      noProjectsDescription:
+        "Il semble que vous n'ayez pas encore de projets à afficher.",
     },
     notFoundPage: {
       pageTitle: "Page Non Trouvée",
@@ -736,8 +744,8 @@ export const ui = {
     },
     projectDetailPage: {
       backToProjects: "Back to Projects",
-      categoryLabel: "Category",
-      dateLabel: "Date",
+      categoryLabel: "Category:",
+      dateLabel: "Date:",
       aboutTitle: "About this project",
       keyFeaturesTitle: "Key Features",
       galleryTitle: "Gallery",
@@ -745,6 +753,14 @@ export const ui = {
       learningsTitle: "Learnings",
       visitProjectButton: "Visit Project",
       viewCodeButton: "View Code",
+    },
+    projectsPage: {
+      title: "My Projects",
+      metaTitle: "My Projects | Bakate's Portfolio",
+      metaDescription: "Discover all of Bakate's projects.",
+      noProjects: "No projects to display at the moment.",
+      noProjectsDescription:
+        "It seems that you don't have any projects to display at the moment.",
     },
     notFoundPage: {
       pageTitle: "Page Not Found",
