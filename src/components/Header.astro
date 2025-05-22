@@ -14,11 +14,12 @@ const tSite = useTranslations(currentLocale, 'site');
 
 type NavLink = {
   href: string;
-  textKey: 'blog' | 'about' | 'contact' | 'home';
+  textKey: 'blog' | 'about' | 'contact' | 'home' | 'projects';
   
 };
 
 const navLinks: NavLink[] = [
+  { href: '/projects', textKey: 'projects' },
   { href: '/blog', textKey: 'blog' },
   { href: '/about', textKey: 'about' },
   { href: '/contact', textKey: 'contact' },

@@ -15,24 +15,234 @@ export const ui = {
         description:
           "Une plateforme d'apprentissage pour les futurs développeurs.",
         imageAltText: "Image du projet Code Haven",
+        categoryText: "Application Web",
+        dateText: "2024",
+        detailedDescription:
+          "Code Haven est une initiative visant à fournir une plateforme d'apprentissage complète et interactive pour les développeurs en herbe et confirmés. Elle propose des cours structurés, des exercices pratiques et un suivi personnalisé.",
+        keyFeatures: {
+          authentication: {
+            title: "Authentification avec Auth.js",
+            description:
+              "Authentification sécurisée via un lien magique ou Google.",
+          },
+          dashboard: {
+            title: "Tableau de Bord",
+            description:
+              "Tableau de bord avec des fonctionnalités de suivi et de gestion des cours.",
+          },
+          userManagement: {
+            title: "Gestion des Utilisateurs",
+            description: "Gestion des utilisateurs avec des rôles différents.",
+          },
+          contentEditing: {
+            title: "Édition de Contenu",
+            description:
+              "Édition de contenu avec des fonctionnalités de suivi et de gestion des cours.",
+          },
+          progressCalculation: {
+            title: "Calcul de Progression",
+            description:
+              "Calcul de progression avec des fonctionnalités de suivi et de gestion des cours.",
+          },
+          studentDashboard: {
+            title: "Tableau de Bord Étudiant",
+            description:
+              "Tableau de bord étudiant avec des fonctionnalités de suivi et de gestion des cours.",
+          },
+          teacherMode: {
+            title: "Mode Enseignant",
+            description:
+              "Mode enseignant avec des fonctionnalités de suivi et de gestion des cours.",
+          },
+          createNewCourses: {
+            title: "Création de Cours",
+            description:
+              "Création de cours avec des fonctionnalités de suivi et de gestion des cours.",
+          },
+          createNewChapters: {
+            title: "Création de Chapitres",
+            description:
+              "Création de chapitres avec des fonctionnalités de suivi et de gestion des cours.",
+          },
+          dragAndDrop: {
+            title: "Glisser-Déposer",
+            description:
+              "Glisser-déposer pour organiser les cours et les chapitres.",
+          },
+          uploadThing: {
+            title: "Intégration UploadThing",
+            description:
+              "Intégration d'UploadThing pour le stockage des vidéos.",
+          },
+          mux: {
+            title: "Intégration Mux",
+            description: "Intégration d'Mux pour le stockage des vidéos.",
+          },
+          hlsPlayer: {
+            title: "Lecteur HLS",
+            description: "Lecteur HLS pour la lecture des vidéos.",
+          },
+          richTextEditor: {
+            title: "Éditeur de Texte Riche",
+            description: "Éditeur de texte riche pour la création de cours.",
+          },
+        },
+        galleryImages: {
+          codeHavenAuth: {
+            alt: "Texte alternatif pour l'image d'authentification de CodeHaven",
+            caption: "Légende pour l'image d'authentification",
+          },
+          codeHavenCourses: {
+            alt: "Texte alternatif pour l'image des cours de CodeHaven",
+            caption: "Légende pour l'image des cours",
+          },
+          codeHavenCourse: {
+            alt: "Texte alternatif pour l'image d'un cours spécifique de CodeHaven",
+            caption: "Légende pour l'image d'un cours",
+          },
+          codeHavenPreview: {
+            alt: "Texte alternatif pour l'aperçu d'un cours CodeHaven",
+            caption: "Légende pour l'image d'aperçu",
+          },
+          codeHavenProtected: {
+            alt: "Texte alternatif pour une page protégée de CodeHaven",
+            caption: "Légende pour l'image d'une page protégée",
+          },
+          codeHavenStudentDashboard: {
+            alt: "Texte alternatif pour le tableau de bord étudiant de CodeHaven",
+            caption: "Légende pour le tableau de bord étudiant",
+          },
+          codeHavenTeacherDashboard: {
+            alt: "Texte alternatif pour le tableau de bord enseignant de CodeHaven",
+            caption: "Légende pour le tableau de bord enseignant",
+          },
+          codeHavenEditCourse: {
+            alt: "Texte alternatif pour la page d'édition de cours de CodeHaven",
+            caption: "Légende pour la page d'édition de cours",
+          },
+        },
+        challenges:
+          "Le principal défi a été de concevoir une expérience utilisateur à la fois riche et intuitive pour différents niveaux de compétence.",
+        learnings:
+          "Ce projet a renforcé l'importance d'une architecture modulaire et de tests continus pour assurer la qualité.",
       },
       afrikaZon: {
-        title: " AfrikaZon",
+        title: "AfrikaZon",
         description:
           "Une plateforme e-commerce où l'on peut acheter des vêtements africains.",
         imageAltText: "Image du projet AfrikaZon",
+        categoryText: "Plateforme E-commerce",
+        dateText: "2024",
+        detailedDescription:
+          "AfrikaZon connecte les créateurs de mode africaine avec un marché global. La plateforme met l'accent sur l'authenticité et la promotion des talents locaux.",
+        keyFeatures: {
+          authentication: {
+            title: "Authentification",
+            description:
+              "Authentification sécurisée via email et mot de passe avec one-time password.",
+          },
+          checkout: {
+            title: "Processus de Paiement",
+            description: "Processus de paiement sécurisé via Stripe.",
+          },
+          productDisplay: {
+            title: "Affichage des Produits",
+            description:
+              "Affichage des produits avec des fonctionnalités de recherche et de tri.",
+          },
+          cart: {
+            title: "Panier d'Achat",
+            description:
+              "Panier d'achat avec des fonctionnalités de gestion des produits.",
+          },
+          paymentProcessing: {
+            title: "Traitement des Paiements",
+            description: "Traitement des paiements sécurisé via Stripe.",
+          },
+          shipping: {
+            title: "Gestion des Expéditions",
+            description:
+              "Gestion des expéditions avec des fonctionnalités de suivi.",
+          },
+          orderManagement: {
+            title: "Gestion des Commandes",
+            description:
+              "Gestion des commandes avec des fonctionnalités de suivi.",
+          },
+          inventoryManagement: {
+            title: "Gestion d'Inventaire",
+            description:
+              "Gestion d'inventaire avec des fonctionnalités de suivi.",
+          },
+          customerSupport: {
+            title: "Support Client",
+            description: "Support client avec des fonctionnalités de suivi.",
+          },
+          roleManagement: {
+            title: "Gestion des Rôles",
+            description:
+              "Gestion des rôles (admin, client) avec des fonctionnalités de suivi.",
+          },
+        },
+        galleryImages: [],
+        challenges:
+          "L'intégration logistique pour une livraison internationale fiable a été un défi majeur.",
+        learnings:
+          "L'importance de comprendre les nuances culturelles et les attentes des utilisateurs sur différents marchés.",
       },
       samouraStore: {
         title: "Samoura Store",
         description:
           "Une plateforme e-commerce où l'on peut acheter des vêtements.",
         imageAltText: "Image du projet Samoura Store",
+        categoryText: "Boutique E-commerce",
+        dateText: "2023",
+        detailedDescription:
+          "Samoura Store est une boutique en ligne moderne offrant une sélection de vêtements et accessoires. L'accent est mis sur une expérience d'achat rapide et agréable.",
+        keyFeatures: {
+          productDisplay: {
+            title: "Catalogue Produits Dynamique",
+            description:
+              "Présentation attrayante des produits avec filtres et options de tri avancées.",
+          },
+          cart: {
+            title: "Panier d'Achat Intelligent",
+            description:
+              "Gestion facile du panier et recommandations personnalisées.",
+          },
+        },
+        galleryImages: [],
+        challenges:
+          "Optimiser les performances d'affichage pour un grand catalogue de produits.",
+        learnings:
+          "Les techniques de mise en cache et de chargement progressif sont cruciales pour l'e-commerce.",
       },
       cms: {
-        title: "Système de Gestion de Contenu",
+        title: "Système de Gestion de Contenu (CMS)",
         description:
           "Une plateforme où vous pouvez créer, éditer et supprimer du contenu.",
         imageAltText: "Image du projet CMS",
+        categoryText: "Outil de Productivité",
+        dateText: "2023",
+        detailedDescription:
+          "Ce CMS a été développé pour offrir une solution flexible et puissante pour la gestion de contenu web. Il permet une personnalisation poussée et une interface d'administration intuitive.",
+        keyFeatures: {
+          userManagement: {
+            title: "Gestion des Rôles Utilisateurs",
+            description:
+              "Contrôle d'accès granulaire basé sur les rôles pour la sécurité et la collaboration.",
+          },
+          contentEditing: {
+            title: "Éditeur WYSIWYG Avancé",
+            description:
+              "Création et modification de contenu riche sans nécessiter de compétences techniques.",
+          },
+        },
+        galleryImages: [],
+        challenges:
+          "Assurer la sécurité des données et prévenir les vulnérabilités courantes des CMS.",
+        learnings:
+          "Une conception d'API bien pensée est essentielle pour l'extensibilité et l'intégration tierce.",
       },
     },
     skillsContent: {
@@ -63,7 +273,7 @@ export const ui = {
       },
     },
     site: {
-      title: "Portfolio Bakate",
+      title: "Bakate",
       description:
         "Mon portfolio et blog technique personnel de développeur FullStack.",
     },
@@ -72,6 +282,7 @@ export const ui = {
       blog: "Blog",
       about: "À Propos",
       contact: "Contact",
+      projects: "Projets",
     },
     footer: {
       rights: "Tous droits réservés.",
@@ -151,6 +362,18 @@ export const ui = {
         "L'intégration avec Google Calendar se fera bientôt...",
       orSeparatorText: "OU",
     },
+    projectDetailPage: {
+      backToProjects: "Retour aux Projets",
+      categoryLabel: "Catégorie",
+      dateLabel: "Date",
+      aboutTitle: "À propos de ce projet",
+      keyFeaturesTitle: "Fonctionnalités Clés",
+      galleryTitle: "Galerie",
+      challengesTitle: "Défis Rencontrés",
+      learningsTitle: "Leçons Apprises",
+      visitProjectButton: "Visiter le Projet",
+      viewCodeButton: "Voir le Code",
+    },
     notFoundPage: {
       pageTitle: "Page Non Trouvée",
       title: "Oups ! Page Non Trouvée",
@@ -176,24 +399,222 @@ export const ui = {
     projectsContent: {
       codeHaven: {
         title: "Code Haven",
-        description: "A learning platform for future developers",
+        description: "A learning platform for aspiring developers.",
         imageAltText: "Code Haven project image",
+        categoryText: "Web Application",
+        dateText: "2024",
+        detailedDescription:
+          "Code Haven is an initiative to provide a comprehensive and interactive learning platform for budding and experienced developers. It offers structured courses, practical exercises, and personalized tracking.",
+        keyFeatures: {
+          authentication: {
+            title: "Authentication",
+            description:
+              "Authentication with email and password with one-time password.",
+          },
+          dashboard: {
+            title: "Dashboard",
+            description:
+              "Dashboard with user management and course management.",
+          },
+          userManagement: {
+            title: "User Management",
+            description: "User management with role management.",
+          },
+          contentEditing: {
+            title: "Content Editing",
+            description: "Content editing with course editing.",
+          },
+          progressCalculation: {
+            title: "Progress Calculation",
+            description:
+              "Progress calculation with course progress calculation.",
+          },
+          studentDashboard: {
+            title: "Student Dashboard",
+            description: "Student dashboard with course progress tracking.",
+          },
+          teacherMode: {
+            title: "Teacher Mode",
+            description: "Teacher mode with course creation and management.",
+          },
+          createNewCourses: {
+            title: "Create New Courses",
+            description: "Create new courses with chapter creation.",
+          },
+          createNewChapters: {
+            title: "Create New Chapters",
+            description: "Create new chapters with lesson creation.",
+          },
+          dragAndDrop: {
+            title: "Drag and Drop",
+            description:
+              "Drag and drop functionality for course and chapter creation.",
+          },
+          uploadThing: {
+            title: "UploadThing Integration",
+            description: "UploadThing integration for file upload.",
+          },
+          mux: {
+            title: "Mux Integration",
+            description: "Mux integration for video upload.",
+          },
+          hlsPlayer: {
+            title: "HLS Player",
+            description: "HLS player for video playback.",
+          },
+          richTextEditor: {
+            title: "Rich Text Editor",
+            description: "Rich text editor for course and chapter creation.",
+          },
+        },
+        galleryImages: {
+          codeHavenAuth: {
+            alt: "Alt text for CodeHaven authentication image",
+            caption: "Caption for authentication image",
+          },
+          codeHavenCourses: {
+            alt: "Alt text for CodeHaven courses image",
+            caption: "Caption for courses image",
+          },
+          codeHavenCourse: {
+            alt: "Alt text for CodeHaven specific course image",
+            caption: "Caption for specific course image",
+          },
+          codeHavenPreview: {
+            alt: "Alt text for CodeHaven course preview image",
+            caption: "Caption for course preview image",
+          },
+          codeHavenProtected: {
+            alt: "Alt text for CodeHaven protected page image",
+            caption: "Caption for protected page image",
+          },
+          codeHavenStudentDashboard: {
+            alt: "Alt text for CodeHaven student dashboard image",
+            caption: "Caption for student dashboard image",
+          },
+          codeHavenTeacherDashboard: {
+            alt: "Alt text for CodeHaven teacher dashboard image",
+            caption: "Caption for teacher dashboard image",
+          },
+          codeHavenEditCourse: {
+            alt: "Alt text for CodeHaven edit course page image",
+            caption: "Caption for edit course page image",
+          },
+        },
+        challenges:
+          "The main challenge was designing a user experience that is both rich and intuitive for different skill levels.",
+        learnings:
+          "This project reinforced the importance of modular architecture and continuous testing to ensure quality.",
       },
       afrikaZon: {
         title: "AfrikaZon",
-        description: "An e-commerce platform where we can buy African clothes.",
+        description: "An e-commerce platform to buy African clothing.",
         imageAltText: "AfrikaZon project image",
+        categoryText: "E-commerce Platform",
+        dateText: "2024",
+        detailedDescription:
+          "AfrikaZon connects African fashion designers with a global market. The platform emphasizes authenticity and the promotion of local talent.",
+        keyFeatures: {
+          authentication: {
+            title: "Authentication",
+            description:
+              "Authentication with email and password with one-time password.",
+          },
+          checkout: {
+            title: "Checkout Process",
+            description: "Checkout process with payment processing.",
+          },
+          productDisplay: {
+            title: "Product Display",
+            description: "Product display with search and sorting.",
+          },
+          cart: {
+            title: "Shopping Cart",
+            description: "Shopping cart with product management.",
+          },
+          paymentProcessing: {
+            title: "Payment Processing",
+            description: "Payment processing with Stripe integration.",
+          },
+          shipping: {
+            title: "Shipping Management",
+            description: "Shipping management with order management.",
+          },
+          orderManagement: {
+            title: "Order Management",
+            description: "Order management with inventory management.",
+          },
+          inventoryManagement: {
+            title: "Inventory Management",
+            description: "Inventory management with order management.",
+          },
+          customerSupport: {
+            title: "Customer Support",
+            description: "Customer support with order management.",
+          },
+          roleManagement: {
+            title: "Role Management",
+            description: "Role management with order management.",
+          },
+        },
+        galleryImages: [],
+        challenges:
+          "Integrating logistics for reliable international delivery was a major challenge.",
+        learnings:
+          "The importance of understanding cultural nuances and user expectations in different markets.",
       },
       samouraStore: {
         title: "Samoura Store",
-        description: "An e-commerce platform where we can buy clothes.",
+        description: "An e-commerce platform to buy clothing.",
         imageAltText: "Samoura Store project image",
+        categoryText: "E-commerce Storefront",
+        dateText: "2023",
+        detailedDescription:
+          "Samoura Store is a modern online boutique offering a selection of clothing and accessories. The focus is on a fast and enjoyable shopping experience.",
+        keyFeatures: {
+          productDisplay: {
+            title: "Dynamic Product Catalog",
+            description:
+              "Attractive product presentation with advanced filters and sorting options.",
+          },
+          cart: {
+            title: "Intelligent Shopping Cart",
+            description:
+              "Easy cart management and personalized recommendations.",
+          },
+        },
+        galleryImages: [],
+        challenges:
+          "Optimizing display performance for a large product catalog.",
+        learnings:
+          "Caching and progressive loading techniques are crucial for e-commerce.",
       },
       cms: {
-        title: "Content Management System",
+        title: "Content Management System (CMS)",
         description:
-          "A platform where you can create, edit and delete content.",
+          "A platform where you can create, edit, and delete content.",
         imageAltText: "CMS project image",
+        categoryText: "Productivity Tool",
+        dateText: "2023",
+        detailedDescription:
+          "This CMS was developed to offer a flexible and powerful solution for web content management. It allows for extensive customization and an intuitive administration interface.",
+        keyFeatures: {
+          userManagement: {
+            title: "User Role Management",
+            description:
+              "Granular role-based access control for security and collaboration.",
+          },
+          contentEditing: {
+            title: "Advanced WYSIWYG Editor",
+            description:
+              "Create and modify rich content without requiring technical skills.",
+          },
+        },
+        galleryImages: [],
+        challenges:
+          "Ensuring data security and preventing common CMS vulnerabilities.",
+        learnings:
+          "A well-thought-out API design is essential for extensibility and third-party integration.",
       },
     },
     skillsContent: {
@@ -224,7 +645,7 @@ export const ui = {
       },
     },
     site: {
-      title: "Bakate Portfolio",
+      title: "Bakate",
       description:
         "My personal technical portfolio and blog as a FullStack Developer.",
     },
@@ -233,6 +654,7 @@ export const ui = {
       blog: "Blog",
       about: "About",
       contact: "Contact",
+      projects: "Projects",
     },
     footer: {
       rights: "All rights reserved.",
@@ -311,6 +733,18 @@ export const ui = {
       calendarPlaceHolder:
         "The integration with Google Calendar will be soon...",
       orSeparatorText: "OR",
+    },
+    projectDetailPage: {
+      backToProjects: "Back to Projects",
+      categoryLabel: "Category",
+      dateLabel: "Date",
+      aboutTitle: "About this project",
+      keyFeaturesTitle: "Key Features",
+      galleryTitle: "Gallery",
+      challengesTitle: "Challenges",
+      learningsTitle: "Learnings",
+      visitProjectButton: "Visit Project",
+      viewCodeButton: "View Code",
     },
     notFoundPage: {
       pageTitle: "Page Not Found",

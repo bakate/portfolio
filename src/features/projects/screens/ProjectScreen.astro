@@ -1,0 +1,128 @@
+---
+import { Image } from "astro:assets";
+import type { TranslatedProject } from "../service";
+import { type ui, type LanguageCode, defaultLanguage } from "@/i18n/ui";
+import Heading from "@/components/Heading.astro";
+
+export type Props = {
+  project: TranslatedProject;
+  t: typeof ui[LanguageCode];
+  lang: LanguageCode;
+};
+
+const { project, t, lang } = Astro.props;
+---
+
+<div class="container mx-auto px-4 py-8">
+  <article class="prose lg:prose-xl max-w-none">
+    <a href={`/${lang !== defaultLanguage ? lang : ""}/#projects`} class="mb-6 block text-primary hover:underline">
+      &larr; {t.projectDetailPage?.backToProjects ?? "Back to Projects"}
+    </a>
+
+    <h1>{project.title}</h1>
+    <div class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+      {project.categoryText && (
+        <span class="rounded bg-secondary/20 px-2 py-1">
+          {t.projectDetailPage?.categoryLabel ?? "Category"}: {project.categoryText}
+        </span>
+      )}
+      {project.dateText && (
+        <span class="rounded bg-accent/20 px-2 py-1">
+          {t.projectDetailPage?.dateLabel ?? "Date"}: {project.dateText}
+        </span>
+      )}
+    </div>
+
+    {project.imageUrl && (
+      <div class="mb-8 aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
+        <Image
+          src={project.imageUrl}
+          alt={project.imageAltText}
+          class="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+    )}
+
+    {project.detailedDescription && (
+      <section class="mb-8">
+        <h2>{t.projectDetailPage?.aboutTitle ?? "About this project"}</h2>
+        <p>{project.detailedDescription}</p>
+      </section>
+    )}
+
+    {project.keyFeaturesTranslated && project.keyFeaturesTranslated.length > 0 && (
+      <section class="mb-8">
+        <h2>{t.projectDetailPage?.keyFeaturesTitle ?? "Key Features"}</h2>
+        <ul class="list-disc pl-5">
+          {project.keyFeaturesTranslated.map((feature) => (
+            <li>
+              <strong>{feature.title}:</strong> {feature.description}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {project.galleryImagesTranslated && project.galleryImagesTranslated.length > 0 && (
+      <section class="mb-8">
+        <h2>{t.projectDetailPage?.galleryTitle ?? "Gallery"}</h2>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {project.galleryImagesTranslated.map((image) => (
+            <div class="overflow-hidden rounded-lg shadow-md">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                class="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+                widths={[200, 400]}
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+              />
+              {image.caption && <p class="mt-2 p-2 text-center text-sm">{image.caption}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {(project.challenges || project.learnings) && (
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {project.challenges && (
+          <section class="mb-8">
+            <Heading
+              title={t.projectDetailPage?.challengesTitle ?? "Challenges"}
+              description={project.challenges}
+              titleClassName="md:text-2xl"
+          
+            />
+          
+          </section>
+        )}
+
+        {project.learnings && (
+          <section class="mb-8">
+            <Heading
+              title={t.projectDetailPage?.learningsTitle ?? "Learnings"}
+              description={project.learnings}
+              titleClassName="md:text-2xl" 
+            />
+        
+          </section>
+        )}
+      </div>
+    )}
+
+    <div class="mt-8 flex flex-wrap gap-4">
+      {project.projectUrl && (
+        <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          {t.projectDetailPage?.visitProjectButton ?? "Visit Project"}
+        </a>
+      )}
+      {project.codeUrl && (
+        <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          {t.projectDetailPage?.viewCodeButton ?? "View Code"}
+        </a>
+      )}
+    </div>
+  </article>
+</div>
