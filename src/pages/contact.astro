@@ -1,19 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Heading from '@/components/Heading.astro'; // Import Heading component
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { ContactForm } from '@/components/ContactForm.tsx'; // Import the React component
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { Calendar } from 'lucide-react';
+import ContactPageScreen from '@/features/contact/screens/ContactPageScreen.astro';
 
-const lang = 'fr' as LanguageCode;
+const lang = defaultLanguage as LanguageCode;
 const t = useTranslations(lang, 'contactPage');
-const pageTitle = t('pageTitle');
-const pageDescription = t('pageDescription');
 
-// Prepare translations for the form component
+const pageMeta = {
+  title: t('pageTitle'),
+  description: t('pageDescription'),
+};
+
 const formTranslations = {
   firstNameLabel: t('firstNameLabel'),
   lastNameLabel: t('lastNameLabel'),
@@ -25,49 +22,20 @@ const formTranslations = {
   messagePlaceholder: t('messagePlaceholder'),
   sendButtonLabel: t('sendButtonLabel'),
 };
+
+const layoutProps = {
+  lang,
+  mainHeadingTitle: pageMeta.title,
+  mainHeadingDescription: t('description'), // Main heading's description, not page meta description
+  formTitle: t('formTitle'),
+  formTranslations,
+  orSeparatorText: t('orSeparatorText'),
+  calendarTitle: t('calendarTitle'),
+  calendarDescription: t('calendarDescription'),
+  calendarLinkLabel: t('calendarLinkLabel'),
+  calendarUrl: import.meta.env.PUBLIC_GOOGLE_CALENDAR_URL,
+};
 ---
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-  <section class="py-12 md:py-20">
-    <Heading 
-      title={pageTitle} 
-      description={t('description')} 
-      showDivider={true} 
-      className="text-center"
-      titleClassName='md:text-5xl'
-    />
-
-    <div class="flex justify-center mt-12">
-      <div class="w-full max-w-xl space-y-6 bg-card p-6 md:p-8 rounded-lg shadow">
-        {/* Section Formulaire */}
-        <Heading 
-          title={t('formTitle')} 
-          className="text-center"
-        />
-        <ContactForm client:load lang={lang} formTranslations={formTranslations} />
-
-        {/* Séparateur OU */}
-        <div class="my-8 flex items-center">
-          <hr class="flex-grow border-border" />
-          <span class="mx-4 text-muted-foreground font-medium">{t('orSeparatorText')}</span>
-          <hr class="flex-grow border-border" />
-        </div>
-
-        {/* Section Google Calendar */}
-        <Heading 
-          title={t('calendarTitle')} 
-          className="text-center"
-          description={t('calendarDescription')}
-        />
-        <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3HREAH009x5Vs7riMip0tItr_GIyNImD-R_DUvbPSt1lhBe3rGsWvzA77-8AGvn4SpPlWepv7x?gv=true" 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class={cn("w-full mt-4", buttonVariants({ variant: 'default', size: 'lg' }))}
-          >
-          <Calendar className="mr-2 size-4" />
-          {t('calendarLinkLabel')}
-        </a>
-      </div>
-    </div>
-
-  </section>
+<BaseLayout pageTitle={pageMeta.title} pageDescription={pageMeta.description}>
+  <ContactPageScreen {...layoutProps} />
 </BaseLayout>

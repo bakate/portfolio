@@ -161,7 +161,8 @@ export const ui = {
     zodErrors: {
       // Common errors
       invalid_type: "Type invalide.",
-      invalid_type_received_undefined: "Ce champ est requis.", // For required fields
+      invalid_type_received_undefined: "Ce champ est requis.", // For required fields (fallback)
+      required_field_custom: "Le champ {fieldName} est requis.",
       // String errors
       too_small_string_minimum: "Doit contenir au moins {minimum} caractères.",
       too_big_string_maximum: "Ne doit pas dépasser {maximum} caractères.",
@@ -321,7 +322,8 @@ export const ui = {
     zodErrors: {
       // Common errors
       invalid_type: "Invalid type.",
-      invalid_type_received_undefined: "This field is required.", // For required fields
+      invalid_type_received_undefined: "This field is required.", // For required fields (fallback)
+      required_field_custom: "The {fieldName} field is required.",
       // String errors
       too_small_string_minimum: "Must be at least {minimum} characters long.",
       too_big_string_maximum: "Must be no more than {maximum} characters long.",

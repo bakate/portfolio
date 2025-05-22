@@ -13,26 +13,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  contactFormSchema,
-  type ContactFormValues,
-} from "@/lib/validators/contactFormSchema";
+import { contactFormSchema } from "@/features/contact/schema";
+import type { ContactFormValues, ContactFormTranslations } from "../type";
 import { setGlobalZodErrorMap } from "@/i18n/zodErrorMap";
 import type { LanguageCode } from "@/i18n/ui";
 import { Loader2, Send } from "lucide-react";
-
-// Define the expected shape of the formTranslations prop
-type ContactFormTranslations = {
-  firstNameLabel: string;
-  lastNameLabel: string;
-  emailLabel: string;
-  messageLabel: string;
-  firstNamePlaceholder: string;
-  lastNamePlaceholder: string;
-  emailPlaceholder: string;
-  messagePlaceholder: string;
-  sendButtonLabel: string;
-};
 
 interface ContactFormProps {
   lang: LanguageCode;
