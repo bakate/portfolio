@@ -3,6 +3,7 @@ import type { TranslatedProject } from '@/features/projects/service';
 import type { LanguageCode, ui } from '@/i18n/ui';
 import SectionCard from '@/components/section-card.astro'; 
 import { EmptyState } from '@/components/empty-state';
+import Heading from '@/components/Heading.astro';
 
 export type Props = {
   projects: Array<TranslatedProject>;
@@ -14,10 +15,10 @@ const { projects, t, lang } = Astro.props;
 const projectsPageTranslations = t.projectsPage; // For easier access
 ---
 
-<div class="container mx-auto px-4 py-8">
-  <h1 class="mb-8 text-center text-4xl font-bold">
-    {projectsPageTranslations?.title ?? 'Projects'}
-  </h1>
+<div class="py-12 md:py-16">
+  <Heading
+    title={projectsPageTranslations?.title ?? 'Projects'}
+  />
   {projects && projects.length > 0 ? (
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {projects.map((project: TranslatedProject) => {

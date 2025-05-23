@@ -14,7 +14,7 @@ interface Props {
 const { title, description, className, titleClassName, descriptionClassName, showDivider = false } = Astro.props;
 ---
 
-<div class={cn('mb-8 space-y-2', className)}>
+<div class={cn('mb-8 space-y-4', className)}>
   <h1 class={cn('text-2xl font-bold tracking-tight sm:text-3xl', titleClassName)}>
     {title}
   </h1>

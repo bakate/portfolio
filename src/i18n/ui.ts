@@ -280,7 +280,6 @@ export const ui = {
     nav: {
       home: "Accueil",
       blog: "Blog",
-      about: "À Propos",
       contact: "Contact",
       projects: "Projets",
     },
@@ -319,20 +318,6 @@ export const ui = {
         "Articles et réflexions sur le développement web, l'architecture logicielle, et les nouvelles technologies.",
       comingSoon:
         "Les articles de blog apparaîtront ici bientôt. Revenez plus tard !",
-    },
-    aboutPage: {
-      pageTitle: "À Propos de Moi",
-      pageDescription:
-        "Découvre mon parcours, mes compétences et mes passions en tant que développeur FullStack.",
-      introduction:
-        "Je suis Bakate, un développeur FullStack avec plus de 5 ans d'expérience dans la conception et la création d'applications web robustes et scalables.",
-      skills:
-        "Passionné par l'écosystème JavaScript/TypeScript, je travaille régulièrement avec des technologies modernes telles que React, Next.js, Angular, Node.js, et plus récemment Astro. J'ai un fort intérêt pour les architectures propres (Hexagonale) et les bases de données performantes comme PostgreSQL, tout en explorant des ORMs comme Drizzle.",
-
-      reasonWhy:
-        "Ce portfolio et ce blog sont une plateforme pour partager mes connaissances, documenter mes apprentissages et présenter mes projets. Mon objectif est de contribuer à la communauté des développeurs et d'explorer de nouvelles opportunités professionnelles.",
-      additionalInfo:
-        "En dehors du code, je suis curieux des avancées en IA et j'aime [mentionne un ou deux hobbies/intérêts personnels ici pour rendre la page plus personnelle].",
     },
     contactPage: {
       pageTitle: "Me Contacter",
@@ -660,7 +645,6 @@ export const ui = {
     nav: {
       home: "Home",
       blog: "Blog",
-      about: "About",
       contact: "Contact",
       projects: "Projects",
     },
@@ -697,23 +681,6 @@ export const ui = {
       description:
         "Articles and thoughts on web development, software architecture, and new technologies.",
       comingSoon: "Blog posts will appear here soon. Check back later!",
-    },
-    aboutPage: {
-      pageTitle: "About Me",
-      pageDescription:
-        "Discover my journey, skills, and passions as a FullStack Developer.",
-
-      introduction:
-        "I'm Bakate, a FullStack Developer with more than 5 years of experience in web application design and development.",
-
-      skills:
-        "Passionated by the JavaScript/TypeScript ecosystem, I regularly work with modern technologies such as React, Next.js, Angular, Node.js, and more recently Astro. I have a strong interest in proper architectures (Hexagonal) and performant databases like PostgreSQL, while exploring ORMs like Drizzle.",
-
-      reasonWhy:
-        "This portfolio and blog are a platform to share my knowledge, document my learnings, and present my projects. My goal is to contribute to the developer community and explore new professional opportunities.",
-
-      additionalInfo:
-        "Outside of code, I'm curious about AI advancements and enjoy [mention your hobbies/personal interests here to make the page more personal].",
     },
     contactPage: {
       pageTitle: "Contact Me",

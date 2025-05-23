@@ -5,6 +5,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import ThemeToggle from './ThemeToggle.astro';
 import { languages } from '@/i18n/ui';
 import Logo from './Logo.astro';
+import { buttonVariants } from './ui/button';
 const currentLocale = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
 
 
@@ -15,14 +16,13 @@ const tSite = useTranslations(currentLocale, 'site');
 
 type NavLink = {
   href: string;
-  textKey: 'blog' | 'about' | 'contact' | 'home' | 'projects';
+  textKey: 'blog' | 'contact' | 'home' | 'projects';
   
 };
 
 const navLinks: NavLink[] = [
   { href: '/projects', textKey: 'projects' },
   { href: '/blog', textKey: 'blog' },
-  { href: '/about', textKey: 'about' },
   { href: '/contact', textKey: 'contact' },
   ];
 
@@ -47,13 +47,13 @@ const navLinks: NavLink[] = [
 ---
 
 <header class="py-6 border-b sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-    <nav class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
+    <nav class="mx-auto px-4 max-w-screen-2xl flex justify-between items-center">
      <Logo />
       <div class="flex items-center gap-x-4">
         {navLinks.map((link) => (
           <a
             href={getRelativeLocaleUrl(currentLocale, link.href)}
-            class="text-muted-foreground hover:text-foreground transition-all hover:underline"
+            class={buttonVariants({ variant: 'ghost' }) + ' hover:underline'}
           >
             {t(link.textKey)}
           </a>
