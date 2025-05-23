@@ -299,7 +299,7 @@ export const ui = {
       heroContactButton: "Me contacter",
       heroImageAlt:
         "Illustration représentant Bakate ou un concept de développement",
-      featuredProjectsTitle: "Projets à la Une",
+      featuredProjectsTitle: "3 derniers projets",
       featuredProjectsDescription:
         "Voici quelques projets sur lesquels j'ai récemment travaillé. N'hésitez pas à les explorer !",
       projectCardViewProject: "Voir le projet",
@@ -663,7 +663,7 @@ export const ui = {
       heroViewWorkButton: "View My Work",
       heroContactButton: "Get In Touch",
       heroImageAlt: "Illustration representing Bakate or a development concept",
-      featuredProjectsTitle: "Featured Projects",
+      featuredProjectsTitle: "3 latest projects",
       featuredProjectsDescription:
         "Here are some of the projects I've recently worked on. Feel free to explore!",
       projectCardViewProject: "View Project",
