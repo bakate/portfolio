@@ -1,16 +1,18 @@
 ---
-
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+// Génère un ID unique pour chaque instance du composant
+const uniqueId = `themeToggle-${crypto.randomUUID().slice(0, 8)}`;
 ---
 
-<Button variant="ghost" size="icon" id="themeToggle" className="transition-all">
+<Button variant="ghost" size="icon" id={uniqueId} className="transition-all">
   <Sun className="h-[1.5rem] w-[1.3rem] dark:hidden" />
   <Moon className="hidden h-5 w-5 dark:block" />
   <span class="sr-only">Toggle theme</span>
 </Button>
 
-<script is:inline>
+<script define:vars={{ buttonId: uniqueId }}>
   const applyThemeFromLocalStorage = () => {
     const theme = (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) || 'light';
     if (theme === 'dark') {
@@ -29,7 +31,7 @@ import { Button } from "@/components/ui/button";
   };
 
   const setupThemeToggleButton = () => {
-    const toggleButton = document.getElementById('themeToggle');
+    const toggleButton = document.getElementById(buttonId);
     if (toggleButton) {
       toggleButton.removeEventListener('click', handleToggleClick); // Prevent duplicate listeners
       toggleButton.addEventListener('click', handleToggleClick);

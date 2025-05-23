@@ -1,48 +1,20 @@
 ---
-import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
-import {LanguageSelector} from './LanguageSelector.tsx'; 
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
+import { LanguageSelector } from './LanguageSelector.tsx'; 
+import { getRelativeLocaleUrl } from 'astro:i18n'; 
 import ThemeToggle from './ThemeToggle.astro';
-import { languages } from '@/i18n/ui';
 import Logo from './Logo.astro';
+import { type LanguageSelectorItem } from '@/lib/i18n-utils';
 import { buttonVariants } from './ui/button';
+import type { NavItem } from '@/layouts/BaseLayout.astro';
+
+interface Props {
+  languagesForSelector: Array<LanguageSelectorItem>;
+  navItems: Array<NavItem>;
+}
+const { languagesForSelector, navItems } = Astro.props as Props; 
+
 const currentLocale = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
-
-
-const currentPathname = Astro.url.pathname;
-
-const t = useTranslations(currentLocale, 'nav');
-const tSite = useTranslations(currentLocale, 'site');
-
-type NavLink = {
-  href: string;
-  textKey: 'blog' | 'contact' | 'home' | 'projects';
-  
-};
-
-const navLinks: NavLink[] = [
-  { href: '/projects', textKey: 'projects' },
-  { href: '/blog', textKey: 'blog' },
-  { href: '/contact', textKey: 'contact' },
-  ];
-
-  let basePathForLinks = currentPathname;
-  if(currentLocale !== defaultLanguage){
-    const prefix = `/${currentLocale}`;
-    if(currentPathname.startsWith(prefix)){
-      basePathForLinks = currentPathname.substring(prefix.length);
-      if(basePathForLinks === ''){
-        basePathForLinks = '/';
-      }
-    }
-  }
-
-  const languagesForSelector   = Object.keys(languages).map((langCode) => ({
-    code: langCode,
-    name: languages[langCode as LanguageCode].name,
-    flag: languages[langCode as LanguageCode].flag,
-    targetUrl: getRelativeLocaleUrl(langCode, basePathForLinks),
-  }));
 
 ---
 
@@ -50,17 +22,17 @@ const navLinks: NavLink[] = [
     <nav class="mx-auto px-4 max-w-screen-2xl flex justify-between items-center">
      <Logo />
       <div class="flex items-center gap-x-4">
-        {navLinks.map((link) => (
+        {navItems.map((link) => (
           <a
             href={getRelativeLocaleUrl(currentLocale, link.href)}
             class={buttonVariants({ variant: 'ghost' }) + ' hover:underline'}
           >
-            {t(link.textKey)}
+            {link.label}
           </a>
         ))}
         </div>
         <div class="flex items-center gap-x-3">
-          <LanguageSelector currentLocale={currentLocale} languages={languagesForSelector}  client:load />
+          <LanguageSelector currentLocale={currentLocale} languages={languagesForSelector} client:load />
           <ThemeToggle />
         </div>
       

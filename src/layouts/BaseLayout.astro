@@ -3,17 +3,38 @@ import '../styles/global.css';
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header.astro';
+import BottomAppBar from '@/components/BottomAppBar.astro';
+import { Home, Briefcase, FileText, MessageSquare } from "lucide-react";
 import { ClientRouter } from "astro:transitions";
 
-// Props that can be passed to the layout
+import { prepareLanguagesForSelector, type LanguageSelectorItem } from '@/lib/i18n-utils';
+
 type Props = {
   pageTitle: string;
   pageDescription?: string;
 };
 
+export type NavItem = {
+  href: string;
+  label: string;
+  icon: any;
+};
+
 const { pageTitle, pageDescription } = Astro.props;
 const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+const currentPathname = Astro.url.pathname;
+
 const tSite = useTranslations(lang, 'site');
+const tNav = useTranslations(lang, 'nav');
+
+const navItems: Array<NavItem> = [
+  { href: '/', label: tNav('home'), icon: Home },
+  { href: '/projects', label: tNav('projects'), icon: Briefcase },
+  { href: '/blog', label: tNav('blog'), icon: FileText },
+  { href: '/contact', label: tNav('contact'), icon: MessageSquare },
+];
+
+const languagesForSelector: Array<LanguageSelectorItem> = prepareLanguagesForSelector(currentPathname, lang);
 
 ---
 <!doctype html>
@@ -67,13 +88,17 @@ const tSite = useTranslations(lang, 'site');
   </head>
   <body class="h-[100dvh] bg-background font-sans antialiased flex flex-col"> {/* Tailwind classes for the body */}
     <header class="hidden md:block">
-      <Header />
+      <!-- passer aussi navItems mais sans le premier element dont le href === '/' -->
+      <Header languagesForSelector={languagesForSelector} navItems={navItems.filter((item) => item.href !== '/') as NavItem[]} />
     </header>
 
-    <main class="container mx-auto px-4 py-8 flex-1 max-w-screen-2xl">
+    <main class="container mx-auto px-4 py-8 flex-1 max-w-screen-2xl pb-20 md:pb-8">
       <slot /> 
     </main>
-    <Footer />
+    <div class="hidden md:block">
+      <Footer />
+    </div>
+    <BottomAppBar navItems={navItems} languagesForSelector={languagesForSelector} />
     {/* Global scripts if needed, for example for analytics */}
   </body>
 </html>
