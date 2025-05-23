@@ -4,6 +4,7 @@ import {LanguageSelector} from './LanguageSelector.tsx';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import ThemeToggle from './ThemeToggle.astro';
 import { languages } from '@/i18n/ui';
+import Logo from './Logo.astro';
 const currentLocale = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
 
 
@@ -47,10 +48,7 @@ const navLinks: NavLink[] = [
 
 <header class="py-6 border-b sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
     <nav class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
-
-      <a href={getRelativeLocaleUrl(currentLocale)} class="text-xl font-bold">
-        {tSite('title')}
-      </a>
+     <Logo />
       <div class="flex items-center gap-x-4">
         {navLinks.map((link) => (
           <a
