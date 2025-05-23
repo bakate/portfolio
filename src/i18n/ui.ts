@@ -318,6 +318,15 @@ export const ui = {
         "Articles et réflexions sur le développement web, l'architecture logicielle, et les nouvelles technologies.",
       comingSoon:
         "Les articles de blog apparaîtront ici bientôt. Revenez plus tard !",
+      heroImageAlt: "Image de couverture pour l'article : ",
+      publishedOn: "Publié le : ",
+      readMore: "Lire la suite",
+    },
+    blogPost: {
+      publishedOn: "Publié le : ",
+      updatedOn: "Mis à jour le : ",
+      heroImageAlt: "Image de couverture pour l'article : ",
+      backToList: "Retour à la liste des articles",
     },
     contactPage: {
       pageTitle: "Me Contacter",
@@ -681,6 +690,15 @@ export const ui = {
       description:
         "Articles and thoughts on web development, software architecture, and new technologies.",
       comingSoon: "Blog posts will appear here soon. Check back later!",
+      heroImageAlt: "Hero image for article: ",
+      publishedOn: "Published on: ",
+      readMore: "Read more",
+    },
+    blogPost: {
+      publishedOn: "Published on: ",
+      updatedOn: "Updated on: ",
+      heroImageAlt: "Hero image for article: ",
+      backToList: "Back to blog list",
     },
     contactPage: {
       pageTitle: "Contact Me",
