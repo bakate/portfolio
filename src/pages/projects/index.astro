@@ -1,20 +1,18 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getTranslatedProjects } from '@/features/projects/service';
-import { ui, type LanguageCode, defaultLanguage, languages } from '@/i18n/ui'; // Imported languages
-import ProjectsScreen from '@/features/projects/screens/ProjectsScreen.astro';
+import { getTranslatedProjects, ProjectsScreen } from '@/features/projects';
+import { ui, type LanguageCode, defaultLanguage, languages } from '@/i18n/ui'; 
 
-// Determine current language more robustly
+
 let lang: LanguageCode;
 const currentLocale = Astro.currentLocale;
 
 if (currentLocale && currentLocale in languages) {
-  lang = currentLocale as LanguageCode; // Safe cast as currentLocale is a key of languages
+  lang = currentLocale as LanguageCode;
 } else {
   lang = defaultLanguage;
 }
-// Explicitly cast t to the shape of one of the language objects in ui
-// This helps TypeScript correctly infer the types for t.projectsPage
+
 const t = ui[lang] as typeof ui[typeof defaultLanguage];
 const projects = getTranslatedProjects(lang);
 

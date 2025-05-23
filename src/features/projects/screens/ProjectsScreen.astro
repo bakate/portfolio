@@ -1,9 +1,10 @@
 ---
-import type { TranslatedProject } from '@/features/projects/service';
+
 import type { LanguageCode, ui } from '@/i18n/ui';
 import SectionCard from '@/components/section-card.astro'; 
 import { EmptyState } from '@/components/empty-state';
 import Heading from '@/components/Heading.astro';
+import type { TranslatedProject } from '../type';
 
 export type Props = {
   projects: Array<TranslatedProject>;

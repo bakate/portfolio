@@ -18,7 +18,7 @@ const { project, t, lang } = Astro.props;
 ---
 
 <div class="py-12 md:py-16">
-  <article class="prose lg:prose-xl max-w-none dark:prose-invert">
+  <article class="prose lg:prose-xl dark:prose-invert">
     <a href={`${lang !== defaultLanguage ? `/${lang}` : ""}/projects`} 
     class={buttonVariants({ variant: 'ghost' }) + ' mb-6 no-underline'}>
       &larr; {t.projectDetailPage?.backToProjects ?? "Back to Projects"}

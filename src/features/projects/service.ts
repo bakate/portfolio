@@ -1,103 +1,39 @@
-import type { ImageMetadata } from "astro";
-import project0Img from "@/assets/p0.webp";
-import project1Img from "@/assets/p1.webp";
-import project2Img from "@/assets/p2.webp";
-import project3Img from "@/assets/p3.webp";
-import codeHavenAuth from "@/assets/projects/codehaven/auth.png";
-import codeHavenCourses from "@/assets/projects/codehaven/courses.png";
-import codeHavenCourse from "@/assets/projects/codehaven/course.png";
-import codeHavenPreview from "@/assets/projects/codehaven/preview.png";
-import codeHavenProtected from "@/assets/projects/codehaven/protected.png";
-import codeHavenStudentDashboard from "@/assets/projects/codehaven/student-dashboard.png";
-import codeHavenTeacherDashboard from "@/assets/projects/codehaven/teacher-dashboard.png";
-import codeHavenEditCourse from "@/assets/projects/codehaven/teacher-edit-course.png";
+import {
+  afrikaZonPreviewImage,
+  codeHavenPreviewImage,
+  samouraStorePreviewImage,
+  cmsPreviewImage,
+} from "@/assets/projects/all-previews";
+import {
+  codeHavenAuth,
+  codeHavenCourse,
+  codeHavenCourses,
+  codeHavenEditCourse,
+  codeHavenPreview,
+  codeHavenProtected,
+  codeHavenStudentDashboard,
+  codeHavenTeacherDashboard,
+} from "@/assets/projects/codehaven";
 
 // Import i18n utilities
 import { ui, defaultLanguage, type LanguageCode } from "@/i18n/ui";
+import type {
+  ProjectData,
+  SkillData,
+  TranslatedProject,
+  TranslatedSkill,
+} from "./type";
 
-export type KeyFeature = {
-  id: string; // for i18n key
-  // icon?: string; // Optional: if you want to associate an icon from lucide-react or similar
-};
-
-export type TechnologyDetail = {
-  id: string; // e.g., 'react', 'typescript'
-  name: string; // e.g., 'React', 'TypeScript'
-  // category?: 'frontend' | 'backend' | 'database' | 'devops' | 'other'; // Optional: for grouping
-};
-
-export type GalleryImage = {
-  id: string;
-  src: ImageMetadata; // Source of the gallery image, now strictly ImageMetadata
-  alt: string; // Will be translated
-  caption?: string; // Optional, will be translated
-};
-
-export type ProjectData = {
-  id: string; // Keep as is, used for main i18n key and internal reference
-  slug: string; // New: for URL generation, e.g., 'my-awesome-project'
-  imageUrl?: ImageMetadata; // Main project image, keep as is
-  projectUrl?: string; // Link to live project, keep as is
-  codeUrl?: string; // Link to source code, keep as is
-  tags: Array<string>; // Existing tags, can be used for quick filtering or display
-
-  // New fields for detailed project page
-  category?: string; // New: e.g., 'Web Application', 'Mobile App', 'Data Science'. Will be translated.
-  date?: string; // New: e.g., '2023', 'Q2 2024', 'Jan 2023 - Mar 2024'. Will be translated.
-
-  // galleryImages will have their alt/captions translated, so the structure itself is here
-  galleryImages?: Array<{ id: string; src: ImageMetadata }>; // Store raw image data, alt/captions come from i18n
-
-  // keyFeatures will have their title/description translated
-  keyFeatures?: Array<KeyFeature>; // Array of feature IDs, details from i18n
-
-  // technologiesUsed can be more detailed than simple tags
-  technologiesUsed?: Array<TechnologyDetail>; // More structured than tags
-};
-
-// Define the type for a project once its content is translated
-export type TranslatedKeyFeature = KeyFeature & {
-  title: string;
-  description: string;
-};
-
-export type TranslatedGalleryImage = GalleryImage & {
-  // alt and caption are already strings and will be provided by the translation file
-  // src is already ImageMetadata
-};
-
-export type TranslatedProject = ProjectData & {
-  // Existing translated fields
-  title: string; // Main title of the project
-  description: string; // Short description for cards/previews
-  imageAltText: string; // Alt text for the main project image
-
-  // New translated fields for the detailed page
-  categoryText?: string; // Translated category
-  dateText?: string; // Translated date display string
-  detailedDescription?: string; // Longer description for the project detail page
-  galleryImagesTranslated?: Array<{
-    id: string;
-    src: ImageMetadata; // Source of the gallery image, now strictly ImageMetadata
-    alt: string; // Translated alt text
-    caption: string; // Translated caption
-  }>;
-  keyFeaturesTranslated?: Array<TranslatedKeyFeature>; // Key features with translated titles/descriptions
-  challenges?: string; // Description of challenges faced (translated)
-  learnings?: string; // Key learnings from the project (translated)
-  // technologiesUsed.name will be translated if needed, or could be kept as is if they are proper names
-};
-
-export const projectsList: Array<ProjectData> = [
+const projectsListUnsorted: Array<ProjectData> = [
   {
     id: "codeHaven",
     slug: "code-haven",
-    imageUrl: project0Img,
+    imageUrl: codeHavenPreviewImage,
     projectUrl: "https://staging.codehaven.eu/",
     codeUrl: "https://github.com/bakate/code-haven",
     tags: ["Next.js", "TypeScript", "drizzle-orm", "postgresql"],
-    category: "Web Application", // Placeholder
-    date: "2024", // Placeholder
+    category: "LMS (Learning Management System)",
+    date: "2024-07-15",
     galleryImages: [
       {
         id: "codeHavenAuth",
@@ -131,7 +67,7 @@ export const projectsList: Array<ProjectData> = [
         id: "codeHavenEditCourse",
         src: codeHavenEditCourse,
       },
-    ], // Placeholder
+    ],
     keyFeatures: [
       { id: "authentication" },
       { id: "dashboard" },
@@ -147,7 +83,7 @@ export const projectsList: Array<ProjectData> = [
       { id: "mux" },
       { id: "hlsPlayer" },
       { id: "richTextEditor" },
-    ], // Placeholder with IDs
+    ],
     technologiesUsed: [
       { id: "nextjs", name: "Next.js" },
       { id: "typescript", name: "TypeScript" },
@@ -167,7 +103,7 @@ export const projectsList: Array<ProjectData> = [
   {
     id: "afrikaZon",
     slug: "afrikazon",
-    imageUrl: project1Img,
+    imageUrl: afrikaZonPreviewImage,
     projectUrl: "https://www.afrikazon.com/",
     codeUrl: "https://github.com/bakate/afrikazon",
     tags: [
@@ -181,7 +117,7 @@ export const projectsList: Array<ProjectData> = [
       "postgresql",
     ],
     category: "E-commerce Platform", // Placeholder
-    date: "2024", // Placeholder
+    date: "2024-03-22", // Placeholder
     galleryImages: [], // Placeholder
     keyFeatures: [
       { id: "authentication" },
@@ -217,12 +153,12 @@ export const projectsList: Array<ProjectData> = [
   {
     id: "samouraStore",
     slug: "samoura-store",
-    imageUrl: project2Img,
+    imageUrl: samouraStorePreviewImage,
     projectUrl: "https://e-commerce-cms-ney3.vercel.app/",
     codeUrl: "https://github.com/bakate/e-commerce-store",
     tags: ["Next.js", "TailwindCSS", "TypeScript", "shadcn/ui"],
     category: "E-commerce Storefront", // Placeholder
-    date: "2023", // Placeholder
+    date: "2023-05-10", // Placeholder
     galleryImages: [], // Placeholder
     keyFeatures: [{ id: "productDisplay" }, { id: "cart" }], // Placeholder with IDs
     technologiesUsed: [
@@ -233,12 +169,12 @@ export const projectsList: Array<ProjectData> = [
   {
     id: "cms",
     slug: "cms",
-    imageUrl: project3Img,
+    imageUrl: cmsPreviewImage,
     projectUrl: "https://e-commerce-cms-ebon.vercel.app/",
     codeUrl: "https://github.com/bakate/e-commerce-cms",
     tags: ["Next.js", "TailwindCSS", "TypeScript", "shadcn/ui"],
     category: "Content Management System", // Placeholder
-    date: "2023", // Placeholder
+    date: "2023-04-15", // Placeholder
     galleryImages: [], // Placeholder
     keyFeatures: [{ id: "userManagement" }, { id: "contentEditing" }], // Placeholder with IDs
     technologiesUsed: [
@@ -248,6 +184,11 @@ export const projectsList: Array<ProjectData> = [
   },
 ];
 
+export const projectsList = [...projectsListUnsorted].sort((a, b) => {
+  const dateA = new Date(a.date);
+  const dateB = new Date(b.date);
+  return dateB.getTime() - dateA.getTime();
+});
 // Helper function to translate a single project
 function translateProject(
   project: ProjectData,
@@ -342,25 +283,6 @@ export function getTranslatedProjectBySlug(
 }
 
 // Skills
-
-export type Technology = {
-  id: string; // e.g., 'react', 'angular', 'typescript' (will map to react-icons)
-  name: string; // e.g., 'React', 'Angular', 'TypeScript'
-};
-
-export type SkillData = {
-  id: string; // Unique identifier for the skill, used for i18n keys
-  iconName: string; // Name of the Lucide icon
-  technologies: Array<Technology>;
-};
-
-// Define the type for a skill once its content is translated
-export type TranslatedSkill = SkillData & {
-  title: string;
-  description: string;
-  // iconName is already part of SkillData
-  // technologies is already part of SkillData
-};
 
 export const skillsList: Array<SkillData> = [
   {
