@@ -1,5 +1,4 @@
 ---
-// src/pages/blog.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
 import Heading from '@/components/Heading.astro';
@@ -22,7 +21,6 @@ const pageDescription = t('pageDescription');
       className="text-center"
     />
 
-    {/* Contenu du blog à venir : liste des articles, etc. */}
     <EmptyState
       title={t('comingSoon')}
     />

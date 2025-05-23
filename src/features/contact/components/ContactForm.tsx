@@ -13,8 +13,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { contactFormSchema } from "@/features/contact/schema";
-import type { ContactFormValues, ContactFormTranslations } from "../type";
+import {
+  type ContactFormValues,
+  type ContactFormTranslations,
+  contactFormSchema,
+} from "../type";
 import { setGlobalZodErrorMap } from "@/i18n/zodErrorMap";
 import type { LanguageCode } from "@/i18n/ui";
 import { Loader2, Send } from "lucide-react";

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { useTranslations, type LanguageCode } from '@/i18n/ui';
-import ContactPageScreen from '@/features/contact/screens/ContactPageScreen.astro';
+import {ContactScreen} from '@/features/contact';
 
 const lang = Astro.currentLocale as LanguageCode | undefined ?? "en";
 const t = useTranslations(lang, 'contactPage');
@@ -26,7 +26,7 @@ const formTranslations = {
 const layoutProps = {
   lang,
   mainHeadingTitle: pageMeta.title,
-  mainHeadingDescription: t('description'), // Main heading's description, not page meta description
+  mainHeadingDescription: t('description'),
   formTitle: t('formTitle'),
   formTranslations,
   orSeparatorText: t('orSeparatorText'),
@@ -37,5 +37,5 @@ const layoutProps = {
 };
 ---
 <BaseLayout pageTitle={pageMeta.title} pageDescription={pageMeta.description}>
-  <ContactPageScreen {...layoutProps} />
+  <ContactScreen {...layoutProps} />
 </BaseLayout>
