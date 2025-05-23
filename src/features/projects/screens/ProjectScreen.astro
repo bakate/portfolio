@@ -5,6 +5,14 @@ import { type ui, type LanguageCode, defaultLanguage } from "@/i18n/ui";
 import { buttonVariants } from '@/components/ui/button';
 import { Code, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import ProjectGallery from "../components/ProjectGallery";
 
 export type Props = {
   project: TranslatedProject;
@@ -16,7 +24,7 @@ const { project, t, lang } = Astro.props;
 ---
 
 <div class="container mx-auto px-4 py-8">
-  <article class="prose lg:prose-xl max-w-none">
+  <article class="prose lg:prose-xl max-w-none dark:prose-invert">
     <a href={`${lang !== defaultLanguage ? `/${lang}` : ""}/projects`} 
     class={buttonVariants({ variant: 'ghost' }) + ' mb-6 no-underline'}>
       &larr; {t.projectDetailPage?.backToProjects ?? "Back to Projects"}
@@ -68,7 +76,7 @@ const { project, t, lang } = Astro.props;
       {project.keyFeaturesTranslated && project.keyFeaturesTranslated.length > 0 && (
       <section class="mb-8">
         <h2>{t.projectDetailPage?.keyFeaturesTitle ?? "Key Features"}</h2>
-        <ul class="list-disc pl-5">
+        <ul class="pl-5 list-disc">
           {project.keyFeaturesTranslated.map((feature) => (
             <li>
               <strong>{feature.title}:</strong> {feature.description}
@@ -79,25 +87,16 @@ const { project, t, lang } = Astro.props;
     )}
 
     {/* Gallery */}
-    {project.galleryImagesTranslated && project.galleryImagesTranslated.length > 0 && (
-      <section class="mb-8">
-        <h2>{t.projectDetailPage?.galleryTitle ?? "Gallery"}</h2>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {project.galleryImagesTranslated.map((image) => (
-            <div class="overflow-hidden rounded-lg shadow-md">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                class="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-                widths={[200, 400]}
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-              />
-              {image.caption && <p class="mt-2 p-2 text-center text-sm">{image.caption}</p>}
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
+
+{project.galleryImagesTranslated && project.galleryImagesTranslated.length > 0 && (
+  <ProjectGallery client:visible images={project.galleryImagesTranslated.map((image) => ({
+    src: image.src.src,
+    alt: image.alt,
+    caption: image.caption,
+    id: image.id,
+  }))} />
+)}
+
 
       {(project.challenges || project.learnings) && (
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
