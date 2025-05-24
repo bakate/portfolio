@@ -3,7 +3,9 @@ title: "Mon Premier Article de Blog en MDX"
 description: "Ceci est un exemple pour tester la nouvelle section blog de mon portfolio."
 pubDate: "2025-05-23" # Utilise le format AAAA-MM-JJ
 tags: ["astro", "mdx", "test"]
-heroImage: "https://source.unsplash.com/random/800x600"
+heroImage:
+  url: "https://images.pexels.com/photos/4709285/pexels-photo-4709285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  alt: "The Astro logo on a dark background with a pink glow."
 isDraft: false # Mettre à true pour cacher l'article de la liste
 lang: "fr" # Langue de l'article
 ---
@@ -13,6 +15,25 @@ lang: "fr" # Langue de l'article
 C'est passionnant de commencer cette nouvelle section. Ici, je vais partager mes réflexions et découvertes sur divers sujets techniques.
 
 ### Pourquoi MDX ?
+
+#### Syntax highlighting
+
+We also support syntax highlighting in MDX out-of-the-box! This example uses the default [Shiki](https://shiki.style) theme. See the [MDX integration docs](https://docs.astro.build/en/guides/integrations-guide/mdx/#syntax-highlighting) for configuration options.
+
+```astro
+---
+const weSupportAstro = true;
+---
+
+<h1>Hey, what theme is that? Looks nice!</h1>
+```
+
+```tsx
+const firstName = "Bakate";
+const lastName = "Ba";
+
+console.log(`Hello, ${firstName} ${lastName}!`); // Hello, Bakate Ba!
+```
 
 J'ai choisi MDX car il me permet de :
 

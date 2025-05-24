@@ -1,5 +1,5 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import {BlogPostDetailScreen} from '@/features/blog';
 import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
 
@@ -16,10 +16,11 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
+
 ---
 <BlogPostDetailScreen 
-  post={post.data} 
+  post={{...post.data, readingTimeMinutes: remarkPluginFrontmatter.readingTimeMinutes}} 
   lang={lang} 
 >
   <Content />

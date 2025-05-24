@@ -1,11 +1,22 @@
 --- 
-// src/features/blog/screens/AllBlogPostsScreen.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { LanguageCode } from '@/i18n/ui';
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { useTranslations } from '@/i18n/ui';
 import { Image } from 'astro:assets';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { formatDate } from '@/lib/utils';
+import { Clock } from 'lucide-react';
+
 
 
 type Props = {
@@ -38,28 +49,53 @@ const pageDescription = t('pageDescription');
     ) : (
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map(post => (
-          <a href={getRelativeLocaleUrl(lang, `/blog/${post.id}`)} class="block p-6 bg-card border border-border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group">
-            {post.data.heroImage && (
-              <Image
-                src={post.data.heroImage.url} 
-                alt={post.data.heroImage.alt} 
-                class="w-full h-48 object-cover rounded-t-lg mb-4 group-hover:opacity-90 transition-opacity"
-                width={768}
-                height={432}
-              />
-            )}
-            <h2 class="text-2xl font-semibold mb-2 text-card-foreground group-hover:text-primary transition-colors">
-              {post.data.title}
-            </h2>
-            <p class="text-sm text-muted-foreground mb-3">
-              {t('publishedOn') + post.data.pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}
-            </p>
-            <p class="text-card-foreground/80 mb-4 line-clamp-3">
-              {post.data.description}
-            </p>
-            <span class="text-primary font-medium group-hover:underline">
-              {t('readMore')} &rarr;
-            </span>
+          <a href={getRelativeLocaleUrl(lang, `/blog/${post.id}`)} class="block group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+            <Card className=" rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 pt-0">
+              {post.data.heroImage && (
+                <div class="w-full h-48 overflow-hidden rounded-t-lg">
+                  <Image
+                    src={post.data.heroImage.url}
+                    alt={post.data.heroImage.alt}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    width={768}
+                    height={432}
+                  />
+                </div>
+              )}
+              <CardHeader>
+                <CardTitle className="text-xl font-semibold line-clamp-2 group-hover:text-primary transition-colors">
+                  {post.data.title}
+                </CardTitle>
+                <CardDescription className='flex justify-between'>
+                  <p>{t('publishedOn') + formatDate(post.data.pubDate, lang)}</p>
+                  {post.data.readingTimeMinutes ? (
+                    <p class="flex items-center gap-1">
+                      <Clock className="mr-1.5 size-4 flex-shrink-0" />
+                      {post.data.readingTimeMinutes} {t('readingTimeSuffix')}
+                    </p>
+                  ) : null}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow space-y-2">
+                {post.data.description && (
+                  <p class="text-sm text-muted-foreground line-clamp-3">
+                    {post.data.description}
+                  </p>
+                )}
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 pt-2">
+                    {post.data.tags.slice(0, 3).map((tag: string) => (
+                      <Badge variant="secondary" key={tag} className="text-xs">{tag}</Badge>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+              <CardFooter>
+                <span class="text-sm text-primary font-medium group-hover:underline">
+                  {t('readMore')} &rarr;
+                </span>
+              </CardFooter>
+            </Card>
           </a>
         ))}
       </div>

@@ -1,24 +1,34 @@
 ---
-
 import {  type LanguageCode } from '@/i18n/ui';
 import {AllBlogPostsScreen} from '@/features/blog';
-import { getCollection } from 'astro:content';
-import { defaultLanguage } from '@/i18n/ui';
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import { useTranslations } from '@/i18n/ui';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { defaultLanguage, useTranslations } from '@/i18n/ui';
 
 const lang = (Astro.currentLocale ?? defaultLanguage) as LanguageCode;
 const t = useTranslations(lang, 'blogPage');
 
-const filteredPosts = await getCollection('blog', ({data }) => {
-  const lang = Astro.currentLocale as LanguageCode;
-  return data.isDraft !== true && data.lang === lang;
+const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection('blog', ({data }) => {
+  const currentLang = Astro.currentLocale as LanguageCode; 
+  return data.isDraft !== true && data.lang === currentLang;
 });
 
-filteredPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+const enrichedPosts = await Promise.all(blogEntries.map(async (postEntry: CollectionEntry<'blog'>) => {
+  const { remarkPluginFrontmatter } = await render(postEntry);
+  return {
+    id: postEntry.id,
+    slug: postEntry.id,
+    collection: postEntry.collection,
+    data: {
+      ...postEntry.data,
+      readingTimeMinutes: remarkPluginFrontmatter.readingTimeMinutes,
+    },
+  };
+}));
+
+enrichedPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
 ---
 
 <AllBlogPostsScreen 
-  posts={filteredPosts} 
+  posts={enrichedPosts} 
   lang={lang} 
 />
