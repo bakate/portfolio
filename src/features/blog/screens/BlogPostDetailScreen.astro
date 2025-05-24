@@ -7,16 +7,18 @@ import { ArrowLeft, Clock } from 'lucide-react';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { useTranslations } from '@/i18n/ui';
 import { Image } from 'astro:assets';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import Heading from '@/components/Heading.astro';
 import { formatDate } from '@/lib/utils';
+import BlogPostCard from '../components/BlogPostCard.astro';
 
 type Props = {
   post: CollectionEntry<'blog'>["data"];
   lang: LanguageCode;
+  relatedPosts: Array<CollectionEntry<'blog'>>; 
 };
 
-const { post, lang } = Astro.props;
+const { post, lang, relatedPosts } = Astro.props;
 
 const pubDate = new Date(post.pubDate);
 const updatedDate = post.updatedDate ? new Date(post.updatedDate) : null;
@@ -81,6 +83,24 @@ const pageDescription = post.description;
       <slot />
     </div>
 
-  <!-- We will add here the other related and recommended posts -->
+  <!-- Related Posts Section -->
+    {relatedPosts.length > 0 ? (
+      <section class="mt-12 pt-8 border-t border-border">
+     
+        <Heading 
+          title={t('relatedPostsTitle')}
+          titleClassName="md:text-2xl font-semibold"
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {relatedPosts.map((relatedPost) => (
+  
+          <BlogPostCard 
+            post={relatedPost} 
+            lang={lang} 
+          />
+        ))}
+        </div>
+      </section>
+    ) : null}
   </article>
 </BaseLayout>
