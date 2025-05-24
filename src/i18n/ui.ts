@@ -321,12 +321,14 @@ export const ui = {
       heroImageAlt: "Image de couverture pour l'article : ",
       publishedOn: "Publié le : ",
       readMore: "Lire la suite",
+      readingTimeSuffix: 'min de lecture',
     },
     blogPost: {
       publishedOn: "Publié le : ",
       updatedOn: "Mis à jour le : ",
       heroImageAlt: "Image de couverture pour l'article : ",
       backToList: "Retour à la liste des articles",
+      readingTimeSuffix: 'min de lecture',
     },
     contactPage: {
       pageTitle: "Me Contacter",
@@ -693,12 +695,14 @@ export const ui = {
       heroImageAlt: "Hero image for article: ",
       publishedOn: "Published on: ",
       readMore: "Read more",
+      readingTimeSuffix: 'min read',
     },
     blogPost: {
       publishedOn: "Published on: ",
       updatedOn: "Updated on: ",
       heroImageAlt: "Hero image for article: ",
       backToList: "Back to blog list",
+      readingTimeSuffix: 'min read',
     },
     contactPage: {
       pageTitle: "Contact Me",
