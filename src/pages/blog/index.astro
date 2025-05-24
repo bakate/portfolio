@@ -7,9 +7,8 @@ import { defaultLanguage, useTranslations } from '@/i18n/ui';
 const lang = (Astro.currentLocale ?? defaultLanguage) as LanguageCode;
 const t = useTranslations(lang, 'blogPage');
 
-const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection('blog', ({data }) => {
-  const currentLang = Astro.currentLocale as LanguageCode; 
-  return data.isDraft !== true && data.lang === currentLang;
+const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection('blog', ({data, id }) => {
+  return data.isDraft !== true && id.startsWith("fr/")
 });
 
 const enrichedPosts = await Promise.all(blogEntries.map(async (postEntry: CollectionEntry<'blog'>) => {

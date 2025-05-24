@@ -5,9 +5,8 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 const lang = (Astro.currentLocale ?? "en") as LanguageCode;
 
 
-const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection('blog', ({data }) => {
-  const currentLang = Astro.currentLocale as LanguageCode; 
-  return data.isDraft !== true && data.lang === currentLang;
+const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection('blog', ({data, id }) => {
+  return data.isDraft !== true && id.startsWith('en/')
 });
 
 const enrichedPosts = await Promise.all(blogEntries.map(async (postEntry: CollectionEntry<'blog'>) => {
