@@ -29,8 +29,32 @@ export function LanguageSelector({
 
   function onSelectLanguage(targetUrl: string) {
     startTransition(() => {
-      // onSelectChange?.(); // Si tu as un callback
-      window.location.href = targetUrl;
+      const currentPathname = window.location.pathname;
+
+      // More specific regex patterns for better readability and maintenance
+      const patterns = {
+        // French blog detail: /blog/slug (no language prefix)
+        frenchBlogDetail: /^\/blog\/[^\/]+(?:\/.*)?$/,
+        // English blog detail: /en/blog/slug
+        englishBlogDetail: /^\/en\/blog\/[^\/]+(?:\/.*)?$/,
+        // Combined pattern for any blog detail page
+        anyBlogDetail: /^(?:\/en)?\/blog\/[^\/]+(?:\/.*)?$/,
+      };
+
+      const isBlogDetailPage = patterns.anyBlogDetail.test(currentPathname);
+      let finalTargetUrl = targetUrl;
+
+      if (isBlogDetailPage) {
+        // Determine current language and redirect to appropriate blog index
+        if (patterns.englishBlogDetail.test(currentPathname)) {
+          // Currently on English blog detail → go to French blog index
+          finalTargetUrl = "/blog/";
+        } else if (patterns.frenchBlogDetail.test(currentPathname)) {
+          // Currently on French blog detail → go to English blog index
+          finalTargetUrl = "/en/blog/";
+        }
+      }
+      window.location.href = finalTargetUrl;
     });
   }
 

@@ -1,13 +1,13 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import {BlogPostDetailScreen} from '@/features/blog';
-import { type LanguageCode } from '@/i18n/ui';
+import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
 
-let lang =  "fr" as LanguageCode;
+let lang =  defaultLanguage as LanguageCode;
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog', ({data}) => {
-    return data.isDraft !== true && data.lang === "fr";
+    return data.isDraft !== true && data.lang === defaultLanguage
   });
   return blogEntries.map(post => ({
     params: { slug: post.id },
