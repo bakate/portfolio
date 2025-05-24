@@ -1,0 +1,24 @@
+---
+
+import {  type LanguageCode } from '@/i18n/ui';
+import {AllBlogPostsScreen} from '@/features/blog';
+import { getCollection } from 'astro:content';
+import { defaultLanguage } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { useTranslations } from '@/i18n/ui';
+
+const lang = (Astro.currentLocale ?? defaultLanguage) as LanguageCode;
+const t = useTranslations(lang, 'blogPage');
+
+const filteredPosts = await getCollection('blog', ({data }) => {
+  const lang = Astro.currentLocale as LanguageCode;
+  return data.isDraft !== true && data.lang === lang;
+});
+
+filteredPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+---
+
+<AllBlogPostsScreen 
+  posts={filteredPosts} 
+  lang={lang} 
+/>

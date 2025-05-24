@@ -1,0 +1,65 @@
+--- 
+// src/features/blog/screens/AllBlogPostsScreen.astro
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { LanguageCode } from '@/i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { useTranslations } from '@/i18n/ui';
+
+
+type Props = {
+  posts: CollectionEntry<'blog'>[];
+  lang: LanguageCode;
+};
+
+const { posts, lang } = Astro.props;
+
+const t = useTranslations(lang, 'blogPage');
+
+const pageTitle = t('pageTitle');
+const pageDescription = t('pageDescription');
+---
+<BaseLayout {pageTitle} {pageDescription}>
+  <div class="container mx-auto px-4 py-8 md:py-12">
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+        {t('title')}
+      </h1>
+      <p class="mt-4 text-lg text-muted-foreground">
+        {t('description')}
+      </p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p class="text-center text-muted-foreground">
+        {t('comingSoon')}
+      </p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map(post => (
+          <a href={getRelativeLocaleUrl(lang, `/blog/${post.id}`)} class="block p-6 bg-card border border-border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group">
+            {post.data.heroImage && (
+              <img
+                src={post.data.heroImage} 
+                alt={t('heroImageAlt') + post.data.title} 
+                class="w-full h-48 object-cover rounded-t-lg mb-4 group-hover:opacity-90 transition-opacity"
+              />
+            )}
+            <h2 class="text-2xl font-semibold mb-2 text-card-foreground group-hover:text-primary transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-sm text-muted-foreground mb-3">
+              {t('publishedOn') + post.data.pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+            <p class="text-card-foreground/80 mb-4 line-clamp-3">
+              {post.data.description}
+            </p>
+            <span class="text-primary font-medium group-hover:underline">
+              {t('readMore')} &rarr;
+            </span>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
