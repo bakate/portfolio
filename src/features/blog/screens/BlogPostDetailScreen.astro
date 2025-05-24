@@ -6,6 +6,7 @@ import type { LanguageCode } from '@/i18n/ui';
 import { ArrowLeft } from 'lucide-react';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { useTranslations } from '@/i18n/ui';
+import { Image } from 'astro:assets';
 
 type Props = {
   post: CollectionEntry<'blog'>["data"];
@@ -35,12 +36,12 @@ const pageDescription = post.description;
         )}
       </p>
       {post.heroImage && (
-        <img 
-          src={post.heroImage} 
-          alt={t('heroImageAlt') + post.title} 
+        <Image
+          src={post.heroImage.url} 
+          alt={post.heroImage.alt} 
           class="w-full h-auto object-cover rounded-lg my-6 shadow-lg"
-          width="768"
-          height="432" />
+          width={768}
+          height={432} />
       )}
        {post.tags && post.tags.length > 0 && (
         <div class="mt-4 flex flex-wrap gap-2">

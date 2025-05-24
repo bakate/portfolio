@@ -11,11 +11,14 @@ const blogCollection = defineCollection({
     description: z.string().optional(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    heroImage: z.string().optional(),
+    heroImage: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
     tags: z.array(z.string()).optional(),
     isDraft: z.boolean(),
     lang: z.enum(["fr", "en"]).optional().default("fr"),
-    //slug: z.string(), // Explicitly define slug used in frontmatter
+
     // Ajoute d'autres champs que tu utilises dans ton frontmatter
   }),
 });

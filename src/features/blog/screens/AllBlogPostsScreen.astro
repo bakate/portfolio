@@ -5,6 +5,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { LanguageCode } from '@/i18n/ui';
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { useTranslations } from '@/i18n/ui';
+import { Image } from 'astro:assets';
 
 
 type Props = {
@@ -35,14 +36,16 @@ const pageDescription = t('pageDescription');
         {t('comingSoon')}
       </p>
     ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map(post => (
           <a href={getRelativeLocaleUrl(lang, `/blog/${post.id}`)} class="block p-6 bg-card border border-border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group">
             {post.data.heroImage && (
-              <img
-                src={post.data.heroImage} 
-                alt={t('heroImageAlt') + post.data.title} 
+              <Image
+                src={post.data.heroImage.url} 
+                alt={post.data.heroImage.alt} 
                 class="w-full h-48 object-cover rounded-t-lg mb-4 group-hover:opacity-90 transition-opacity"
+                width={768}
+                height={432}
               />
             )}
             <h2 class="text-2xl font-semibold mb-2 text-card-foreground group-hover:text-primary transition-colors">
