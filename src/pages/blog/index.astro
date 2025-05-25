@@ -1,33 +1,37 @@
 ---
-import {  type LanguageCode } from '@/i18n/ui';
-import {AllBlogPostsScreen} from '@/features/blog';
+import { AllBlogPostsScreen } from '@/features/blog';
+import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import { defaultLanguage, useTranslations } from '@/i18n/ui';
 
 const lang = (Astro.currentLocale ?? defaultLanguage) as LanguageCode;
 const t = useTranslations(lang, 'blogPage');
 
-const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection('blog', ({data, id }) => {
-  return data.isDraft !== true && id.startsWith("fr/")
-});
+const blogEntries: Array<CollectionEntry<'blog'>> = await getCollection(
+  'blog',
+  ({ data, id }) => {
+    return data.isDraft !== true && id.startsWith('fr/');
+  }
+);
 
-const enrichedPosts = await Promise.all(blogEntries.map(async (postEntry: CollectionEntry<'blog'>) => {
-  const { remarkPluginFrontmatter } = await render(postEntry);
-  return {
-    id: postEntry.id,
-    slug: postEntry.id,
-    collection: postEntry.collection,
-    data: {
-      ...postEntry.data,
-      readingTimeMinutes: remarkPluginFrontmatter.readingTimeMinutes,
-    },
-  };
-}));
+const enrichedPosts = await Promise.all(
+  blogEntries.map(async (postEntry: CollectionEntry<'blog'>) => {
+    const { remarkPluginFrontmatter } = await render(postEntry);
+    return {
+      id: postEntry.id,
+      slug: postEntry.id,
+      collection: postEntry.collection,
+      data: {
+        ...postEntry.data,
+        readingTimeMinutes: remarkPluginFrontmatter.readingTimeMinutes,
+      },
+    };
+  })
+);
 
-enrichedPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+enrichedPosts.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
 ---
 
-<AllBlogPostsScreen 
-  posts={enrichedPosts} 
-  lang={lang} 
-/>
+<AllBlogPostsScreen posts={enrichedPosts} lang={lang} />

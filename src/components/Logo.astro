@@ -1,16 +1,26 @@
 ---
-import { Image } from "astro:assets";
-import logo from "@/assets/logo.svg";
-import logoDark from "@/assets/logo-dark.svg";
-import { defaultLanguage, type LanguageCode } from "@/i18n/ui";
-import { getRelativeLocaleUrl } from "astro:i18n";
-const currentLocale = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+import { Image } from 'astro:assets';
+import logo from '@/assets/logo.svg';
+import logoDark from '@/assets/logo-dark.svg';
+import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+const currentLocale =
+  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 ---
 
-
-
 <a href={getRelativeLocaleUrl(currentLocale)}>
-    <Image src={logo} alt="Logo Bakate" width={48} height={48} class="dark:hidden" />
-    <Image src={logoDark} alt="Logo Bakate" width={48} height={48} class="hidden dark:block" />
+  <Image
+    src={logo}
+    alt="Logo Bakate"
+    width={48}
+    height={48}
+    class="dark:hidden"
+  />
+  <Image
+    src={logoDark}
+    alt="Logo Bakate"
+    width={48}
+    height={48}
+    class="hidden dark:block"
+  />
 </a>
-

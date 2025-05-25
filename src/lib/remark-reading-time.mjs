@@ -1,5 +1,5 @@
-import { toString } from "mdast-util-to-string";
-import getReadingTime from "reading-time";
+import { toString } from 'mdast-util-to-string';
+import getReadingTime from 'reading-time';
 
 /**
  * Remark plugin to calculate reading time and add it to frontmatter.

@@ -1,6 +1,6 @@
 ---
-import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Moon, Sun } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 // Génère un ID unique pour chaque instance du composant
 const uniqueId = `themeToggle-${crypto.randomUUID().slice(0, 8)}`;
@@ -14,7 +14,9 @@ const uniqueId = `themeToggle-${crypto.randomUUID().slice(0, 8)}`;
 
 <script define:vars={{ buttonId: uniqueId }}>
   const applyThemeFromLocalStorage = () => {
-    const theme = (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) || 'light';
+    const theme =
+      (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) ||
+      'light';
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
@@ -54,11 +56,17 @@ const uniqueId = `themeToggle-${crypto.randomUUID().slice(0, 8)}`;
   document.addEventListener('astro:page-load', setupThemeToggleButton);
 
   // MutationObserver to sync localStorage if the 'dark' class changes by other means (e.g., dev tools).
-  if (typeof localStorage !== 'undefined' && !document.documentElement.hasAttribute('data-theme-observer-toggle')) {
+  if (
+    typeof localStorage !== 'undefined' &&
+    !document.documentElement.hasAttribute('data-theme-observer-toggle')
+  ) {
     const observer = new MutationObserver(() => {
       const isDarkNow = document.documentElement.classList.contains('dark');
       const storedTheme = localStorage.getItem('theme');
-      if ((isDarkNow && storedTheme !== 'dark') || (!isDarkNow && storedTheme !== 'light')) {
+      if (
+        (isDarkNow && storedTheme !== 'dark') ||
+        (!isDarkNow && storedTheme !== 'light')
+      ) {
         localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
       }
     });

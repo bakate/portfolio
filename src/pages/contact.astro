@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
-import {ContactScreen} from '@/features/contact';
+import { ContactScreen } from '@/features/contact';
 
 const lang = defaultLanguage as LanguageCode;
 const t = useTranslations(lang, 'contactPage');
@@ -36,6 +36,7 @@ const layoutProps = {
   calendarUrl: import.meta.env.PUBLIC_GOOGLE_CALENDAR_URL,
 };
 ---
+
 <BaseLayout pageTitle={pageMeta.title} pageDescription={pageMeta.description}>
   <ContactScreen {...layoutProps} />
 </BaseLayout>

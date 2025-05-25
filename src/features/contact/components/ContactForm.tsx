@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,17 +10,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import {
   type ContactFormValues,
   type ContactFormTranslations,
   contactFormSchema,
-} from "../type";
-import { setGlobalZodErrorMap } from "@/i18n/zodErrorMap";
-import type { LanguageCode } from "@/i18n/ui";
-import { Loader2, Send } from "lucide-react";
+} from '../type';
+import { setGlobalZodErrorMap } from '@/i18n/zodErrorMap';
+import type { LanguageCode } from '@/i18n/ui';
+import { Loader2, Send } from 'lucide-react';
 
 interface ContactFormProps {
   lang: LanguageCode;
@@ -40,17 +40,17 @@ export function ContactForm({
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      message: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      message: '',
     },
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   async function onSubmit(values: ContactFormValues) {
     // TODO: Implement actual form submission logic (e.g., API call)
-    console.log("Form submitted with values:", values);
+    console.log('Form submitted with values:', values);
     // Example: Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     form.reset(); // Reset form after submission
@@ -59,7 +59,7 @@ export function ContactForm({
     }
     // Optionally, display a success message using a toast or similar
     // For now, we can just log it or use a simple alert
-    alert("Message sent successfully! (Simulation)");
+    alert('Message sent successfully! (Simulation)');
   }
 
   return (

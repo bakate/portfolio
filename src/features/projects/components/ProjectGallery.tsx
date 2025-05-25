@@ -1,12 +1,12 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
 interface GalleryImage {
   src: string;
@@ -24,7 +24,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
     <Carousel
       className="w-full md:ml-12"
       opts={{
-        align: "start",
+        align: 'start',
         loop: true,
       }}
     >

@@ -1,13 +1,16 @@
 ---
-import '../styles/global.css'; 
+import '../styles/global.css';
 import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header.astro';
 import BottomAppBar from '@/components/BottomAppBar.astro';
-import { Home, Briefcase, FileText, MessageSquare } from "lucide-react";
-import { ClientRouter } from "astro:transitions";
+import { Home, Briefcase, FileText, MessageSquare } from 'lucide-react';
+import { ClientRouter } from 'astro:transitions';
 
-import { prepareLanguagesForSelector, type LanguageSelectorItem } from '@/lib/i18n-utils';
+import {
+  prepareLanguagesForSelector,
+  type LanguageSelectorItem,
+} from '@/lib/i18n-utils';
 
 type Props = {
   pageTitle: string;
@@ -21,7 +24,8 @@ export type NavItem = {
 };
 
 const { pageTitle, pageDescription } = Astro.props;
-const lang = Astro.currentLocale as LanguageCode | undefined ?? defaultLanguage;
+const lang =
+  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 const currentPathname = Astro.url.pathname;
 
 const tSite = useTranslations(lang, 'site');
@@ -34,36 +38,94 @@ const navItems: Array<NavItem> = [
   { href: '/contact', label: tNav('contact'), icon: MessageSquare },
 ];
 
-const languagesForSelector: Array<LanguageSelectorItem> = prepareLanguagesForSelector(currentPathname, lang);
-
+const languagesForSelector: Array<LanguageSelectorItem> =
+  prepareLanguagesForSelector(currentPathname, lang);
 ---
+
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={pageDescription || tSite('description')} />
+    <meta
+      name="description"
+      content={pageDescription || tSite('description')}
+    />
 
-    <link rel="icon" type="image/png" href="/favicons/light-mode/favicon-96x96.png" sizes="96x96" media="(prefers-color-scheme: light)"/>
-    <link rel="icon" type="image/png" href="/favicons/dark-mode/favicon-96x96.png" sizes="96x96" media="(prefers-color-scheme: dark)"/>
-    <link rel="icon" type="image/svg+xml" href="/favicons/light-mode/favicon.svg" media="(prefers-color-scheme: light)"/>
-    <link rel="icon" type="image/svg+xml" href="/favicons/dark-mode/favicon.svg" media="(prefers-color-scheme: dark)"/>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicons/light-mode/favicon-96x96.png"
+      sizes="96x96"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicons/dark-mode/favicon-96x96.png"
+      sizes="96x96"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicons/light-mode/favicon.svg"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicons/dark-mode/favicon.svg"
+      media="(prefers-color-scheme: dark)"
+    />
 
-    <link rel="shortcut icon" href="/favicons/light-mode/favicon.ico" media="(prefers-color-scheme: light)"/>
-    <link rel="shortcut icon" href="/favicons/dark-mode/favicon.ico" media="(prefers-color-scheme: dark)"/>
+    <link
+      rel="shortcut icon"
+      href="/favicons/light-mode/favicon.ico"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="shortcut icon"
+      href="/favicons/dark-mode/favicon.ico"
+      media="(prefers-color-scheme: dark)"
+    />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/light-mode/apple-touch-icon.png" media="(prefers-color-scheme: light)"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/dark-mode/apple-touch-icon.png" media="(prefers-color-scheme: dark)"/>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/light-mode/apple-touch-icon.png"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/dark-mode/apple-touch-icon.png"
+      media="(prefers-color-scheme: dark)"
+    />
 
-    <link rel="manifest" href="/favicons/light-mode/site.webmanifest" media="(prefers-color-scheme: light)"/>
-    <link rel="manifest" href="/favicons/dark-mode/site.webmanifest" media="(prefers-color-scheme: dark)"/>
+    <link
+      rel="manifest"
+      href="/favicons/light-mode/site.webmanifest"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="manifest"
+      href="/favicons/dark-mode/site.webmanifest"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <script is:inline>
       const getInitialTheme = () => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        if (
+          typeof localStorage !== 'undefined' &&
+          localStorage.getItem('theme')
+        ) {
           return localStorage.getItem('theme');
         }
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        ) {
           return 'dark';
         }
         return 'light';
@@ -81,38 +143,52 @@ const languagesForSelector: Array<LanguageSelectorItem> = prepareLanguagesForSel
     <title>{pageTitle || tSite('title')}</title>
 
     {/* Font, for example Google Fonts - to adapt according to your choices */}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"
+      defer></script>
     <ClientRouter />
   </head>
-  <body class="h-[100dvh] bg-background font-sans antialiased flex flex-col"> {/* Tailwind classes for the body */}
+  <body class="h-[100dvh] bg-background font-sans antialiased flex flex-col">
+    {/* Tailwind classes for the body */}
     <header class="hidden md:block">
       <!-- passer aussi navItems mais sans le premier element dont le href === '/' -->
-      <Header languagesForSelector={languagesForSelector} navItems={navItems.filter((item) => item.href !== '/') as NavItem[]} />
+      <Header
+        languagesForSelector={languagesForSelector}
+        navItems={navItems.filter((item) => item.href !== '/') as NavItem[]}
+      />
     </header>
 
-    <main class="container mx-auto px-4 py-8 flex-1 max-w-screen-2xl pb-20 md:pb-8">
-      <slot /> 
+    <main
+      class="container mx-auto px-4 py-8 flex-1 max-w-screen-2xl pb-20 md:pb-8"
+    >
+      <slot />
     </main>
     <div class="hidden md:block">
       <Footer />
     </div>
-    <BottomAppBar navItems={navItems} languagesForSelector={languagesForSelector} />
+    <BottomAppBar
+      navItems={navItems}
+      languagesForSelector={languagesForSelector}
+    />
     {/* Global scripts if needed, for example for analytics */}
-   <script is:inline type="text/javascript">
-     document.addEventListener('DOMContentLoaded', () => {
-     document.addEventListener('astro:after-swap', () => {
-         if (typeof mermaid !== 'undefined') {
-           mermaid.run({
-             nodes: document.querySelectorAll('pre.mermaid') // Target larger for elements generated by rehype-mermaid
-           });
-         } else {
-           console.error('Mermaid object not found during astro:after-swap.');
-         }
-       });
-     });
-   </script>
+    <script is:inline type="text/javascript">
+      document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('astro:after-swap', () => {
+          if (typeof mermaid !== 'undefined') {
+            mermaid.run({
+              nodes: document.querySelectorAll('pre.mermaid'), // Target larger for elements generated by rehype-mermaid
+            });
+          } else {
+            console.error('Mermaid object not found during astro:after-swap.');
+          }
+        });
+      });
+    </script>
   </body>
 </html>

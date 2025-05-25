@@ -1,10 +1,10 @@
-import { defineCollection, reference, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { defineCollection, reference, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const blogCollection = defineCollection({
   loader: glob({
-    pattern: "**/*.mdx",
-    base: "./src/features/blog/content",
+    pattern: '**/*.mdx',
+    base: './src/features/blog/content',
   }),
   schema: z.object({
     title: z.string(),
@@ -16,10 +16,10 @@ const blogCollection = defineCollection({
       alt: z.string(),
     }),
     tags: z.array(z.string()).optional(),
-    relatedPosts: z.array(reference("blog")),
+    relatedPosts: z.array(reference('blog')),
     readingTimeMinutes: z.number().optional(), // Added by remark plugin
     isDraft: z.boolean(),
-    lang: z.enum(["fr", "en"]).optional().default("fr"),
+    lang: z.enum(['fr', 'en']).optional().default('fr'),
 
     // Ajoute d'autres champs que tu utilises dans ton frontmatter
   }),

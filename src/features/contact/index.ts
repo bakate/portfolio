@@ -1,1 +1,1 @@
-export { default as ContactScreen } from "./screens/ContactPageScreen.astro";
+export { default as ContactScreen } from './screens/ContactPageScreen.astro';

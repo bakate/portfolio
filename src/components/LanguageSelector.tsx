@@ -1,12 +1,12 @@
-import * as React from "react";
-import { Button } from "@/components/ui/button";
+import * as React from 'react';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 export type Language = {
   code: string;
@@ -48,10 +48,10 @@ export function LanguageSelector({
         // Determine current language and redirect to appropriate blog index
         if (patterns.englishBlogDetail.test(currentPathname)) {
           // Currently on English blog detail → go to French blog index
-          finalTargetUrl = "/blog/";
+          finalTargetUrl = '/blog/';
         } else if (patterns.frenchBlogDetail.test(currentPathname)) {
           // Currently on French blog detail → go to English blog index
-          finalTargetUrl = "/en/blog/";
+          finalTargetUrl = '/en/blog/';
         }
       }
       window.location.href = finalTargetUrl;
@@ -88,8 +88,8 @@ export function LanguageSelector({
           <DropdownMenuCheckboxItem
             key={lang.code}
             className={cn(
-              "flex items-center gap-2 hover:bg-accent hover:cursor-pointer",
-              currentLocale === lang.code ? "bg-accent" : ""
+              'flex items-center gap-2 hover:bg-accent hover:cursor-pointer',
+              currentLocale === lang.code ? 'bg-accent' : ''
             )}
             checked={currentLocale === lang.code}
             onCheckedChange={() => onSelectLanguage(lang.targetUrl)}

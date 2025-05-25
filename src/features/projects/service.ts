@@ -3,7 +3,7 @@ import {
   codeHavenPreviewImage,
   samouraStorePreviewImage,
   cmsPreviewImage,
-} from "@/assets/projects/all-previews";
+} from '@/assets/projects/all-previews';
 import {
   codeHavenAuth,
   codeHavenCourse,
@@ -13,173 +13,173 @@ import {
   codeHavenProtected,
   codeHavenStudentDashboard,
   codeHavenTeacherDashboard,
-} from "@/assets/projects/codehaven";
+} from '@/assets/projects/codehaven';
 
 // Import i18n utilities
-import { ui, defaultLanguage, type LanguageCode } from "@/i18n/ui";
+import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 import type {
   ProjectData,
   SkillData,
   TranslatedProject,
   TranslatedSkill,
-} from "./type";
+} from './type';
 
 const projectsListUnsorted: Array<ProjectData> = [
   {
-    id: "codeHaven",
-    slug: "code-haven",
+    id: 'codeHaven',
+    slug: 'code-haven',
     imageUrl: codeHavenPreviewImage,
-    projectUrl: "https://staging.codehaven.eu/",
-    codeUrl: "https://github.com/bakate/code-haven",
-    tags: ["Next.js", "TypeScript", "drizzle-orm", "postgresql"],
-    category: "LMS (Learning Management System)",
-    date: "2024-07-15",
+    projectUrl: 'https://staging.codehaven.eu/',
+    codeUrl: 'https://github.com/bakate/code-haven',
+    tags: ['Next.js', 'TypeScript', 'drizzle-orm', 'postgresql'],
+    category: 'LMS (Learning Management System)',
+    date: '2024-07-15',
     galleryImages: [
       {
-        id: "codeHavenAuth",
+        id: 'codeHavenAuth',
         src: codeHavenAuth,
       },
       {
-        id: "codeHavenCourses",
+        id: 'codeHavenCourses',
         src: codeHavenCourses,
       },
       {
-        id: "codeHavenCourse",
+        id: 'codeHavenCourse',
         src: codeHavenCourse,
       },
       {
-        id: "codeHavenPreview",
+        id: 'codeHavenPreview',
         src: codeHavenPreview,
       },
       {
-        id: "codeHavenProtected",
+        id: 'codeHavenProtected',
         src: codeHavenProtected,
       },
       {
-        id: "codeHavenStudentDashboard",
+        id: 'codeHavenStudentDashboard',
         src: codeHavenStudentDashboard,
       },
       {
-        id: "codeHavenTeacherDashboard",
+        id: 'codeHavenTeacherDashboard',
         src: codeHavenTeacherDashboard,
       },
       {
-        id: "codeHavenEditCourse",
+        id: 'codeHavenEditCourse',
         src: codeHavenEditCourse,
       },
     ],
     keyFeatures: [
-      { id: "authentication" },
-      { id: "dashboard" },
-      { id: "userManagement" },
-      { id: "contentEditing" },
-      { id: "progressCalculation" },
-      { id: "studentDashboard" },
-      { id: "teacherMode" },
-      { id: "createNewCourses" },
-      { id: "createNewChapters" },
-      { id: "dragAndDrop" },
-      { id: "uploadThing" },
-      { id: "mux" },
-      { id: "hlsPlayer" },
-      { id: "richTextEditor" },
+      { id: 'authentication' },
+      { id: 'dashboard' },
+      { id: 'userManagement' },
+      { id: 'contentEditing' },
+      { id: 'progressCalculation' },
+      { id: 'studentDashboard' },
+      { id: 'teacherMode' },
+      { id: 'createNewCourses' },
+      { id: 'createNewChapters' },
+      { id: 'dragAndDrop' },
+      { id: 'uploadThing' },
+      { id: 'mux' },
+      { id: 'hlsPlayer' },
+      { id: 'richTextEditor' },
     ],
     technologiesUsed: [
-      { id: "nextjs", name: "Next.js" },
-      { id: "typescript", name: "TypeScript" },
-      { id: "drizzle-orm", name: "Drizzle ORM" },
-      { id: "postgresql", name: "PostgreSQL" },
-      { id: "hono", name: "Hono" },
-      { id: "tanstack-query", name: "TanStack/React-Query" },
-      { id: "heroui", name: "Hero UI" },
-      { id: "tailwindcss", name: "TailwindCSS" },
-      { id: "tRPC", name: "tRPC" },
-      { id: "authjs", name: "AuthJS" },
-      { id: "next-intl", name: "Next-Intl" },
-      { id: "vercel", name: "Vercel" },
-      { id: "mux", name: "Mux" },
+      { id: 'nextjs', name: 'Next.js' },
+      { id: 'typescript', name: 'TypeScript' },
+      { id: 'drizzle-orm', name: 'Drizzle ORM' },
+      { id: 'postgresql', name: 'PostgreSQL' },
+      { id: 'hono', name: 'Hono' },
+      { id: 'tanstack-query', name: 'TanStack/React-Query' },
+      { id: 'heroui', name: 'Hero UI' },
+      { id: 'tailwindcss', name: 'TailwindCSS' },
+      { id: 'tRPC', name: 'tRPC' },
+      { id: 'authjs', name: 'AuthJS' },
+      { id: 'next-intl', name: 'Next-Intl' },
+      { id: 'vercel', name: 'Vercel' },
+      { id: 'mux', name: 'Mux' },
     ],
   },
   {
-    id: "afrikaZon",
-    slug: "afrikazon",
+    id: 'afrikaZon',
+    slug: 'afrikazon',
     imageUrl: afrikaZonPreviewImage,
-    projectUrl: "https://www.afrikazon.com/",
-    codeUrl: "https://github.com/bakate/afrikazon",
+    projectUrl: 'https://www.afrikazon.com/',
+    codeUrl: 'https://github.com/bakate/afrikazon',
     tags: [
-      "Next.js",
-      "TailwindCSS",
-      "TypeScript",
-      "shadcn/ui",
-      "hono",
-      "tanstack-query",
-      "drizzle-orm",
-      "postgresql",
+      'Next.js',
+      'TailwindCSS',
+      'TypeScript',
+      'shadcn/ui',
+      'hono',
+      'tanstack-query',
+      'drizzle-orm',
+      'postgresql',
     ],
-    category: "E-commerce Platform", // Placeholder
-    date: "2024-03-22", // Placeholder
+    category: 'E-commerce Platform', // Placeholder
+    date: '2024-03-22', // Placeholder
     galleryImages: [], // Placeholder
     keyFeatures: [
-      { id: "authentication" },
-      { id: "checkout" },
-      { id: "productDisplay" },
-      { id: "cart" },
-      { id: "paymentProcessing" },
-      { id: "shipping" },
-      { id: "orderManagement" },
-      { id: "inventoryManagement" },
-      { id: "customerSupport" },
-      { id: "paymentProcessing" },
-      { id: "shipping" },
-      { id: "orderManagement" },
-      { id: "roleManagement" },
-      { id: "inventoryManagement" },
-      { id: "customerSupport" },
+      { id: 'authentication' },
+      { id: 'checkout' },
+      { id: 'productDisplay' },
+      { id: 'cart' },
+      { id: 'paymentProcessing' },
+      { id: 'shipping' },
+      { id: 'orderManagement' },
+      { id: 'inventoryManagement' },
+      { id: 'customerSupport' },
+      { id: 'paymentProcessing' },
+      { id: 'shipping' },
+      { id: 'orderManagement' },
+      { id: 'roleManagement' },
+      { id: 'inventoryManagement' },
+      { id: 'customerSupport' },
     ],
     technologiesUsed: [
-      { id: "nextjs", name: "Next.js" },
-      { id: "tailwindcss", name: "TailwindCSS" },
-      { id: "typescript", name: "TypeScript" },
-      { id: "shadcn/ui", name: "shadcn/ui" },
-      { id: "hono", name: "Hono" },
-      { id: "tanstack-query", name: "TanStack/React-Query" },
-      { id: "drizzle-orm", name: "Drizzle ORM" },
-      { id: "postgresql", name: "PostgreSQL" },
-      { id: "vercel", name: "Vercel" },
-      { id: "stripe", name: "Stripe" },
-      { id: "cloudinary", name: "Cloudinary" },
+      { id: 'nextjs', name: 'Next.js' },
+      { id: 'tailwindcss', name: 'TailwindCSS' },
+      { id: 'typescript', name: 'TypeScript' },
+      { id: 'shadcn/ui', name: 'shadcn/ui' },
+      { id: 'hono', name: 'Hono' },
+      { id: 'tanstack-query', name: 'TanStack/React-Query' },
+      { id: 'drizzle-orm', name: 'Drizzle ORM' },
+      { id: 'postgresql', name: 'PostgreSQL' },
+      { id: 'vercel', name: 'Vercel' },
+      { id: 'stripe', name: 'Stripe' },
+      { id: 'cloudinary', name: 'Cloudinary' },
     ],
   },
   {
-    id: "samouraStore",
-    slug: "samoura-store",
+    id: 'samouraStore',
+    slug: 'samoura-store',
     imageUrl: samouraStorePreviewImage,
-    projectUrl: "https://e-commerce-cms-ney3.vercel.app/",
-    codeUrl: "https://github.com/bakate/e-commerce-store",
-    tags: ["Next.js", "TailwindCSS", "TypeScript", "shadcn/ui"],
-    category: "E-commerce Storefront", // Placeholder
-    date: "2023-05-10", // Placeholder
+    projectUrl: 'https://e-commerce-cms-ney3.vercel.app/',
+    codeUrl: 'https://github.com/bakate/e-commerce-store',
+    tags: ['Next.js', 'TailwindCSS', 'TypeScript', 'shadcn/ui'],
+    category: 'E-commerce Storefront', // Placeholder
+    date: '2023-05-10', // Placeholder
     galleryImages: [], // Placeholder
-    keyFeatures: [{ id: "productDisplay" }, { id: "cart" }], // Placeholder with IDs
+    keyFeatures: [{ id: 'productDisplay' }, { id: 'cart' }], // Placeholder with IDs
     technologiesUsed: [
-      { id: "nextjs", name: "Next.js" },
-      { id: "typescript", name: "TypeScript" },
+      { id: 'nextjs', name: 'Next.js' },
+      { id: 'typescript', name: 'TypeScript' },
     ], // Placeholder
   },
   {
-    id: "cms",
-    slug: "cms",
+    id: 'cms',
+    slug: 'cms',
     imageUrl: cmsPreviewImage,
-    projectUrl: "https://e-commerce-cms-ebon.vercel.app/",
-    codeUrl: "https://github.com/bakate/e-commerce-cms",
-    tags: ["Next.js", "TailwindCSS", "TypeScript", "shadcn/ui"],
-    category: "Content Management System", // Placeholder
-    date: "2023-04-15", // Placeholder
+    projectUrl: 'https://e-commerce-cms-ebon.vercel.app/',
+    codeUrl: 'https://github.com/bakate/e-commerce-cms',
+    tags: ['Next.js', 'TailwindCSS', 'TypeScript', 'shadcn/ui'],
+    category: 'Content Management System', // Placeholder
+    date: '2023-04-15', // Placeholder
     galleryImages: [], // Placeholder
-    keyFeatures: [{ id: "userManagement" }, { id: "contentEditing" }], // Placeholder with IDs
+    keyFeatures: [{ id: 'userManagement' }, { id: 'contentEditing' }], // Placeholder with IDs
     technologiesUsed: [
-      { id: "nextjs", name: "Next.js" },
-      { id: "typescript", name: "TypeScript" },
+      { id: 'nextjs', name: 'Next.js' },
+      { id: 'typescript', name: 'TypeScript' },
     ], // Placeholder
   },
 ];
@@ -195,7 +195,7 @@ function translateProject(
   lang: LanguageCode
 ): TranslatedProject {
   type ProjectIdKey =
-    keyof (typeof ui)[typeof defaultLanguage]["projectsContent"];
+    keyof (typeof ui)[typeof defaultLanguage]['projectsContent'];
   const currentProjectId = project.id as ProjectIdKey;
 
   // Ensure fallback to defaultLanguage for the entire project's content if not found in currentLang
@@ -214,7 +214,7 @@ function translateProject(
       >;
       const featureTranslations = typedKeyFeatures?.[kf.id] ?? {
         title: kf.id,
-        description: "Description missing",
+        description: 'Description missing',
       };
       return {
         ...kf,
@@ -231,7 +231,7 @@ function translateProject(
       >;
       const imageTranslations = typedGalleryImages?.[gi.id] ?? {
         alt: `Alt text for ${gi.id} missing`,
-        caption: "",
+        caption: '',
       };
       return {
         ...gi, // This includes src and id
@@ -248,11 +248,11 @@ function translateProject(
     categoryText: i18nData.categoryText ?? project.category,
     dateText: i18nData.dateText ?? project.date,
     detailedDescription:
-      i18nData?.detailedDescription ?? "Detailed description missing",
+      i18nData?.detailedDescription ?? 'Detailed description missing',
     keyFeaturesTranslated,
     galleryImagesTranslated,
-    challenges: i18nData?.challenges ?? "Challenges information missing",
-    learnings: i18nData?.learnings ?? "Learnings information missing",
+    challenges: i18nData?.challenges ?? 'Challenges information missing',
+    learnings: i18nData?.learnings ?? 'Learnings information missing',
   };
 }
 
@@ -286,61 +286,61 @@ export function getTranslatedProjectBySlug(
 
 export const skillsList: Array<SkillData> = [
   {
-    id: "frontendDevelopment",
-    iconName: "MonitorSmartphone",
+    id: 'frontendDevelopment',
+    iconName: 'MonitorSmartphone',
     technologies: [
-      { id: "react", name: "React" },
-      { id: "angular", name: "Angular" },
-      { id: "typescript", name: "TypeScript" },
-      { id: "astro", name: "Astro" },
-      { id: "tailwindcss", name: "Tailwind CSS" },
-      { id: "html5", name: "HTML5" },
-      { id: "css3", name: "CSS3" },
-      { id: "javascript", name: "JavaScript" },
+      { id: 'react', name: 'React' },
+      { id: 'angular', name: 'Angular' },
+      { id: 'typescript', name: 'TypeScript' },
+      { id: 'astro', name: 'Astro' },
+      { id: 'tailwindcss', name: 'Tailwind CSS' },
+      { id: 'html5', name: 'HTML5' },
+      { id: 'css3', name: 'CSS3' },
+      { id: 'javascript', name: 'JavaScript' },
     ],
   },
   {
-    id: "backendDevelopment",
-    iconName: "ServerCog",
+    id: 'backendDevelopment',
+    iconName: 'ServerCog',
     technologies: [
-      { id: "nodejs", name: "Node.js" },
-      { id: "bun", name: "Bun" },
-      { id: "deno", name: "Deno" },
-      { id: "express", name: "Express.js" },
-      { id: "nestjs", name: "NestJS" },
-      { id: "hono", name: "Hono" },
-      { id: "python", name: "Python" },
+      { id: 'nodejs', name: 'Node.js' },
+      { id: 'bun', name: 'Bun' },
+      { id: 'deno', name: 'Deno' },
+      { id: 'express', name: 'Express.js' },
+      { id: 'nestjs', name: 'NestJS' },
+      { id: 'hono', name: 'Hono' },
+      { id: 'python', name: 'Python' },
     ],
   },
   {
-    id: "databaseManagement",
-    iconName: "Database",
+    id: 'databaseManagement',
+    iconName: 'Database',
     technologies: [
-      { id: "postgresql", name: "PostgreSQL" },
-      { id: "mysql", name: "MySQL" },
-      { id: "mongodb", name: "MongoDB" },
-      { id: "sqlite", name: "SQLite" },
-      { id: "prisma", name: "Prisma" },
-      { id: "drizzleorm", name: "Drizzle ORM" },
+      { id: 'postgresql', name: 'PostgreSQL' },
+      { id: 'mysql', name: 'MySQL' },
+      { id: 'mongodb', name: 'MongoDB' },
+      { id: 'sqlite', name: 'SQLite' },
+      { id: 'prisma', name: 'Prisma' },
+      { id: 'drizzleorm', name: 'Drizzle ORM' },
     ],
   },
   {
-    id: "uiUxDesign",
-    iconName: "PenTool",
+    id: 'uiUxDesign',
+    iconName: 'PenTool',
     technologies: [
-      { id: "figma", name: "Figma" },
-      { id: "tailwindcss", name: "Tailwind CSS" },
-      { id: "shadcnui", name: "shadcn/ui" },
+      { id: 'figma', name: 'Figma' },
+      { id: 'tailwindcss', name: 'Tailwind CSS' },
+      { id: 'shadcnui', name: 'shadcn/ui' },
     ],
   },
   {
-    id: "softwareArchitecture",
-    iconName: "Network",
+    id: 'softwareArchitecture',
+    iconName: 'Network',
     technologies: [
-      { id: "docker", name: "Docker" },
-      { id: "kubernetes", name: "Kubernetes" },
-      { id: "git", name: "Git" },
-      { id: "amazonservices", name: "AWS" },
+      { id: 'docker', name: 'Docker' },
+      { id: 'kubernetes', name: 'Kubernetes' },
+      { id: 'git', name: 'Git' },
+      { id: 'amazonservices', name: 'AWS' },
     ],
   },
 ];
@@ -353,7 +353,7 @@ export function getTranslatedSkills(
 
   return skillsList.map((skill) => {
     type SkillIdKey =
-      keyof (typeof ui)[typeof defaultLanguage]["skillsContent"];
+      keyof (typeof ui)[typeof defaultLanguage]['skillsContent'];
     const currentSkillId = skill.id as SkillIdKey;
 
     const skillTranslations =

@@ -1,33 +1,32 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
   ProjectScreen,
   getTranslatedProjects,
   type TranslatedProject,
-} from "@/features/projects";
-import { ui, type LanguageCode } from "@/i18n/ui";
+} from '@/features/projects';
+import { ui, type LanguageCode } from '@/i18n/ui';
 
 export async function getStaticPaths() {
-  const lang = Astro.currentLocale as  LanguageCode
+  const lang = Astro.currentLocale as LanguageCode;
   const paths = [];
 
-    const projects = getTranslatedProjects(lang);
-    for (const project of projects) {
-      paths.push({
-        params: { slug: project.slug },
-        props: { project },
-      });
-    
+  const projects = getTranslatedProjects(lang);
+  for (const project of projects) {
+    paths.push({
+      params: { slug: project.slug },
+      props: { project },
+    });
   }
   return paths;
 }
 const lang = Astro.currentLocale as LanguageCode;
 const { project } = Astro.props as { project: TranslatedProject };
 
-const t = ui[lang]; 
+const t = ui[lang];
 
 if (!project) {
-   const base = lang === "fr" ? "" : `/${lang}`
+  const base = lang === 'fr' ? '' : `/${lang}`;
   return Astro.redirect(`${base}/404`);
 }
 
