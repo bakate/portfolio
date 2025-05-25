@@ -3,6 +3,7 @@ import { useTranslations } from '@/i18n/ui';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { formatDate } from 'date-fns/format';
 
 export type Props = {
   post: CollectionEntry<'blog'>['data'];
@@ -23,25 +24,11 @@ const { pubDate, updatedDate } = post;
     <header class="mb-8">
       <h1 class="text-4xl font-bold mb-2">{post.title}</h1>
       <p class="text-muted-foreground text-sm">
-        {
-          t('publishedOn') +
-            pubDate.toLocaleDateString(lang, {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })
-        }
+        {t('publishedOn') + formatDate(pubDate, lang)}
         {
           updatedDate && (
             <span class="italic">
-              {' (' +
-                t('updatedOn') +
-                updatedDate.toLocaleDateString(lang, {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                }) +
-                ')'}
+              {' (' + t('updatedOn') + formatDate(updatedDate, lang) + ')'}
             </span>
           )
         }

@@ -1,12 +1,12 @@
 ---
-import { Image } from 'astro:assets';
-import type { TranslatedProject } from '../type';
-import { type ui, type LanguageCode, defaultLanguage } from '@/i18n/ui';
-import { buttonVariants } from '@/components/ui/button';
-import { Code, ExternalLink } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import ProjectGallery from '../components/ProjectGallery';
 import Heading from '@/components/Heading.astro';
+import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
+import { type LanguageCode, defaultLanguage, type ui } from '@/i18n/ui';
+import { Image } from 'astro:assets';
+import { Code, ExternalLink } from 'lucide-react';
+import ProjectGallery from '../components/ProjectGallery';
+import type { TranslatedProject } from '../type';
 
 export type Props = {
   project: TranslatedProject;
@@ -114,17 +114,21 @@ const { project, t, lang } = Astro.props;
 
     {
       (project.challenges || project.learnings) && (
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div class="grid grid-cols-1 md:gap-8 md:grid-cols-2 md:mb-8 mb-4">
           {project.challenges && (
-            <section class="mb-8">
-              <h2>{t.projectDetailPage?.challengesTitle ?? 'Challenges'}</h2>
+            <section>
+              <h2 class="mt-0">
+                {t.projectDetailPage?.challengesTitle ?? 'Challenges'}
+              </h2>
               <p>{project.challenges ?? 'Challenges'}</p>
             </section>
           )}
 
           {project.learnings && (
-            <section class="mb-8">
-              <h2>{t.projectDetailPage?.learningsTitle ?? 'Learnings'}</h2>
+            <section>
+              <h2 class="mt-0">
+                {t.projectDetailPage?.learningsTitle ?? 'Learnings'}
+              </h2>
               <p>{project.learnings ?? 'Learnings'}</p>
             </section>
           )}

@@ -1,7 +1,7 @@
 ---
-import type { LanguageCode } from '@/i18n/ui';
 import Heading from '@/components/Heading.astro';
 import { buttonVariants } from '@/components/ui/button';
+import type { LanguageCode } from '@/i18n/ui';
 import { cn } from '@/lib/utils';
 import { Calendar } from 'lucide-react';
 
@@ -40,7 +40,7 @@ const {
     title={mainHeadingTitle}
     description={mainHeadingDescription}
     showDivider={true}
-    className="text-center"
+    className="flex flex-col items-center justify-center"
     titleClassName="md:text-5xl"
   />
 
