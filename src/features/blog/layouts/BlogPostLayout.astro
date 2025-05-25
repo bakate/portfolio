@@ -1,48 +1,80 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro'; 
-import type { CollectionEntry } from 'astro:content';
 import { useTranslations } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
 export type Props = {
-  post: CollectionEntry<'blog'>['data']
+  post: CollectionEntry<'blog'>['data'];
 };
 
 const { post } = Astro.props;
 
 const lang = post.lang;
-const t = useTranslations(lang, 'blogPost'); 
+const t = useTranslations(lang, 'blogPost');
 
 const { pubDate, updatedDate } = post;
 ---
+
 <BaseLayout pageTitle={post.title} pageDescription={post.description}>
-  <article class="prose lg:prose-xl dark:prose-invert max-w-3xl mx-auto py-8 px-4">
+  <article
+    class="prose lg:prose-xl dark:prose-invert max-w-3xl mx-auto py-8 px-4"
+  >
     <header class="mb-8">
       <h1 class="text-4xl font-bold mb-2">{post.title}</h1>
       <p class="text-muted-foreground text-sm">
-        {t('publishedOn') + pubDate.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' })}
-        {updatedDate && (
-          <span class="italic">
-            {' (' + t('updatedOn') + updatedDate.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' }) + ')'}
-          </span>
-        )}
-      </p>
-      {post.tags && post.tags.length > 0 && (
-        <div class="mt-4">
-          {post.tags.map((tag: string) => (
-            <span class="inline-block bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
-              #{tag}
+        {
+          t('publishedOn') +
+            pubDate.toLocaleDateString(lang, {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+        }
+        {
+          updatedDate && (
+            <span class="italic">
+              {' (' +
+                t('updatedOn') +
+                updatedDate.toLocaleDateString(lang, {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }) +
+                ')'}
             </span>
-          ))}
-        </div>
-      )}
+          )
+        }
+      </p>
+      {
+        post.tags && post.tags.length > 0 && (
+          <div class="mt-4">
+            {post.tags.map((tag: string) => (
+              <span class="inline-block bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
     </header>
-    
-    {post.heroImage && (
-      <img src={post.heroImage} alt={t('heroImageAlt') + post.title} class="w-full h-auto rounded-lg mb-8 shadow-lg" />
-    )}
+
+    {
+      post.heroImage && (
+        <Image
+          src={post.heroImage.url}
+          alt={t('heroImageAlt') + post.title}
+          class="w-full h-auto rounded-lg mb-8 shadow-lg"
+          width={768}
+          height={432}
+          densities={[1, 1.5, 2]}
+          quality="mid"
+        />
+      )
+    }
 
     <div class="prose-content">
-      <slot /> 
+      <slot />
     </div>
 
     <footer class="mt-12 pt-8 border-t border-border">
