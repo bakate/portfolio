@@ -33,7 +33,7 @@ const t = useTranslations(lang, 'blogPost');
     className="rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 pt-0 h-full flex flex-col"
   >
     {
-      post.data.heroImage && (
+      post.data.heroImage ? (
         <div class="w-full h-48 overflow-hidden rounded-t-lg flex-shrink-0">
           <Image
             src={post.data.heroImage.url}
@@ -45,11 +45,13 @@ const t = useTranslations(lang, 'blogPost');
             quality="mid"
           />
         </div>
+      ) : (
+        <div class="w-full h-12 bg-muted" />
       )
     }
     <CardHeader className="flex-shrink-0">
       <CardTitle
-        className="text-xl font-semibold line-clamp-2 group-hover:text-primary transition-colors"
+        className="text-xl font-semibold line-clamp-1 group-hover:text-primary transition-colors"
       >
         {post.data.title}
       </CardTitle>
@@ -68,7 +70,7 @@ const t = useTranslations(lang, 'blogPost');
     <CardContent className="flex-grow space-y-2 flex-shrink-0">
       {
         post.data.description && (
-          <p class="text-sm text-muted-foreground line-clamp-3">
+          <p class="text-sm text-muted-foreground line-clamp-2">
             {post.data.description}
           </p>
         )

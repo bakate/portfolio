@@ -1,13 +1,15 @@
 ---
-import type { LanguageCode } from '@/i18n/ui';
 import Heading from '@/components/Heading.astro';
-import { buttonVariants } from '@/components/ui/button';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import SkillCard from '@/components/SkillCard.astro';
+import { buttonVariants } from '@/components/ui/button';
+import type { LanguageCode } from '@/i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Calendar, Dumbbell } from 'lucide-react';
 
-import type { TranslatedProject, TranslatedSkill } from '../type';
+import heroImage from '@/assets/bakate-hero.jpeg';
+import { Image } from 'astro:assets';
 import FeaturedProjectPreview from '../components/FeaturedProjectPreview.astro';
+import type { TranslatedProject, TranslatedSkill } from '../type';
 
 export type Props = {
   lang: LanguageCode;
@@ -84,11 +86,20 @@ const {
     </div>
 
     {/* Hero Image (Placeholder for now) */}
-    <div class="text-center">
+    <div class="md:text-center">
       <div
-        class="w-full h-96 bg-muted rounded-lg shadow-xl mx-auto flex items-center justify-center"
+        class="md:w-[600px] w-full h-92 bg-muted rounded-lg shadow-xl overflow-hidden"
       >
-        <p class="text-muted-foreground">{imageNotAvailable}</p>
+        <Image
+          src={heroImage}
+          alt={'User profile image'}
+          width={600}
+          height={368}
+          densities={[1, 1.5, 2]}
+          quality="high"
+          class="h-full w-full object-cover"
+          style="object-position: center 28%;"
+        />
       </div>
     </div>
   </div>
@@ -99,7 +110,7 @@ const {
   <Heading
     title={featuredProjectsTitle}
     description={featuredProjectsDescription}
-    className="text-center"
+    className="flex flex-col items-center"
   />
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -126,7 +137,7 @@ const {
     <Heading
       title={mySkillsTitle}
       description={mySkillsDescription}
-      className="text-center"
+      className="flex flex-col items-center"
     />
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
