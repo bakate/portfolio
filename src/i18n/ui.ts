@@ -335,8 +335,11 @@ export const ui = {
       heroImageAlt: "Image de couverture pour l'article : ",
       backToList: 'Retour à la liste des articles',
       readingTimeSuffix: 'min de lecture',
-      relatedPostsTitle: 'Continuez votre lecture',
+      relatedPostsTitle: 'Je te recommande aussi :',
       readMore: 'Lire la suite',
+    },
+    toc: {
+      title: "Sommaire de l'article",
     },
     contactPage: {
       pageTitle: 'Me Contacter',
@@ -719,6 +722,9 @@ export const ui = {
       readingTimeSuffix: 'min read',
       relatedPostsTitle: 'Continue Reading',
       readMore: 'Read more',
+    },
+    toc: {
+      title: 'Table of Contents',
     },
     contactPage: {
       pageTitle: 'Contact Me',
