@@ -1,0 +1,550 @@
+---
+title: "Closures JavaScript : Quand tes Fonctions ont une Mémoire d'Éléphant 🐘"
+pubDate: 2025-05-26
+description: 'En JavaScript, tes fonctions se souviennent de leur passé ! Découvre les closures, ce super-pouvoir discret qui rend ton code plus malin.'
+tags:
+  [
+    'JavaScript',
+    'Closures',
+    'Scope',
+    'Développement Web',
+    'Fonctions',
+    'Node.js',
+  ]
+lang: 'fr'
+isDraft: false
+heroImage:
+  url: '../../../../assets/blog/closure.jpg'
+  alt: 'Closure JavaScript'
+relatedPosts: ['fr/premier-article']
+
+articleTocItems:
+  - text: 'Le Secret Révélé'
+    href: '#le-secret-revele'
+  - text: 'Comment ça Marche ?'
+    href: '#comment-ca-marche'
+    subItems:
+      - {
+          text: 'Le Quartier des Variables',
+          href: '#le-quartier-des-variables',
+        }
+      - { text: 'Les Clés du Mystère', href: '#les-cles-du-mystere' }
+  - text: 'Les Super-Pouvoirs au Quotidien'
+    href: '#les-super-pouvoirs-au-quotidien'
+    subItems:
+      - { text: 'Créer des Coffres-Forts', href: '#creer-des-coffres-forts' }
+      - { text: 'Les Usines à Fonctions', href: '#les-usines-a-fonctions' }
+      - { text: 'Maîtriser le Temps', href: '#maitriser-le-temps' }
+  - text: 'Le Piège Classique'
+    href: '#le-piege-classique'
+  - text: 'Ton Nouveau Super-Pouvoir'
+    href: '#ton-nouveau-super-pouvoir'
+  - text: 'Exemples pratiques'
+    href: '#exemples-pratiques'
+---
+
+import InfoAlert from '../../components/InfoAlert.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import StackBlitzEmbed from '../../components/StackBlitzEmbed.astro';
+
+## J'ai une révélation à te faire 👀
+
+En JavaScript, **chaque fonction peut garder en mémoire son passé** : elle se souvient de l’environnement où elle est née. Ce super-pouvoir s’appelle une **closure**.
+
+> 📌 Une closure, c’est une **fonction combinée avec son environnement lexical**. En gros, elle garde une mémoire vivante de là où elle est née.
+
++Et le plus fou ? **Tu les utilises déjà tous les jours sans forcément le savoir.**
+
+On décortique ça ? C’est parti !
+
+---
+
+<TableOfContents
+  tocItems={frontmatter.articleTocItems}
+  lang={frontmatter.lang}
+/>
+
+<div id="le-secret-revele" />
+
+## Le Secret Révélé 😉 : Toutes tes Fonctions sont des Closures !
+
+Oui, tu as bien lu ! **Chaque fonction que tu écris en JavaScript est techniquement une closure**. Même la plus simple des fonctions "ferme sur" son environnement.
+
+Mais ce qui rend les closures vraiment puissantes, c’est qu’elles **se souviennent de leur environnement même après exécution de la fonction parente**. Comme si elles emportaient avec elles un Polaroïd de leur maison d’enfance.
+
+### Une métaphore pour mieux visualiser
+
+Pense à une **maman** qui élève son **enfant** avec amour. Elle lui transmet des valeurs, des conseils, des secrets de famille. Un jour, l'enfant quitte la maison...
+
+**Mais voilà le truc super** : même loin du domicile familial, l'enfant se souvient encore de tout ce que sa maman lui a appris. Les leçons de vie, les recettes secrètes, les petites habitudes familiales...
+
+En JavaScript, c'est pareil ! Quand une fonction "enfant" naît à l'intérieur d'une fonction "maman", elle hérite de cette capacité extraordinaire à se souvenir de son foyer d'origine.
+
+<div id="comment-ca-marche" />
+
+## Comment ça Marche Concrètement ?
+
+<div id="le-quartier-des-variables" />
+
+### Le Quartier des Variables (Scope Lexical)
+
+Imagine JavaScript comme une ville avec des quartiers. Chaque fonction vit dans son propre quartier, mais elle peut voir ce qui se passe dans les quartiers voisins !
+
+```javascript
+// Le centre-ville (scope global)
+const ville = 'JavaScript City';
+
+function quartier(nomQuartier) {
+  // Le quartier résidentiel
+  const service = 'Bibliothèque municipale';
+
+  function maison(numero) {
+    // La maison individuelle
+    const couleurPorte = 'Bleue';
+
+    // La maison peut voir TOUT :
+    console.log(
+      `On habite au ${numero}, quartier ${nomQuartier}, ville ${ville}`
+    );
+    console.log(`Notre porte est ${couleurPorte}`);
+    console.log(`On a accès à la ${service}`);
+  }
+
+  maison(42);
+}
+
+quartier('Centre');
+```
+
+La fonction `maison` voit non seulement ses propres affaires (`couleurPorte`), mais aussi celles de son quartier parent (`service`, `nomQuartier`) et même de la ville toute entière (`ville`) !
+
+<div id="les-cles-du-mystere" />
+
+### Les Clés du Mystère : Variables Libres vs Liées
+
+Dans notre maison JavaScript, il y a deux types de "possessions" :
+
+**🔐 Variables Liées** (ce qui t'appartient vraiment)
+
+- Tes paramètres de fonction
+- Les variables que tu déclares dans ta fonction. Elles prennent le dessus si jamais elles sont nommées de la même manière que des variables libres.
+
+**🗝️ Variables Libres** (l'héritage familial)
+
+- Si tu utilises une variable mais qu'elle n'est pas déclarée dans ta fonction, elle est recherchée dans l'environnement parent. Si elle n'y est pas, elle est recherchée chez les grands-parents, et ainsi de suite.
+- **C'est ça qui rend les closures puissants !**
+
+```javascript
+function maman(cadeau) {
+  const secretFamille = 'La recette des cookies de grand-mère';
+  let humeurDuJour = 'Joyeuse';
+
+  function enfant(decouverte) {
+    const jouetPrefere = 'Mon dino en peluche'; // Variable LIÉE
+    console.log(`J'ai découvert : "${decouverte}"`);
+
+    // Variables LIBRES (héritées de maman) :
+    console.log(`Maman m'a dit : "${secretFamille}"`);
+    console.log(`Maman est ${humeurDuJour} aujourd'hui`);
+    console.log(`Maman m'a offert : "${cadeau}"`);
+
+    // Variable LIÉE (à moi) :
+    console.log(`Mon jouet préféré : "${jouetPrefere}"`);
+  }
+
+  humeurDuJour = 'Fatiguée mais aimante'; // On peut changer avant le retour !
+  return enfant;
+}
+
+const monEnfant = maman('Un livre sur les planètes');
+monEnfant('La Terre tourne autour du soleil !');
+```
+
+<InfoAlert title="💡 À Retenir">
+  Les closures ne copient pas les valeurs, elles gardent un **lien vivant** (ou
+  **référence**) vers les variables originales. Si la variable change dans le
+  parent, l'enfant verra la nouvelle valeur !
+</InfoAlert>
+
+<div id="les-super-pouvoirs-au-quotidien" />
+
+## Les Super-Pouvoirs des Closures au Quotidien
+
+Maintenant qu'on a compris le principe, voyons pourquoi c'est si utile dans la vraie vie !
+
+<div id="creer-des-coffres-forts" />
+
+### 🔒 Créer des Coffres-Forts : Variables Inaccessibles de l’Extérieur
+
+Avant les classes modernes, les closures étaient la méthode reine pour simuler des variables privées.
+Ici, la variable `count` est **protégée** : seul l’objet retourné peut l’utiliser. Personne d’autre ne peut y accéder ni la modifier.
+
+```javascript
+function createCounter() {
+  let count = 0; // Variable privée, impossible d'y accéder de l'extérieur !
+
+  return {
+    increment() {
+      count += 1;
+      console.log(`Counter: ${count}`);
+    },
+    decrement() {
+      count -= 1;
+      console.log(`Counter: ${count}`);
+    },
+    getValue() {
+      return count;
+    },
+    // Pas de méthode pour accéder directement à 'count' !
+  };
+}
+
+const compteur1 = createCounter();
+compteur1.increment(); // Compteur : 1
+compteur1.increment(); // Compteur : 2
+
+const compteur2 = createCounter();
+compteur2.increment(); // Compteur : 1 (son propre compteur !)
+
+// Impossible de pirater le compteur :
+// console.log(compteur1.valeur); // undefined - la variable est protégée !
+```
+
+<div id="les-usines-a-fonctions" />
+
+### 🏭 Fabriquer des Fonctions sur Mesure
+
+Les closures excellent pour fabriquer des fonctions préconfigurées.
+
+```javascript
+function createSalutation(typeDeBonjour) {
+  return function (nom) {
+    console.log(`${typeDeBonjour}, ${nom} ! Comment ça va ?`);
+  };
+}
+
+// On crée nos fonctions personnalisées
+const direBonjour = createSalutation('Salut');
+const direHello = createSalutation('Hello');
+const direCoucou = createSalutation('Coucou');
+
+// Chacune se souvient de SON type de salutation
+direBonjour('Marie'); // Salut, Marie ! Comment ça va ?
+direHello('John'); // Hello, John ! Comment ça va ?
+direCoucou('Pierre'); // Coucou, Pierre ! Comment ça va ?
+```
+
+Un autre exemple avec ce calculateur
+
+```javascript
+function createCalculateur(operation) {
+  return function (a, b) {
+    switch (operation) {
+      case 'addition':
+        return `${a} + ${b} = ${a + b}`;
+      case 'multiplication':
+        return `${a} × ${b} = ${a * b}`;
+      case 'puissance':
+        return `${a}^${b} = ${Math.pow(a, b)}`;
+      default:
+        return 'Opération inconnue !';
+    }
+  };
+}
+
+const additionner = createCalculateur('addition');
+const multiplier = createCalculateur('multiplication');
+const puissance = createCalculateur('puissance');
+
+console.log(additionner(5, 3)); // 5 + 3 = 8
+console.log(multiplier(4, 7)); // 4 × 7 = 28
+console.log(puissance(2, 3)); // 2^3 = 8
+```
+
+<div id="maitriser-le-temps" />
+
+### ⏰ Maîtriser le Temps avec des Closures Asynchrones
+
+Les closures sont cruciales en programmation asynchrone, notamment avec les callbacks.
+
+```javascript
+function scheduleTasks() {
+  const tasks = [
+    { name: 'Appeler grand-mère', delay: 3000 },
+    { name: 'Faire tes devoirs', delay: 1000 },
+    { name: 'Ranger ta chambre', delay: 2000 },
+  ];
+
+  console.log("📋 J'assigne toutes les tâches...");
+
+  tasks.forEach((task) => {
+    // Chaque setTimeout capture SA propre version de 'tache'
+    setTimeout(() => {
+      console.log(`⏰ C'est l'heure de : ${task.name} !`);
+    }, task.delay);
+  });
+}
+
+scheduleTasks();
+// 📋 J'assigne toutes les tâches...
+// (après 1s) ⏰ C'est l'heure de : Faire tes devoirs !
+// (après 2s) ⏰ C'est l'heure de : Ranger ta chambre !
+// (après 3s) ⏰ C'est l'heure de : Appeler grand-mère !
+```
+
+<div id="le-piege-classique" />
+
+## ⚠️ Le Piège Classique des Boucles
+
+Attention, un piège fréquent guette avec les closures dans les boucles, surtout si l'on utilise `var`.
+
+```javascript
+// ❌ LE PROBLÈME (avec var)
+console.log("❌ Avec 'var' - Le piège :");
+for (var i = 0; i < 3; i++) {
+  setTimeout(function () {
+    console.log(`Valeur de i : ${i}`); // Que va-t-il se passer ?
+  }, 100);
+}
+// Résultat inattendu : "3, 3, 3" au lieu de "0, 1, 2" !
+
+// ✅ LA SOLUTION (avec let)
+console.log("\n✅ Avec 'let' - La solution :");
+for (let i = 0; i < 3; i++) {
+  setTimeout(function () {
+    console.log(`Valeur de i : ${i}`); // Maintenant ça marche !
+  }, 200);
+}
+// Résultat attendu : "0, 1, 2" 🎉
+```
+
+**Pourquoi ce problème ?**
+Avec `var`, toutes les fonctions `setTimeout` accèdent à la **même instance** de la variable `i`, car `var` ne crée pas de scope bloc. Résultat : elles voient toutes la dernière valeur.
+Avec `let`, c'est différent : `let` crée une **nouvelle liaison (binding) de `i` pour chaque itération de la boucle**. Chaque closure capture donc sa propre version de `i`, celle qui correspond à son tour de boucle.
+
+**L'ancienne solution (avant `let`) :**
+
+```javascript
+// 🔧 Ancienne méthode avec IIFE (Immediately Invoked Function Expression)
+for (var i = 0; i < 3; i++) {
+  (function (indexActuel) {
+    setTimeout(function () {
+      console.log(`Index capturé : ${indexActuel}`);
+    }, 300);
+  })(i); // On passe 'i' à la fonction qui l'exécute immédiatement
+}
+```
+
+<InfoAlert title="💡 Conseil Pratique">
+  **Utilise toujours `let` ou `const` dans tes boucles** au lieu de `var`. C'est
+  plus simple et ça évite ce piège classique !
+</InfoAlert>
+
+<div id="ton-nouveau-super-pouvoir" />
+
+### Dans les Frameworks Modernes
+
+Les closures ne sont pas juste un détail technique - elles sont au cœur de
+
+**React avec les Hooks :**
+
+```javascript
+function MonComposant() {
+  const [count, setCount] = useState(0);
+  const nomComposant = 'Super Compteur';
+
+  // Cette fonction est une closure !
+  function gererClic() {
+    console.log(`${nomComposant} cliqué ! Nouvelle valeur : ${count + 1}`);
+    setCount(count + 1);
+  }
+
+  return <button onClick={gererClic}>Compter : {count}</button>;
+}
+```
+
+**Vue.js avec la Composition API :**
+
+```javascript
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const message = ref('Salut Vue !');
+
+    // Closure qui capture 'message'
+    const changerMessage = () => {
+      message.value = 'Message changé grâce à une closure !';
+    };
+
+    return { message, changerMessage };
+  },
+};
+```
+
+**Angular avec Signals :**
+
+Avec l'arrivée des Signals, Angular offre une manière réactive et concise de gérer l'état, où les closures jouent un rôle clé notamment dans les `effect`.
+
+```typescript
+// Angular avec Signals et Closures
+import { Component, signal, effect } from '@angular/core';
+
+@Component({
+  selector: 'signal-closure-demo',
+  template: `
+    <p>Compteur (Signal) : {{ count() }}</p>
+    <button (click)="increment()">Incrémenter</button>
+    <p>{{ messageFromEffect() }}</p>
+  `,
+})
+export class SignalClosureDemoComponent {
+  count = signal(0);
+  messageFromEffect = signal('Initialisation...');
+  // Cette variable sera capturée par la closure de l'effect.
+  private componentCreationTime: string;
+
+  constructor() {
+    this.componentCreationTime = new Date().toLocaleTimeString(); // Simplifié
+
+    // L'effect est une closure.
+    // Il "capture" `this.count` et `this.componentCreationTime` de l'instance du composant.
+    effect(() => {
+      const currentCount = this.count(); // Accès au signal
+      // Utilise la valeur de componentCreationTime capturée lors de la création de la closure.
+      const logMessage = `[Composant initialisé à ${this.componentCreationTime}] Le compteur est : ${currentCount}.`;
+      console.log(logMessage);
+      this.messageFromEffect.set(logMessage); // Met à jour un autre signal depuis l'effect
+    });
+  }
+
+  increment() {
+    // La fonction passée à update est aussi une closure.
+    // Elle capture `currentValue` (son paramètre) mais pourrait aussi capturer
+    // des variables du scope de `increment` si nécessaire.
+    this.count.update((currentValue) => currentValue + 1);
+  }
+}
+```
+
+Dans cet exemple Angular avec Signals :
+
+- L'appel à `effect()` enregistre une fonction callback. Cette fonction est une **closure** : elle "se souvient" et a accès aux signaux (`this.count`) et aux propriétés (`this.componentCreationTime`) de l'instance de `SignalClosureDemoComponent` où elle a été définie.
+- Chaque fois que `this.count` est modifié via la méthode `increment()`, l'effect s'exécute à nouveau, utilisant les valeurs capturées (notamment `this.componentCreationTime` qui reste constant depuis l'initialisation du composant) et la nouvelle valeur de `this.count()`.
+- La fonction fléchée `currentValue => currentValue + 1` passée à `this.count.update()` est également une closure.
+
+**Astro :**
+
+Dans Astro, les closures se manifestent souvent côté serveur lors de la génération des pages, ou côté client dans les scripts et les composants de framework (React, Vue, Svelte, etc.) qu'Astro peut intégrer.
+
+```typescript
+// Dans un fichier .astro (partie script front-end)
+// Ce code s'exécute côté client.
+<script>
+const boutons = document.querySelectorAll('.bouton-astro');
+const messages = [
+  'Premier message secret Astro !',
+  'Deuxième secret Astro !',
+  'Troisième secret Astro !',
+];
+
+boutons.forEach((bouton, index) => {
+  // La valeur de 'index' et 'messages[index]' est capturée pour chaque event listener.
+  // C'est une closure !
+  const messagePourCeBouton =
+    messages[index % messages.length] || 'Message par défaut';
+
+  bouton.addEventListener('click', () => {
+    console.log(`Bouton Astro #${index + 1} dit : ${messagePourCeBouton}`);
+    alert(`Message : ${messagePourCeBouton}`);
+  });
+});
+</script>
+
+<div>
+  <button class="bouton-astro">Bouton Astro 1</button>
+  <button class="bouton-astro">Bouton Astro 2</button>
+  <button class="bouton-astro">Bouton Astro 3</button>
+</div>
+```
+
+Ici, chaque `addEventListener` crée une closure qui "se souvient" de la valeur spécifique de `messagePourCeBouton` et `index` pour ce bouton particulier, même après que la boucle `forEach` ait terminé son exécution.
+
+### Techniques Avancées
+
+**Currying (aperçu) :**
+
+```javascript
+// Transform une fonction à plusieurs paramètres...
+function multiply(a, b) {
+  return a * b;
+}
+
+// ...en une chaîne de fonctions à un paramètre !
+function multiplyCurry(a) {
+  return function (b) {
+    return a * b; // 'a' est capturé par la closure
+  };
+}
+
+const multiplyBy5 = multiplyCurry(5);
+console.log(multiplyBy5(3)); // 15
+console.log(multiplyBy5(7)); // 35
+```
+
+### ⚠️ Un Petit Avertissement
+
+Les closures peuvent parfois causer des **fuites mémoire** si tu n'y fais pas attention. Si une closure capture de gros objets qui ne sont plus utilisés, ils ne pourront pas être supprimés de la mémoire.
+
+**Exemple à éviter :**
+
+```javascript
+function problematique() {
+  const enormeObjet = new Array(1000000).fill('data'); // Très gros !
+
+  return function () {
+    console.log("Je garde l'énorme objet en mémoire inutilement...");
+    // Cette closure capture 'enormeObjet' même si on ne l'utilise pas !
+  };
+}
+```
+
+**Solution :**
+
+```javascript
+function mieux() {
+  const enormeObjet = new Array(1000000).fill('data');
+  const donneeNecessaire = enormeObjet.length; // On extrait ce qu'il faut
+
+  return function () {
+    console.log(`J'ai juste besoin de la taille : ${donneeNecessaire}`);
+    // Maintenant 'enormeObjet' peut être nettoyé de la mémoire !
+  };
+}
+```
+
+<div id="exemples-pratiques" />
+
+### Exemples Bonus à Explorer 💡
+
+Pour "sentir" les closures, c'est de les voir en action. Je t'ai préparé plusieurs exemples dans un environnement interactif. Tu pourras jouer avec le code et observer leur comportement directement !
+
+<StackBlitzEmbed
+  projectId="vitejs-closure-examples"
+  cardTitle="Playground intréactif sur les closures"
+/>
+
+## 🎉 Récapitulatif : Tu Maîtrises les Closures !
+
+Les closures, c'est comme donner une **mémoire photographique** à tes fonctions. Elles se souviennent de leur environnement de naissance et peuvent y accéder même après avoir déménagé !
+
+**Ce que tu as appris (j'espère 😀) :**
+
+- ✅ Toutes les fonctions JS sont techniquement des closures
+- ✅ Le scope lexical détermine ce qu'une fonction peut "voir"
+- ✅ Les variables libres sont l'héritage capturé par les closures
+- ✅ Les closures permettent l'encapsulation et les variables privées
+- ✅ Elles sont essentielles pour les callbacks et l'asynchrone
+- ✅ Attention au piège des boucles avec `var` !
+
+Les closures ne sont plus un mystère pour toi - elles sont ton nouveau super-pouvoir JavaScript

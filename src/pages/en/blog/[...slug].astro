@@ -49,6 +49,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
   }}
   lang={lang}
   relatedPosts={finalRelatedPosts}
+  filePath={post.filePath ? post.filePath : ''}
 >
   <Content />
 </BlogPostDetailScreen>

@@ -337,6 +337,7 @@ export const ui = {
       readingTimeSuffix: 'min de lecture',
       relatedPostsTitle: 'Je te recommande aussi :',
       readMore: 'Lire la suite',
+      editOnGithub: 'Proposer une modification sur GitHub',
     },
     toc: {
       title: "Sommaire de l'article",
@@ -722,6 +723,7 @@ export const ui = {
       readingTimeSuffix: 'min read',
       relatedPostsTitle: 'Continue Reading',
       readMore: 'Read more',
+      editOnGithub: 'Suggest an edit on GitHub',
     },
     toc: {
       title: 'Table of Contents',
