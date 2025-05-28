@@ -77,7 +77,7 @@ const t = useTranslations(lang, 'blogPost');
       }
       {
         post.data.tags && post.data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 pt-2">
+          <div class="flex gap-2 pt-2 line-clamp-1">
             {post.data.tags.slice(0, 3).map((tag: string) => (
               <Badge variant="secondary" key={tag} className="text-xs">
                 {tag}
