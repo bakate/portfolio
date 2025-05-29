@@ -18,7 +18,6 @@ export type Language = {
 type LanguageSelectorProps = {
   currentLocale: string;
   languages: Array<Language>;
-  // onSelectChange?: () => void; // Optionnel, si tu as besoin d'un callback
 };
 
 export function LanguageSelector({
@@ -29,32 +28,19 @@ export function LanguageSelector({
 
   function onSelectLanguage(targetUrl: string) {
     startTransition(() => {
-      const currentPathname = window.location.pathname;
+      const pathname = window.location.pathname;
 
-      // More specific regex patterns for better readability and maintenance
-      const patterns = {
-        // French blog detail: /blog/slug (no language prefix)
-        frenchBlogDetail: /^\/blog\/[^\/]+(?:\/.*)?$/,
-        // English blog detail: /en/blog/slug
-        englishBlogDetail: /^\/en\/blog\/[^\/]+(?:\/.*)?$/,
-        // Combined pattern for any blog detail page
-        anyBlogDetail: /^(?:\/en)?\/blog\/[^\/]+(?:\/.*)?$/,
-      };
+      // Check if we're on a detail page (blog or tips)
+      const detailPageMatch = pathname.match(/^(\/en)?\/(blog|tips)\/[^\/]+/);
 
-      const isBlogDetailPage = patterns.anyBlogDetail.test(currentPathname);
-      let finalTargetUrl = targetUrl;
-
-      if (isBlogDetailPage) {
-        // Determine current language and redirect to appropriate blog index
-        if (patterns.englishBlogDetail.test(currentPathname)) {
-          // Currently on English blog detail → go to French blog index
-          finalTargetUrl = '/blog/';
-        } else if (patterns.frenchBlogDetail.test(currentPathname)) {
-          // Currently on French blog detail → go to English blog index
-          finalTargetUrl = '/en/blog/';
-        }
+      if (detailPageMatch) {
+        const [, langPrefix, section] = detailPageMatch;
+        // Redirect to the opposite language's index page
+        const newLangPrefix = langPrefix ? '' : '/en';
+        window.location.href = `${newLangPrefix}/${section}/`;
+      } else {
+        window.location.href = targetUrl;
       }
-      window.location.href = finalTargetUrl;
     });
   }
 

@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import { useTranslations, type LanguageCode } from '@/i18n/ui';
 import { ContactScreen } from '@/features/contact';
+import { useTranslations, type LanguageCode } from '@/i18n/ui';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const lang = (Astro.currentLocale as LanguageCode | undefined) ?? 'en';
 const t = useTranslations(lang, 'contactPage');
@@ -21,6 +21,11 @@ const formTranslations = {
   emailPlaceholder: t('emailPlaceholder'),
   messagePlaceholder: t('messagePlaceholder'),
   sendButtonLabel: t('sendButtonLabel'),
+  toastSuccessMessageSent: t('toastSuccessMessageSent'),
+  toastErrorFailedToSend: t('toastErrorFailedToSend'),
+  toastErrorUnexpected: t('toastErrorUnexpected'),
+  toastErrorDetails: t('toastErrorDetails'),
+  toastErrorValidationFailed: t('toastErrorValidationFailed'),
 };
 
 const layoutProps = {

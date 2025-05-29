@@ -282,6 +282,7 @@ export const ui = {
       blog: 'Blog',
       contact: 'Contact',
       projects: 'Projets',
+      tips: 'Astuces',
     },
     footer: {
       rights: 'Tous droits réservés.',
@@ -349,6 +350,7 @@ export const ui = {
       title: 'Me Contacter',
       description:
         "Discutons de ton projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
+
       formTitle: 'Envoyer un message',
       firstNameLabel: 'Prénom',
       lastNameLabel: 'Nom',
@@ -356,6 +358,7 @@ export const ui = {
       messageLabel: 'Message',
       sendButtonLabel: 'Envoyer',
       firstNamePlaceholder: 'Ton prénom',
+
       lastNamePlaceholder: 'Ton nom de famille',
       emailPlaceholder: 'Ton adresse e-mail',
       messagePlaceholder: 'Ton message ici...',
@@ -369,9 +372,9 @@ export const ui = {
       orSeparatorText: 'OU',
       toastSuccessMessageSent: 'Message envoyé avec succès !',
       toastErrorFailedToSend: "Échec de l'envoi du message.",
-      toastErrorUnexpected: "Une erreur inattendue s'est produite. Veuillez réessayer.",
-      toastErrorDetails: 'Détails :',
-      toastErrorValidationFailed: 'La validation a échoué. Veuillez vérifier les erreurs ci-dessous.',
+      toastErrorUnexpected: "Une erreur inattendue s'est produite.",
+      toastErrorDetails: "Détails de l'erreur:",
+      toastErrorValidationFailed: 'Validation du formulaire échouée.',
     },
     projectDetailPage: {
       backToProjects: 'Retour aux Projets',
@@ -399,6 +402,23 @@ export const ui = {
       message:
         "Désolé, la page que vous recherchez ne semble pas exister. Vérifiez l'URL ou retournez à la page d'accueil.",
       homeLink: "Retourner à l'Accueil",
+    },
+
+    tipsPage: {
+      metaTitle: 'Astuces de Développement | Bakate Ba',
+      metaDescription:
+        'Découvrez des astuces et conseils rapides sur le développement web et la cloud computing.',
+      description:
+        'Découvrez des astuces et conseils rapides sur le développement web et la cloud computing.',
+      title: 'Nos Dernières Astuces',
+      noTips: 'Aucune astuce à afficher pour le moment.',
+      readTip: "Lire l'astuce",
+      backToList: 'Retour à la liste des astuces',
+      featuredTips: 'Astuces recommandées',
+      allTips: 'Toutes les astuces',
+      tipsAvailable: 'astuces disponibles',
+      tipAvailable: 'astuce disponible',
+      editOnGithub: 'Modifier sur GitHub',
     },
     zodErrors: {
       // Common errors
@@ -673,6 +693,7 @@ export const ui = {
       blog: 'Blog',
       contact: 'Contact',
       projects: 'Projects',
+      tips: 'Tips',
     },
     footer: {
       rights: 'All rights reserved.',
@@ -726,15 +747,12 @@ export const ui = {
       readingTimeSuffix: 'min read',
       relatedPostsTitle: 'Continue Reading',
       readMore: 'Read more',
-      editOnGithub: 'Suggest an edit on GitHub',
-    },
-    toc: {
-      title: 'Table of Contents',
     },
     contactPage: {
       pageTitle: 'Contact Me',
       pageDescription:
         "Let's discuss your project, a potential collaboration, or just chat about tech!",
+
       title: 'Contact Me',
       description:
         "Let's discuss your project, a potential collaboration, or just chat about tech!",
@@ -758,9 +776,9 @@ export const ui = {
       orSeparatorText: 'OR',
       toastSuccessMessageSent: 'Message sent successfully!',
       toastErrorFailedToSend: 'Failed to send message.',
-      toastErrorUnexpected: 'An unexpected error occurred. Please try again.',
-      toastErrorDetails: 'Details:',
-      toastErrorValidationFailed: 'Validation failed. Please check the errors below.',
+      toastErrorUnexpected: 'An unexpected error occurred.',
+      toastErrorDetails: 'Error details:',
+      toastErrorValidationFailed: 'Form validation failed.',
     },
     projectDetailPage: {
       backToProjects: 'Back to Projects',
@@ -788,6 +806,23 @@ export const ui = {
       message:
         'Sorry, the page you are looking for does not seem to exist. Check the URL or return to the homepage.',
       homeLink: 'Return to Homepage',
+    },
+
+    tipsPage: {
+      metaTitle: 'Development Tips | Bakate Ba',
+      metaDescription:
+        'Browse a collection of quick tips and advice on Web Development and Cloud Computing.',
+      title: 'Latest Tips',
+      description:
+        'Browse a collection of quick tips and advice on Web Development and Cloud Computing.',
+      noTips: 'No tips to display at the moment.',
+      readTip: 'Read tip',
+      backToList: 'Back to list',
+      featuredTips: 'Featured Tips',
+      allTips: 'All Tips',
+      tipsAvailable: 'tips available',
+      tipAvailable: 'tip available',
+      editOnGithub: 'Edit on GitHub',
     },
     zodErrors: {
       // Common errors
