@@ -17,10 +17,12 @@ import {
   type ContactFormValues,
   type ContactFormTranslations,
   contactFormSchema,
+  type ContactFormApiResponse,
 } from '../type';
 import { setGlobalZodErrorMap } from '@/i18n/zodErrorMap';
 import type { LanguageCode } from '@/i18n/ui';
 import { Loader2, Send } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface ContactFormProps {
   lang: LanguageCode;
@@ -45,21 +47,46 @@ export function ContactForm({
       email: '',
       message: '',
     },
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   async function onSubmit(values: ContactFormValues) {
-    // TODO: Implement actual form submission logic (e.g., API call)
-    console.log('Form submitted with values:', values);
-    // Example: Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    form.reset(); // Reset form after submission
-    if (onSubmitSuccess) {
-      onSubmitSuccess();
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...values, lang }),
+      });
+
+      const result: ContactFormApiResponse = await response.json();
+
+      if (result.status === 'success') {
+        console.log('Form submitted successfully:', result);
+        toast.success(
+          result.message || formTranslations.toastSuccessMessageSent
+        );
+        form.reset();
+        if (onSubmitSuccess) {
+          onSubmitSuccess();
+        }
+      } else if (result.status === 'error') {
+        console.error('Form submission error:', result);
+        // Attempt to display server-side validation errors if available
+        let errorMessage =
+          result.message || formTranslations.toastErrorFailedToSend;
+        if (result.errors) {
+          // Example: Concatenate all error messages (you might want a more sophisticated display)
+          const errorMessages = Object.values(result.errors).flat().join('\n');
+          errorMessage += `\n\n${formTranslations.toastErrorDetails}\n${errorMessages}`;
+        }
+        toast.error(errorMessage);
+      }
+    } catch (error) {
+      console.error('An unexpected error occurred:', error);
+      toast.error(formTranslations.toastErrorUnexpected);
     }
-    // Optionally, display a success message using a toast or similar
-    // For now, we can just log it or use a simple alert
-    alert('Message sent successfully! (Simulation)');
   }
 
   return (

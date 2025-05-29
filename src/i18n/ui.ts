@@ -349,7 +349,6 @@ export const ui = {
       title: 'Me Contacter',
       description:
         "Discutons de ton projet, d'une collaboration potentielle, ou simplement pour échanger sur la tech !",
-
       formTitle: 'Envoyer un message',
       firstNameLabel: 'Prénom',
       lastNameLabel: 'Nom',
@@ -357,7 +356,6 @@ export const ui = {
       messageLabel: 'Message',
       sendButtonLabel: 'Envoyer',
       firstNamePlaceholder: 'Ton prénom',
-
       lastNamePlaceholder: 'Ton nom de famille',
       emailPlaceholder: 'Ton adresse e-mail',
       messagePlaceholder: 'Ton message ici...',
@@ -369,6 +367,11 @@ export const ui = {
       calendarPlaceHolder:
         "L'intégration avec Google Calendar se fera bientôt...",
       orSeparatorText: 'OU',
+      toastSuccessMessageSent: 'Message envoyé avec succès !',
+      toastErrorFailedToSend: "Échec de l'envoi du message.",
+      toastErrorUnexpected: "Une erreur inattendue s'est produite. Veuillez réessayer.",
+      toastErrorDetails: 'Détails :',
+      toastErrorValidationFailed: 'La validation a échoué. Veuillez vérifier les erreurs ci-dessous.',
     },
     projectDetailPage: {
       backToProjects: 'Retour aux Projets',
@@ -732,7 +735,6 @@ export const ui = {
       pageTitle: 'Contact Me',
       pageDescription:
         "Let's discuss your project, a potential collaboration, or just chat about tech!",
-
       title: 'Contact Me',
       description:
         "Let's discuss your project, a potential collaboration, or just chat about tech!",
@@ -754,6 +756,11 @@ export const ui = {
       calendarPlaceHolder:
         'The integration with Google Calendar will be soon...',
       orSeparatorText: 'OR',
+      toastSuccessMessageSent: 'Message sent successfully!',
+      toastErrorFailedToSend: 'Failed to send message.',
+      toastErrorUnexpected: 'An unexpected error occurred. Please try again.',
+      toastErrorDetails: 'Details:',
+      toastErrorValidationFailed: 'Validation failed. Please check the errors below.',
     },
     projectDetailPage: {
       backToProjects: 'Back to Projects',

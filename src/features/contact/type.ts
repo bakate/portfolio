@@ -10,6 +10,11 @@ export type ContactFormTranslations = {
   emailPlaceholder: string;
   messagePlaceholder: string;
   sendButtonLabel: string;
+  toastSuccessMessageSent: string;
+  toastErrorFailedToSend: string;
+  toastErrorUnexpected: string;
+  toastErrorDetails: string;
+  toastErrorValidationFailed: string;
 };
 
 const stringFieldSchema = (minLength = 2, maxLength = 50) =>
@@ -27,3 +32,18 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+export type ContactFormApiResponse =
+  | {
+      status: 'success';
+      message: string;
+      data?: unknown; // Resend data on success
+    }
+  | {
+      status: 'error';
+      message: string;
+      // For Zod validation errors
+      errors?: Record<string, Array<string> | undefined>;
+      // For other errors (Resend, unexpected)
+      error?: string;
+    };
