@@ -1,0 +1,76 @@
+---
+lang: 'fr'
+title: "JavaScript : L'Étrange Cas de `typeof null` et l'Évolution d'un Langage"
+description: 'Plongeon dans l''histoire du bug ''typeof null === "object"'' en JavaScript et comment le langage a surmonté ses bizarreries initiales pour devenir incontournable.'
+pubDate: 2025-05-26
+tags: ['javascript']
+isDraft: false
+heroImage:
+  url: '../../../../assets/blog/typeoff-null-evolution.png'
+  alt: 'évolution de JavaScript'
+relatedPosts:
+  [
+    'fr/closures-javascript-la-memoire-des-fonctions',
+    'fr/fonctions-javascript-specialisation-es6',
+  ]
+---
+
+Quand j'ai appris que JavaScript avait été pondu en seulement 10 jours par Brendan Eich, j'ai commencé à être un peu moins critique envers certaines de ses bizarreries. On fait tous des erreurs quand on est pressé, n'est-ce pas ?
+
+Prenons le fameux bug où `typeof null` retourne `"object"`. C'est une histoire de bits !
+
+## L'Origine du Bug : Une Question de Bits
+
+À l'époque des débuts de JavaScript, les valeurs étaient stockées dans des unités de 32 bits. Les 3 premiers bits de cette unité servaient d'étiquette (ou "tag") pour indiquer le type de la valeur :
+
+- `000` : Objet
+- `1` : Entier (Integer)
+- `010` : Nombre à virgule flottante (Double)
+- `100` : Chaîne de caractères (String)
+- `110` : Booléen (Boolean)
+
+La primitive `null`, elle, était représentée par un pointeur machine NULL, c'est-à-dire une suite de zéros (`0x00` en hexadécimal). Ainsi, lorsque l'opérateur `typeof` vérifiait le type de `null`, il lisait les premiers bits (qui étaient `000`) et concluait logiquement : "Tiens, un objet !".
+
+Voici comment cela se manifeste en code :
+
+```typescript
+const config = null;
+
+// Démonstration de la bizarrerie 'null est un objet' en JavaScript
+if (typeof config === 'object') {
+  console.log('JavaScript bug: typeof null retourne "object"'); // S'affiche !
+}
+
+// Pour vérifier correctement si c'est un objet (et non null) :
+if (typeof config === 'object' && config !== null) {
+  console.log('config est un objet valide, et non null'); // Ne s'affiche pas
+} else if (config === null) {
+  console.log('config est null'); // S'affiche !
+}
+```
+
+## Un Héritage Intouchable
+
+Aujourd'hui, on ne peut plus changer ce comportement sans risquer de casser une quantité astronomique de code existant sur le web. C'est comme si on avait construit toute une ville sur des fondations un peu bancales à certains endroits : on apprend à vivre avec et à construire par-dessus.
+
+## Mais JavaScript S'Améliore Constamment !
+
+La bonne nouvelle, c'est que malgré ces quelques "péchés de jeunesse", JavaScript a connu une évolution fulgurante et continue de s'améliorer. Le langage est devenu incroyablement puissant et sophistiqué :
+
+- Dès **ECMAScript 3 (décembre 1999)**, JavaScript a appris à mieux gérer les erreurs avec les blocs `try/catch`.
+- **ES6 (ECMAScript 2015)** a été une révolution, introduisant `let` et `const` pour une meilleure gestion de la portée des variables, les `classes` (même si c'est du sucre syntaxique), les modules, les fonctions fléchées, les promesses, et bien plus.
+- **ES8 (ECMAScript 2017)** a apporté `async/await`, rendant le code asynchrone beaucoup plus lisible et facile à gérer.
+
+Et les améliorations n'ont pas cessé. Plus récemment, nous avons eu droit à une pléthore de nouveautés qui facilitent la vie des développeurs :
+
+- Le **top-level `await`** : permet d'utiliser `await` en dehors des fonctions `async` dans les modules.
+- Les **méthodes et champs privés dans les classes** (avec `#`) : pour une meilleure encapsulation.
+- `Object.hasOwn()` : une manière plus robuste de vérifier si un objet possède une propriété directement (sans remonter la chaîne de prototypes), par rapport à `hasOwnProperty`.
+- L'opérateur de **coalescence des nuls (`??`)** : pour fournir une valeur par défaut uniquement lorsque la variable est `null` ou `undefined` (et non pour d'autres valeurs "falsy" comme `0` ou `""`).
+- L'opérateur de **chaînage optionnel (`?.`)** : pour accéder aux propriétés d'un objet potentiellement `null` ou `undefined` en toute sécurité, sans générer d'erreur.
+
+Et la liste continue de s'allonger chaque année !
+
+## Un Langage Transformé
+
+Je dois t'avouer que je suis agréablement surpris par la trajectoire qu'a prise ce langage. Parti de débuts modestes et rapides, JavaScript est aujourd'hui au cœur du développement web moderne, permettant de créer des applications riches, interactives et performantes.

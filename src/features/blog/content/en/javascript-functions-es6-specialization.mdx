@@ -1,0 +1,113 @@
+---
+lang: 'en'
+title: 'JavaScript Functions: The Era of ES6 Specialization'
+description: 'Are your JavaScript functions Swiss Army knives? Discover why ES6 promotes specialization for clearer, more maintainable code.'
+pubDate: 2025-05-31
+tags: ['javascript', 'es6']
+isDraft: false
+relatedPosts:
+  [
+    'en/javascript-closures-function-memory',
+    'en/javascript-typeof-null-evolution',
+  ]
+heroImage:
+  url: '../../../../assets/blog/montre-couteau-suisse.jpeg'
+  alt: 'Swiss Army Knife'
+---
+
+Your JavaScript functions are sometimes like that dedicated startup employee: a true Swiss Army knife! They write user stories in the morning, design mockups at noon, and spend the afternoon coding. Versatile, yes, but by trying to do everything, they end up stepping on others' toes and losing efficiency.
+
+This is exactly what happens to **ordinary** functions in JavaScript.
+
+## The Dilemma of the Ordinary "Swiss Army Knife" Function
+
+An ordinary JavaScript function is incredibly flexible. It can take on several roles:
+
+1.  **Be a classic function**: execute a specific task.
+2.  **Serve as a method**: act within an object.
+3.  **Act as a constructor**: create new instances of objects.
+
+Here's an example illustrating these three hats:
+
+```typescript
+// The three roles of ordinary functions
+
+// 1. Classic function
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+console.log(greet('Bakate')); // 'Hello, Bakate!'
+
+// 2. Method of an object
+const person = {
+  name: 'Bakate',
+  greet() {
+    return `Hello, ${this.name}!`;
+  },
+};
+console.log(person.greet()); // 'Hello, Bakate!'
+
+// 3. Constructor (using class syntax for clarity, but the idea is the same for pre-ES6 constructor functions)
+class PersonConstructor {
+  name;
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    return `Hello, ${this.name}!`;
+  }
+}
+const person2 = new PersonConstructor('Bakate');
+console.log(person2.greet()); // 'Hello, Bakate!'
+```
+
+But this versatility comes at a cost. By trying to do everything, an ordinary function can lose clarity and become a source of confusion. A bit like that CEO who is also the CTO, CMO, and sometimes even the coffee intern.
+
+## The Advent of Specialized Functions with ES6
+
+Fortunately, with the emergence of ECMAScript 6 (ES6), JavaScript introduced (or popularized) more **specialized** forms of functions, each with a well-defined role:
+
+- **Arrow Functions**: Ideal for short, anonymous functions, and crucially, they have lexical `this` binding, which greatly simplifies life in many contexts, especially with callbacks.
+- **Dedicated Methods**: Clearly defined within objects or classes, their role is to act on the instance or object to which they belong.
+- **Classes**: Although primarily syntactic sugar over JavaScript's prototypal system, classes offer a clear and dedicated syntax for object creation and inheritance management, with well-identified `constructor`s.
+
+Here are examples of these specialized functions:
+
+```typescript
+// Specialized functions
+
+// The role of an arrow function: a true function, often concise
+const greetArrow = (username) => `Hello, ${username}`;
+console.log(greetArrow('Bakate')); // "Hello, Bakate"
+
+// The role of a method: attached to an object
+const specializedPerson = {
+  name: 'Bakate',
+  greet() {
+    // Concise method syntax
+    return `Hello, ${this.name}`;
+  },
+};
+console.log(specializedPerson.greet()); // "Hello, Bakate"
+
+// The role of a class: primarily a function constructor and a container for methods
+class Vehicle {
+  type;
+  constructor(type) {
+    this.type = type;
+  }
+  displayType() {
+    console.log(`This vehicle is a ${this.type}`);
+  }
+}
+const myCar = new Vehicle('Car');
+myCar.displayType(); // "This vehicle is a Car"
+```
+
+## The Benefits: Clarity and Maintainability
+
+The result of this specialization?
+
+- **More readable code**: Each type of function has a clearer role, making the code easier to understand.
+- **Fewer headaches with `this`**: Especially for those doing Object-Oriented Programming, arrow functions and class methods standardize the behavior of `this`.
+- **Better architecture**: Encouraging the use of the right construct for the right job leads to more robust software designs.

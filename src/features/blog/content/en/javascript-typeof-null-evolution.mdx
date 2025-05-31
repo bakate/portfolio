@@ -1,0 +1,76 @@
+---
+lang: 'en'
+title: "JavaScript: The Curious Case of `typeof null` and a Language's Evolution"
+description: 'A dive into the history of the ''typeof null === "object"'' bug in JavaScript and how the language overcame its initial quirks to become indispensable.'
+pubDate: 2025-05-26
+tags: ['javascript']
+isDraft: false
+heroImage:
+  url: '../../../../assets/blog/typeoff-null-evolution.png'
+  alt: 'the evolution of JavaScript'
+relatedPosts:
+  [
+    'en/javascript-closures-function-memory',
+    'en/javascript-functions-es6-specialization',
+  ]
+---
+
+When I learned that JavaScript was cooked up in just 10 days by Brendan Eich, I started to be a little less critical of some of its quirks. We all make mistakes when we're rushed, right?
+
+Take the famous bug where `typeof null` returns `"object"`. It's a story of bits, my friends!
+
+## The Origin of the Bug: A Matter of Bits
+
+In the early days of JavaScript, values were stored in 32-bit units. The first 1 to 3 bits of this unit served as a type tag to indicate the value's type:
+
+- `000`: Object
+- `1`: Integer
+- `010`: Double
+- `100`: String
+- `110`: Boolean
+
+The `null` primitive, however, was represented by a NULL machine pointer, which is a sequence of zeros (`0x00` in hexadecimal). So, when the `typeof` operator checked the type of `null`, it read the first few bits (which were `000`) and logically concluded, "Hey, an object!".
+
+Here's how it manifests in code:
+
+```typescript
+const config = null;
+
+// Demonstrating the 'null is an object' quirk in JavaScript
+if (typeof config === 'object') {
+  console.log('JavaScript bug: typeof null returns "object"'); // This logs!
+}
+
+// To correctly check if it's an object (and not null):
+if (typeof config === 'object' && config !== null) {
+  console.log('config is a valid object, and not null'); // This does not log
+} else if (config === null) {
+  console.log('config is null'); // This logs!
+}
+```
+
+## An Untouchable Legacy
+
+Today, this behavior cannot be changed without the risk of breaking a vast amount of existing code on the web. It's as if an entire city was built on slightly shaky foundations in some places: you learn to live with it and build on top.
+
+## But JavaScript Is Constantly Improving!
+
+Despite these few "youthful sins," the good news is that JavaScript has undergone a tremendous evolution and continues to improve. The language has become incredibly powerful and sophisticated:
+
+- As early as **ECMAScript 3 (December 1999)**, JavaScript learned to better handle errors with `try/catch` blocks.
+- **ES6 (ECMAScript 2015)** was a revolution, introducing `let` and `const` for better variable scope management, `classes` (even if syntactic sugar), modules, arrow functions, promises, and much more.
+- **ES8 (ECMAScript 2017)** brought `async/await`, making asynchronous code much more readable and manageable.
+
+And the improvements haven't stopped. More recently, we've been treated to a plethora of new features that make developers' lives easier:
+
+- **Top-level `await`**: allows using `await` outside of `async` functions in modules.
+- **Private methods and fields in classes** (with `#`): for better encapsulation.
+- `Object.hasOwn()`: a more robust way to check if an object directly owns a property (without going up the prototype chain), compared to `hasOwnProperty`.
+- The **nullish coalescing operator (`??`)**: to provide a default value only when a variable is `null` or `undefined` (and not for other "falsy" values like `0` or `""`).
+- The **optional chaining operator (`?.`)**: to safely access properties of a potentially `null` or `undefined` object without throwing an error.
+
+And the list keeps growing every year!
+
+## A Transformed Language
+
+I must admit, I'm pleasantly surprised by the trajectory this language has taken. From humble and rapid beginnings, JavaScript is now at the heart of modern web development, enabling the creation of rich, interactive, and high-performance applications.
