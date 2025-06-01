@@ -1,12 +1,11 @@
 ---
 import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
-import { LanguageSelector } from './LanguageSelector.tsx';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import ThemeToggle from './ThemeToggle.astro';
-import Logo from './Logo.astro';
-import { type LanguageSelectorItem } from '@/lib/i18n-utils';
-import { buttonVariants } from './ui/button';
 import type { NavItem } from '@/layouts/BaseLayout.astro';
+import { type LanguageSelectorItem } from '@/lib/i18n-utils';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { LanguageSelector } from './LanguageSelector.tsx';
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   languagesForSelector: Array<LanguageSelectorItem>;
@@ -23,14 +22,15 @@ const currentLocale =
 >
   <nav class="mx-auto px-4 max-w-screen-2xl flex justify-between items-center">
     <Logo />
-    <div class="flex items-center gap-x-4">
+    <div class="flex items-center gap-x-5">
       {
         navItems.map((link) => (
           <a
             href={getRelativeLocaleUrl(currentLocale, link.href)}
-            class={buttonVariants({ variant: 'ghost' }) + ' hover:underline'}
+            class="font-medium text-muted-foreground transition-colors hover:text-foreground relative group"
           >
             {link.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
           </a>
         ))
       }
