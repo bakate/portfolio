@@ -35,7 +35,7 @@ const regularTips = tips.filter((tip) => !tip.data.featured);
                 <span class="text-2xl">⭐</span>
                 {t('featuredTips')}
               </h2>
-              <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 grid-rows-5">
+              <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2">
                 {featuredTips.map((tip) => (
                   <TipCard tip={tip} lang={lang} />
                 ))}
@@ -50,7 +50,7 @@ const regularTips = tips.filter((tip) => !tip.data.featured);
             )}
 
             {/* Responsive Grid */}
-            <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-rows-5">
+            <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2">
               {regularTips.map((tip) => (
                 <TipCard tip={tip} lang={lang} />
               ))}
