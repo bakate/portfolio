@@ -1,7 +1,6 @@
 ---
 import Prose from '@/components/Prose.astro';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Lightbulb } from 'lucide-react';
 
 type Props = {
   title: string;
@@ -11,8 +10,10 @@ const { title } = Astro.props;
 ---
 
 <Alert>
-  <Lightbulb className="size-6 fill-yellow-400" />
-  <AlertTitle>{title}</AlertTitle>
+  <AlertTitle>
+    <span>💡</span>
+    {title}</AlertTitle
+  >
   <AlertDescription>
     <Prose>
       <slot />
