@@ -1,0 +1,262 @@
+---
+lang: 'en'
+title: 'JavaScript Objects: Why is Property Insertion Order Preserved?'
+description: "Let's dive into the reasons and rules governing property order in JavaScript objects, a behavior standardized since ES2015."
+pubDate: 2025-06-02
+heroImage:
+  url: '../../../../assets/blog/insertion-order.jpeg'
+  alt: 'JavaScript Objects: Why is Property Insertion Order Preserved?'
+tags: ['javascript', 'es6', 'objects']
+difficulty: 'intermediate'
+isDraft: false
+featured: true
+relatedPosts:
+  [
+    'en/javascript-closures-function-memory',
+    'en/javascript-typeof-null-evolution',
+  ]
+---
+
+import { Image } from 'astro:assets';
+import InfoAlert from '@/features/blog/components/InfoAlert.astro';
+
+You may have already wondered why, when you use `Object.keys()` or iterate over a JavaScript object, the keys often appear in the order you defined them. Is this a coincidence, a guaranteed feature, or something in between?
+
+```javascript
+const user = {
+  name: 'Alice',
+  age: 30,
+  email: 'alice@example.com',
+};
+
+console.log(Object.keys(user));
+// ["name", "age", "email"] - always in this order!
+```
+
+This behavior, while convenient, hasn't always been the norm. Let's explore together why and how property order is managed in modern JavaScript.
+
+## The "Why": A Matter of Predictability
+
+The main reason for this standardization is **determinism**. According to Dr. Axel Rauschmayer in "Exploring JS":
+
+> In principle, objects are unordered. The main reason for ordering properties is so that operations that list entries, keys, or values are deterministic. That helps, e.g., with testing.
+
+<InfoAlert title="Source">
+  <div class="flex gap-2">
+    This explanation is from{' '}
+    <a
+      href="https://exploringjs.com/js/book/ch_objects.html#why-do-objects-preserve-the-insertion-order-of-properties"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      "Exploring JS" > Objects > FAQ
+    </a>
+  </div>
+</InfoAlert>
+
+### Why is this important?
+
+Imagine you're testing a function that transforms an object into a string:
+
+```javascript
+function objectToString(obj) {
+  return Object.keys(obj)
+    .map((key) => `${key}: ${obj[key]}`)
+    .join(', ');
+}
+
+const config = { port: 3000, host: 'localhost', ssl: true };
+console.log(objectToString(config));
+// Predictable result: "port: 3000, host: localhost, ssl: true"
+```
+
+Without a guaranteed order, your tests could _fail randomly_ depending on the execution environment!
+
+## The Rules of Order (since ES2015)
+
+Before ECMAScript 2015, the specification did not guarantee the enumeration order of properties. Since ES2015, the order is strictly defined according to these rules:
+
+### 1. Numeric Keys (Integer-indexed keys)
+
+Keys that are strings representing integers are listed first, **sorted numerically**:
+
+```javascript
+const obj = {
+  10: 'ten',
+  2: 'two',
+  1: 'one',
+};
+
+console.log(Object.keys(obj));
+// ["1", "2", "10"] - sorted numerically, not alphabetically!
+```
+
+⚠️ **Attention**: `"10"` comes after `"2"` because it's a numeric sort, not an alphabetic one!
+
+### 2. Other String Keys
+
+Other string keys follow their **insertion order**:
+
+```javascript
+const person = {};
+person.name = 'Bob';
+person.age = 25;
+person.city = 'Paris';
+
+console.log(Object.keys(person));
+// ["name", "age", "city"] - insertion order preserved
+```
+
+### 3. Symbol Keys
+
+Symbol keys come last, also in their **insertion order**:
+
+```javascript
+const sym1 = Symbol('first');
+const sym2 = Symbol('second');
+
+const obj = {
+  b: 'string',
+  [sym2]: 'symbol 2',
+  a: 'other string',
+  [sym1]: 'symbol 1',
+};
+
+console.log(Reflect.ownKeys(obj));
+// ['b', 'a', Symbol(second), Symbol(first)]
+//  ^^^^^^^   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//  strings then symbols (by insertion order)
+```
+
+## Complete Example: All Types Mixed
+
+```javascript
+const complexObject = {
+  beta: 'second property',
+  100: 'one hundred',
+  alpha: 'first property',
+  5: 'five',
+  gamma: 'third property',
+};
+
+// Adding symbols
+const sym1 = Symbol('symbol1');
+const sym2 = Symbol('symbol2');
+complexObject[sym1] = 'symbol value 1';
+complexObject[sym2] = 'symbol value 2';
+
+// Adding another string property
+complexObject.delta = 'fourth property';
+
+console.log(Reflect.ownKeys(complexObject));
+// Result:
+// [
+//   '5', '100',                        👉🏽 // 1. Integers sorted numerically
+//   'beta', 'alpha', 'gamma', 'delta', 👉🏽 // 2. Strings by insertion order
+//   Symbol(symbol1), Symbol(symbol2)   👉🏽 // 3. Symbols by insertion order
+// ]
+```
+
+## Enumeration Methods: Who Respects What?
+
+| Method                           | Numeric Keys | String Keys                  | Symbols | Inherited Properties |
+| -------------------------------- | ------------ | ---------------------------- | ------- | -------------------- |
+| `Object.keys()`                  | ✅ Yes       | ✅ Yes                       | ❌ No   | ❌ No                |
+| `Object.getOwnPropertyNames()`   | ✅ Yes       | ✅ Yes (even non-enumerable) | ❌ No   | ❌ No                |
+| `Object.getOwnPropertySymbols()` | ❌ No        | ❌ No                        | ✅ Yes  | ❌ No                |
+| `Reflect.ownKeys()`              | ✅ Yes       | ✅ Yes                       | ✅ Yes  | ❌ No                |
+| `for...in`                       | ✅ Yes       | ✅ Yes                       | ❌ No   | ✅ Yes               |
+
+### Practical example with different methods:
+
+```javascript
+const obj = {
+  name: 'Test',
+  10: 'ten',
+  age: 30,
+  2: 'two',
+};
+obj[Symbol('test')] = 'symbol';
+
+console.log('Object.keys():', Object.keys(obj));
+// ['2', '10', 'name', 'age']
+
+console.log('Reflect.ownKeys():', Reflect.ownKeys(obj));
+// ['2', '10', 'name', 'age', Symbol(test)]
+
+// for...in (with own property check)
+const keys = [];
+for (let key in obj) {
+  if (Object.hasOwn(obj, key)) {
+    keys.push(key);
+  }
+}
+console.log('for...in:', keys);
+// ['2', '10', 'name', 'age']
+```
+
+## Special Cases and Pitfalls
+
+### Pitfall #1: Strings that look like numbers
+
+```javascript
+const tricky = {
+  '02': 'zero-two',
+  2: 'two',
+  10: 'ten',
+};
+
+console.log(Object.keys(tricky));
+// ['2', '10', '02']
+// "02" is NOT a canonical integer, so it comes after!
+```
+
+### Pitfall #2: Modification vs. creation
+
+```javascript
+const obj = { b: 1, a: 2 };
+obj.b = 99; // Modification - order doesn't change!
+
+console.log(Object.keys(obj));
+// ['b', 'a'] - original order is preserved
+
+delete obj.b;
+obj.b = 1; // Re-creation - goes to the end!
+
+console.log(Object.keys(obj));
+// ['a', 'b'] - 'b' is now at the end
+```
+
+## Before ES2015: Chaos
+
+Before 2015, only the order of numeric keys was generally respected. For other keys:
+
+- **Chrome (V8)**: Often respected insertion order
+- **Firefox (SpiderMonkey)**: Could reorganize properties
+- **Internet Explorer**: Unpredictable behavior
+
+This inconsistency made cross-browser development more complex!
+
+## Practical Advice
+
+### ✅ Do:
+
+- Use `Object.keys()` to iterate over enumerable properties
+- Use `Reflect.ownKeys()` when you need ALL properties (including symbols)
+- Rely on the specification-defined order for your tests
+
+### ❌ Don't:
+
+- Rely on order in critical code without understanding the rules
+- Assume the order will be the same in very old environments
+- Use `for...in` without `Object.hasOwn()` if you only want own properties
+
+## Conclusion
+
+Since ES2015, JavaScript guarantees a specific and predictable order for object properties:
+
+1. **Integers** sorted numerically
+2. **Strings** by insertion order
+3. **Symbols** by insertion order
+
+This standardization greatly improves code predictability and makes writing reliable tests easier. Understanding these rules allows you to avoid pitfalls and write more robust JavaScript.
