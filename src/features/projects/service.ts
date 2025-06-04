@@ -3,6 +3,7 @@ import {
   codeHavenPreviewImage,
   samouraStorePreviewImage,
   cmsPreviewImage,
+  terralHubPreviewImage,
 } from '@/assets/projects/all-previews';
 import {
   codeHavenAuth,
@@ -14,6 +15,24 @@ import {
   codeHavenStudentDashboard,
   codeHavenTeacherDashboard,
 } from '@/assets/projects/codehaven';
+import {
+  terralHubAboutUs,
+  terralHubCompaniesList,
+  terralHubCompanyDetails,
+  terralHubLogin,
+  terralHubLogistics,
+  terralHubWarehousesList,
+  terralHubWarehouseDetails,
+  terralHubWarehousesListMapInfo,
+} from '@/assets/projects/terralHub';
+import {
+  afrikaZonHomePage,
+  afrikaZonSearch,
+  afrikaZonCart,
+  afrikaZonFavorites,
+  afrikaZonLogin,
+  afrikaZonAdmin,
+} from '@/assets/projects/afrikazon';
 
 // Import i18n utilities
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
@@ -105,7 +124,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     slug: 'afrikazon',
     imageUrl: afrikaZonPreviewImage,
     projectUrl: 'https://www.afrikazon.com/',
-    codeUrl: 'https://github.com/bakate/afrikazon',
+    codeUrl: '',
     tags: [
       'Next.js',
       'TailwindCSS',
@@ -116,9 +135,34 @@ const projectsListUnsorted: Array<ProjectData> = [
       'drizzle-orm',
       'postgresql',
     ],
-    category: 'E-commerce Platform', // Placeholder
-    date: '2024-03-22', // Placeholder
-    galleryImages: [], // Placeholder
+    category: 'E-commerce Platform',
+    date: '2024-03-22',
+    galleryImages: [
+      {
+        id: 'afrikaZonHomePage',
+        src: afrikaZonHomePage,
+      },
+      {
+        id: 'afrikaZonSearch',
+        src: afrikaZonSearch,
+      },
+      {
+        id: 'afrikaZonCart',
+        src: afrikaZonCart,
+      },
+      {
+        id: 'afrikaZonFavorites',
+        src: afrikaZonFavorites,
+      },
+      {
+        id: 'afrikaZonLogin',
+        src: afrikaZonLogin,
+      },
+      {
+        id: 'afrikaZonAdmin',
+        src: afrikaZonAdmin,
+      },
+    ], // Placeholder
     keyFeatures: [
       { id: 'authentication' },
       { id: 'checkout' },
@@ -160,7 +204,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     category: 'E-commerce Storefront', // Placeholder
     date: '2023-05-10', // Placeholder
     galleryImages: [], // Placeholder
-    keyFeatures: [{ id: 'productDisplay' }, { id: 'cart' }], // Placeholder with IDs
+    keyFeatures: [{ id: 'productDisplay' }, { id: 'cart' }],
     technologiesUsed: [
       { id: 'nextjs', name: 'Next.js' },
       { id: 'typescript', name: 'TypeScript' },
@@ -181,6 +225,73 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'nextjs', name: 'Next.js' },
       { id: 'typescript', name: 'TypeScript' },
     ], // Placeholder
+  },
+  {
+    id: 'terralhub',
+    slug: 'terralhub',
+    imageUrl: terralHubPreviewImage,
+    projectUrl: 'https://terral-hub-senegal.vercel.app/',
+    codeUrl: '', // Si tu as un lien vers le code source, ajoute-le ici
+    tags: ['Next.js', 'TailwindCSS', 'TypeScript', 'shadcn/ui', 'PayDunya'],
+    category: 'logisticsPlatform',
+    date: '2025-05-14',
+    galleryImages: [
+      {
+        id: 'terralHubLogin',
+        src: terralHubLogin,
+      },
+      {
+        id: 'terralHubLogistics',
+        src: terralHubLogistics,
+      },
+      {
+        id: 'terralHubCompaniesList',
+        src: terralHubCompaniesList,
+      },
+      {
+        id: 'terralHubCompanyDetails',
+        src: terralHubCompanyDetails,
+      },
+      {
+        id: 'terralHubWarehousesList',
+        src: terralHubWarehousesList,
+      },
+      {
+        id: 'terralHubWarehouseDetails',
+        src: terralHubWarehouseDetails,
+      },
+      {
+        id: 'terralHubWarehousesListMapInfo',
+        src: terralHubWarehousesListMapInfo,
+      },
+      {
+        id: 'terralHubAboutUs',
+        src: terralHubAboutUs,
+      },
+    ],
+    keyFeatures: [
+      { id: 'userManagement' }, // Gestion des comptes utilisateurs
+      { id: 'roleManagement' }, // Gestion des rôles : agriculteurs, entrepôts, transporteurs
+      { id: 'warehouseSearchAndBooking' }, // Recherche et réservation d'entrepôts
+      { id: 'transporterSearchAndBooking' }, // Recherche et réservation de transporteurs
+      { id: 'realTimeWarehouseMonitoring' }, // Suivi en temps réel de la capacité des entrepôts
+      { id: 'securePaymentGateway' }, // Paiements d'acomptes sécurisés via PayDunya
+      { id: 'inventoryTrackingForFarmers' }, // Suivi des stocks pour les agriculteurs et gestion pour les entrepôts
+      { id: 'pwaSupport' }, // Accès via Progressive Web App
+      { id: 'adminDashboard' }, // Tableau de bord administrateur
+    ],
+    technologiesUsed: [
+      { id: 'nextjs', name: 'Next.js' },
+      { id: 'typescript', name: 'TypeScript' },
+      { id: 'tanstack-query', name: 'TanStack/React-Query' },
+      { id: 'shadcn-ui', name: 'shadcn/ui' },
+      { id: 'tailwindcss', name: 'TailwindCSS' },
+      { id: 'tRPC', name: 'tRPC' },
+      { id: 'authjs', name: 'AuthJS' },
+      { id: 'next-intl', name: 'Next-Intl' },
+      { id: 'paydunya', name: 'PayDunya' },
+      { id: 'vercel', name: 'Vercel' },
+    ],
   },
 ];
 

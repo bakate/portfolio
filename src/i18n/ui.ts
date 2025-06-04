@@ -244,6 +244,99 @@ export const ui = {
         learnings:
           "Une conception d'API bien pensée est essentielle pour l'extensibilité et l'intégration tierce.",
       },
+      terralhub: {
+        title: 'TerralHub - Plateforme Logistique Agricole',
+        description: `TerralHub est une plateforme innovante conçue pour les agriculteurs sénégalais. Elle leur permet de trouver facilement des entrepôts sécurisés à proximité pour stocker leurs récoltes après la moisson, contribuant ainsi à réduire significativement les pertes post-récolte. La plateforme facilite également la mise en relation avec des transporteurs fiables pour acheminer les produits agricoles vers les lieux de stockage. Les agriculteurs peuvent effectuer des paiements d'acomptes pour les réservations d'entrepôts et de transport via PayDunya, et suivre en temps réel la capacité disponible des entrepôts.`,
+        imageAltText: 'Aperçu de la plateforme TerralHub',
+        categoryText: 'Plateforme Logistique',
+        dateText: 'Mai 2025',
+        detailedDescription: `TerralHub vise à révolutionner la chaîne d'approvisionnement agricole au Sénégal en connectant directement les agriculteurs aux solutions de stockage et de transport. En réduisant les pertes post-récolte et en optimisant la logistique, la plateforme contribue à améliorer les revenus des agriculteurs et à renforcer la sécurité alimentaire. Elle intègre un système de paiement sécurisé et offre une visibilité en temps réel sur les capacités de stockage, permettant une planification efficace.`,
+        keyFeatures: {
+          userManagement: {
+            title: 'Gestion des Comptes Utilisateurs',
+            description:
+              "Comptes sécurisés pour agriculteurs, propriétaires d'entrepôts et transporteurs, avec profils personnalisés.",
+          },
+          roleManagement: {
+            title: 'Gestion des Rôles et Permissions',
+            description:
+              "Attribution de rôles spécifiques (agriculteur, entrepôt, transporteur, admin) avec des droits d'accès adaptés.",
+          },
+          warehouseSearchAndBooking: {
+            title: "Recherche et Réservation d'Entrepôts",
+            description:
+              "Localisation facile d'entrepôts disponibles, consultation des détails (capacité, prix, services) et réservation en ligne.",
+          },
+          transporterSearchAndBooking: {
+            title: 'Recherche et Réservation de Transporteurs',
+            description:
+              'Mise en relation avec des transporteurs vérifiés, demande de devis et réservation de services de transport.',
+          },
+          realTimeWarehouseMonitoring: {
+            title: 'Suivi en Temps Réel de la Capacité des Entrepôts',
+            description:
+              "Visualisation en direct de l'espace de stockage disponible dans les entrepôts partenaires.",
+          },
+          securePaymentGateway: {
+            title: 'Passerelle de Paiement Sécurisée (PayDunya)',
+            description:
+              "Paiement d'acomptes et de services via PayDunya, avec suivi des transactions.",
+          },
+          inventoryTrackingForFarmers: {
+            title: 'Suivi des Stocks et Gestion',
+            description:
+              'Outils pour les agriculteurs pour suivre leurs stocks entreposés et pour les entrepôts pour gérer leur inventaire.',
+          },
+          pwaSupport: {
+            title: 'Support Progressive Web App (PWA)',
+            description:
+              'Accès facile et fonctionnalités hors-ligne via une PWA installable sur mobile et bureau.',
+          },
+          adminDashboard: {
+            title: 'Tableau de Bord Administrateur',
+            description:
+              'Interface complète pour la gestion de la plateforme, des utilisateurs, des transactions et des litiges.',
+          },
+        },
+        galleryImages: {
+          terralHubLogin: {
+            alt: 'Page de connexion de TerralHub',
+            caption: 'Accès sécurisé à la plateforme TerralHub',
+          },
+          terralHubLogistics: {
+            alt: 'Interface de logistique de TerralHub',
+            caption: 'Gestion des opérations logistiques',
+          },
+          terralHubCompaniesList: {
+            alt: 'Liste des entreprises partenaires sur TerralHub',
+            caption: 'Partenaires de confiance pour le stockage et transport',
+          },
+          terralHubCompanyDetails: {
+            alt: "Détails d'une entreprise sur TerralHub",
+            caption: 'Informations complètes sur les partenaires',
+          },
+          terralHubWarehousesList: {
+            alt: 'Liste des entrepôts disponibles sur TerralHub',
+            caption: "Trouvez l'entrepôt idéal pour vos récoltes",
+          },
+          terralHubWarehouseDetails: {
+            alt: "Détails d'un entrepôt sur TerralHub",
+            caption: 'Capacité, services et tarifs des entrepôts',
+          },
+          terralHubWarehousesListMapInfo: {
+            alt: 'Carte des entrepôts sur TerralHub',
+            caption: 'Localisation géographique des entrepôts',
+          },
+          terralHubAboutUs: {
+            alt: 'Page À Propos de TerralHub',
+            caption: "Notre mission pour l'agriculture sénégalaise",
+          },
+        },
+        challenges:
+          'Développer une solution robuste et accessible pour des utilisateurs avec différents niveaux de maîtrise technologique, tout en assurant la sécurité des transactions et la fiabilité des informations logistiques.',
+        learnings:
+          "L'importance d'une conception centrée sur l'utilisateur et d'une collaboration étroite avec les acteurs du secteur agricole pour répondre au mieux à leurs besoins spécifiques.",
+      },
     },
     skillsContent: {
       frontendDevelopment: {
@@ -655,6 +748,37 @@ export const ui = {
         learnings:
           'A well-thought-out API design is essential for extensibility and third-party integration.',
       },
+      terralhub: {
+        title: 'TerralHub - Agricultural Logistics Platform',
+        description: 'TerralHub is an innovative platform designed for Senegalese farmers. It enables them to easily find secure, nearby warehouses to store their harvests post-collection, significantly helping to reduce post-harvest losses. The platform also facilitates connections with reliable transporters to move agricultural products to storage locations. Farmers can make down payments for warehouse and transport bookings via PayDunya, and track available warehouse capacity in real-time.',
+        imageAltText: 'TerralHub platform preview',
+        categoryText: 'Logistics Platform',
+        dateText: 'May 2025',
+        detailedDescription: 'TerralHub aims to revolutionize the agricultural supply chain in Senegal by directly connecting farmers to storage and transport solutions. By reducing post-harvest losses and optimizing logistics, the platform helps improve farmer incomes and strengthen food security. It integrates a secure payment system and offers real-time visibility into storage capacities, enabling effective planning.',
+        keyFeatures: {
+          userManagement: { title: 'User Account Management', description: 'Secure accounts for farmers, warehouse owners, and transporters, with personalized profiles.' },
+          roleManagement: { title: 'Role and Permission Management', description: 'Assignment of specific roles (farmer, warehouse, transporter, admin) with tailored access rights.' },
+          warehouseSearchAndBooking: { title: 'Warehouse Search and Booking', description: 'Easy location of available warehouses, consultation of details (capacity, price, services), and online booking.' },
+          transporterSearchAndBooking: { title: 'Transporter Search and Booking', description: 'Connection with verified transporters, quote requests, and booking of transport services.' },
+          realTimeWarehouseMonitoring: { title: 'Real-Time Warehouse Capacity Monitoring', description: 'Live visualization of available storage space in partner warehouses.' },
+          securePaymentGateway: { title: 'Secure Payment Gateway (PayDunya)', description: 'Payment of down payments and services via PayDunya, with transaction tracking.' },
+          inventoryTrackingForFarmers: { title: 'Inventory Tracking and Management', description: 'Tools for farmers to track their stored goods and for warehouses to manage their inventory.' },
+          pwaSupport: { title: 'Progressive Web App (PWA) Support', description: 'Easy access and offline features via an installable PWA on mobile and desktop.' },
+          adminDashboard: { title: 'Admin Dashboard', description: 'Comprehensive interface for platform management, users, transactions, and disputes.' },
+        },
+        galleryImages: {
+          terralHubLogin: { alt: 'TerralHub Login Page', caption: 'Secure access to the TerralHub platform' },
+          terralHubLogistics: { alt: 'TerralHub Logistics Interface', caption: 'Management of logistics operations' },
+          terralHubCompaniesList: { alt: 'List of Partner Companies on TerralHub', caption: 'Trusted partners for storage and transport' },
+          terralHubCompanyDetails: { alt: 'Company Details on TerralHub', caption: 'Complete information about partners' },
+          terralHubWarehousesList: { alt: 'List of Available Warehouses on TerralHub', caption: 'Find the ideal warehouse for your harvests' },
+          terralHubWarehouseDetails: { alt: 'Warehouse Details on TerralHub', caption: 'Capacity, services, and rates of warehouses' },
+          terralHubWarehousesListMapInfo: { alt: 'Map of Warehouses on TerralHub', caption: 'Geographical location of warehouses' },
+          terralHubAboutUs: { alt: 'TerralHub About Us Page', caption: 'Our mission for Senegalese agriculture' },
+        },
+        challenges: "Developing a robust and accessible solution for users with varying levels of technological proficiency, while ensuring transaction security and the reliability of logistical information.",
+        learnings: "The importance of user-centered design and close collaboration with agricultural sector stakeholders to best meet their specific needs.",
+      },
     },
     skillsContent: {
       frontendDevelopment: {
@@ -856,7 +980,10 @@ export function useTranslations<F extends FeatureType>(
 
   return function t(key: AvailableKeys): string {
     // Safely access the translation, falling back to default language if necessary
-    const featureTranslations = ui[currentLanguage]?.[feature];
+    const featureTranslations =
+      ui[currentLanguage]?.[
+        feature as keyof (typeof ui)[typeof currentLanguage]
+      ];
     if (featureTranslations && key in featureTranslations) {
       return featureTranslations[
         key as keyof typeof featureTranslations

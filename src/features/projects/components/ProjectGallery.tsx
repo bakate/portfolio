@@ -41,6 +41,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
                       className="h-full w-full rounded-md object-cover"
                       width={600}
                       height={600}
+                      style={{ objectPosition: 'center 15%' }}
                     />
                   </AspectRatio>
                 </CardContent>
